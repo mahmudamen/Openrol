@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_assignment_officer,access.assignment.officer,model_oe_assignment,de_school_assignment.group_assignment_user,1,1,1,0
+access_assignment_manager,access.assignment.manager,model_oe_assignment,de_school_assignment.group_assignment_manager,1,1,1,1
+
+access_assignment_submit_officer,access.assignment.submit.officer,model_oe_assignment_line,de_school_assignment.group_assignment_user,1,1,1,0
+access_assignment_submit_manager,access.assignment.submit.manager,model_oe_assignment_line,de_school_assignment.group_assignment_manager,1,1,1,1
+
+access_assignment_type_officer,access.assignment.type.officer,model_oe_assignment_type,de_school_assignment.group_assignment_user,1,1,1,0
+access_assignment_type_manager,access.assignment.type.manager,model_oe_assignment_type,de_school_assignment.group_assignment_manager,1,1,1,1
+
+
+access_assignment_grade_officer,access.assignment.grade.officer,model_oe_assignment_grade,de_school_assignment.group_assignment_user,1,1,1,0
+access_assignment_grade_manager,access.assignment.grade.manager,model_oe_assignment_grade,de_school_assignment.group_assignment_manager,1,1,1,1
+
+access_assignment_grade_line_officer,access.assignment.grade.line.officer,model_oe_assignment_grade_line,de_school_assignment.group_assignment_user,1,1,1,0
+access_assignment_grade_line_manager,access.assignment.grade.line.manager,model_oe_assignment_grade_line,de_school_assignment.group_assignment_manager,1,1,1,1

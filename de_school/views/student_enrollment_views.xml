@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="enrollment_history_tree_view" model="ir.ui.view">
+        <field name="name">enrollment.history.tree.view</field>
+        <field name="model">oe.school.student.enrollment</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Enrollment" >
+                <field name="school_name"/>
+                <field name="course_name"/>
+                <field name="date_start"/>
+                <field name="date_end"/>
+                <field name="status"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="enrollment_history_form_view" model="ir.ui.view">
+		<field name="name">enrollment.history.form.view</field>
+		<field name="model">oe.school.student.enrollment</field>
+		<field name="arch" type="xml">
+			<form string="Subjects">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="school_name" />
+                            <field name="course_name" />
+                        </group>
+                        <group>
+                            <field name="date_start" string="Duration" widget="daterange" options="{&quot;end_date_field&quot;: &quot;date_end&quot;, &quot;always_range&quot;: &quot;1&quot;}" required="date_start"/>
+                            <field name="status" />
+                        </group>
+                    </group>
+                    <group string="Description for Transcript">
+                        <field name="transcript_detail" colspan="2" nolabel="1" placeholder="Please provide details about transcript, including GPA or marks."/>
+                    </group>
+                    <group string="Reason for Leaving">
+                        <field name="reason" colspan="2" nolabel="1" placeholder="The reason why the student left or completed the enrollment."/>
+                    </group>
+                    <group string="Address/Contact Details">
+                        <field name="address_school" colspan="2" placeholder="Contact details of the previous institution (e.g., address, phone number, website)." nolabel="1"/>
+                    </group>
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record model="ir.actions.act_window" id="action_enrollment_history">
+        <field name="name">Enrollment</field>
+        <field name="res_model">oe.school.student.enrollment</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+</odoo>

@@ -1,0 +1,73 @@
+<odoo>
+    <data>
+        <template id="exam_session_detail_template_report_view">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <br/>
+                    <div class="oe_structure"/>
+                    <div class="mt-4">
+                        <h2>Session: <span t-field="o.name"/></h2>
+                    </div>
+
+                    <div id="course_info" class="row mt-4 mb32">
+                        <div t-if="o.course_id" class="col-3 bm-2">
+                            <strong>Course</strong>
+                            <p t-field="o.course_id" class="m-0"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <h4>Exam Schedules</h4>
+                    <table class="table table-sm o_main_table mt-4">
+                        <thead style="display: table-row-group">
+                            <tr>
+                                <th class="text-center">Subject</th>
+                                <th class="text-center">Batch</th>
+                                <th class="text-center">Start</th>
+                                <th class="text-center">End</th>
+                                <th class="text-center">Duration</th>
+                                <th class="text-center">Min Marks</th>
+                                <th class="text-center">Max Marks</th>
+                                <th class="text-center">Status</th>
+                                <th class="text-center">Venue</th>
+                            </tr>
+                        </thead>
+                        <tbody class="consumed_tbody">
+                            <t t-foreach="o.exam_line" t-as="line">
+                                <tr>
+                                    <td class="text-center"><span t-field="line.subject_id"/></td>
+                                    <td class="text-center"><span t-field="line.batch_id" /></td>
+                                    <td class="text-center"><span t-field="line.date_start" /></td>
+                                    <td class="text-center"><span t-field="line.date_end" /></td>
+                                    <td class="text-center"><span t-field="line.exam_hours" /></td>
+                                    <td class="text-center"><span t-field="line.marks_min" /></td>
+                                    <td class="text-center"><span t-field="line.marks_max" /></td>
+                                    <td class="text-center"><span t-field="line.state" /></td>
+                                    <td class="text-center"><span t-field="line.address_id" />,<span t-field="line.exam_location_id" /></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+        <template id="exam_session_detail_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="de_school_exam.exam_session_detail_template_report_view" />
+                </t>
+            </t>
+        </template>
+        <!--  Exam Session Report  -->
+        <record id="exam_session_report" model="ir.actions.report">
+            <field name="name">Print Exam Schedules</field>
+            <field name="model">oe.exam.session</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">de_school_exam.exam_session_detail_report_template</field>
+            <field name="report_file">de_school_exam.exam_session_detail_report_template</field>
+            <field name="print_report_name">'Exam Session Details'</field>
+            <field name="binding_model_id" ref="de_school_exam.model_oe_exam_session"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <!-- Percentage-Based Grading -->
+        <record id="marksheet_group_couse_weightage" model="oe.exam.msheet.group">
+            <field name="name">Course-Wise Weightage</field>
+        </record>
+
+        <record id="marksheet_group_line_mid" model="oe.exam.msheet.group.line">
+            <field name="ms_group_id" ref="marksheet_group_couse_weightage"/>
+            <field name="exam_type_id" ref="exam_type_mid_term"/>
+            <field name="grade_weightage">30</field>
+        </record>
+        <record id="marksheet_group_line_final" model="oe.exam.msheet.group.line">
+            <field name="ms_group_id" ref="marksheet_group_couse_weightage"/>
+            <field name="exam_type_id" ref="exam_type_final_term"/>
+            <field name="grade_weightage">50</field>
+        </record>
+
+        <record id="marksheet_group_line_project" model="oe.exam.msheet.group.line">
+            <field name="ms_group_id" ref="marksheet_group_couse_weightage"/>
+            <field name="exam_type_id" ref="exam_type_project"/>
+            <field name="grade_weightage">20</field>
+        </record>
+        
+    </data>
+</odoo>

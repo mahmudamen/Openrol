@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="admission_enrol_student_wizard_form_view" model="ir.ui.view">
+        <field name="name">admission.enrol.student.wizard.form.view</field>
+        <field name="model">oe.admission.enrol.student.wizard</field>
+        <field name="arch" type="xml">
+            <form string="New Enrollment Order">
+                <group>
+                    <group>
+                        <field name="action" widget="radio"/>
+                        <field name="lead_id" invisible="1"/>
+                    </group>
+                </group>
+                <group invisible="action != 'exist'" 
+                    required="action == 'exist'"
+                >
+                    <group>
+                        <field name="partner_id" 
+                            invisible="action != 'exist'" 
+                            required="action == 'exist'"
+                               context="{'res_partner_search_mode': 'customer'}" />
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_apply" string="Confirm" type="object" class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel" data-hotkey="z"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

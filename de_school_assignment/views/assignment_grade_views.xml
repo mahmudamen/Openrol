@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- assignment Grade -->
+        <record id="assignment_grade_tree_view" model="ir.ui.view">
+			<field name="name">assignment.type.tree.view</field>
+			<field name="model">oe.assignment.grade</field>
+			<field name="arch" type="xml">
+				<tree string="assignment Grade" >
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+
+        <record id="assignment_grade_form_view" model="ir.ui.view">
+            <field name="name">assignment.grade.form.view</field>
+            <field name="model">oe.assignment.grade</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="assignment Grade">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="e.g Numerical Grading"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                           <page string="Grading" name="grading">
+                               <field name="assignment_grade_line">
+                                    <tree editable="bottom">
+                                        <field name="assignment_grade_id" column_invisible="1"/>
+                                        <field name="name"/>
+                                        <field name="score_min" />
+                                    </tree>
+                                </field>
+                           </page>
+                       </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="assignment_grade_search_view" model="ir.ui.view">
+            <field name="name">assignment.grade.search.view</field>
+            <field name="model">oe.assignment.grade</field>
+            <field name="arch" type="xml">
+                <search string="assignment Type">
+                    <field name="name" string="Course"/>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_assignment_grade" model="ir.actions.act_window">
+            <field name="name">assignment Grade</field>
+            <field name="res_model">oe.assignment.grade</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="assignment_grade_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new assignment grade
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Grading" id="menu_assignment_config_main_assignment_grade"
+            parent="menu_assignment_config_main" 
+            action="action_assignment_grade"
+            groups="de_school_assignment.group_assignment_manager" 
+            sequence="30"
+        />
+        
+    </data>
+</odoo>

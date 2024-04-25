@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Enrollment orders Form View -->
+    <record id="enrol_contract_primary_form_view" model="ir.ui.view">
+        <field name="name">enrollment.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="de_school_enrollment.enrollment_order_form_view"/>
+        <field name="mode">primary</field>
+        <field name="priority">999</field>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button string="Start" name="start_contract" type="object" 
+                        class="btn-primary"
+                        invisible="enrol_status != 'progress'"/>
+
+                <button string="Assign Roll No." name="assign_roll_number" type="object" 
+                        invisible="enrol_status != 'open' or roll_no_assigned"/>
+            </xpath>
+            <xpath expr="//sheet" position="inside">
+                <field name="use_batch" invisible="1" />
+                <field name="use_section" invisible="1" />
+                <field name="roll_no_assigned" invisible="1" />
+            </xpath>
+            <xpath expr="//div[@name='button_box']" position="after">
+                <field name="enrol_status" class="float-end fs-6"
+                    invisible="enrol_status not in ['draft','progress','open','close','paused'] or state == 'cancel'"
+                    widget="badge"
+                    decoration-info="enrol_status in ['draft','close']"
+                    decoration-warning="enrol_status in ['progress']"
+                    decoration-success="enrol_status in ['open']"
+                    decoration-danger="enrol_status in ['paused']"
+                />
+            </xpath>
+            
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="string">Student</attribute>
+            </xpath>
+            
+            <xpath expr="//field[@name='sale_order_template_id']" position="attributes">
+                <attribute name="invisible">is_enrol_order</attribute>
+            </xpath>
+            <xpath expr="//field[@name='partner_shipping_id']" position="after">
+                <field name="sale_order_template_id"
+                    options="{'no_create': True}"
+                    groups="de_school_enrollment.group_enrol_template"
+                    domain="[('use_enrol_order','=',True)]"
+                 readonly="state in ['cancel', 'sale']"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="course_id" 
+                    required="enrol_status == 'progress'"
+                    options="{'no_open':True,'no_create': True}"
+                />
+                <field name="roll_no"
+                    invisible="not roll_no_assigned"
+                    readonly="1"
+                    />
+                <field name="batch_id" 
+                    invisible="not use_batch"
+                    options="{'no_open':True,'no_create': True}"
+                    />
+                <field name="section_id" 
+                    invisible="not use_section"
+                    options="{'no_open':True,'no_create': True}"
+                    />
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[('is_student', '=', True)]</attribute>
+            </xpath>
+            
+          <!-- options key for Enrollment app knowledge in the enrollment configurator -->
+          <xpath expr="//notebook/page[@name='order_lines']/field/tree/field[@name='product_id']" position='attributes'>
+            <attribute name="context">{
+                      'partner_id': parent.partner_id,
+                      'quantity': product_uom_qty,
+                      'pricelist': parent.pricelist_id,
+                      'uom':product_uom,
+                      'company_id': parent.company_id,
+                      'default_lst_price': price_unit,
+                      'default_description_sale': name,
+                      'fee_product': True,
+                  }
+            </attribute>
+            <attribute name="domain">['|', ('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id)]</attribute>
+            <attribute name="options">{
+              'no_open': True,
+              'rent': True
+            }</attribute>
+          </xpath>
+          <xpath expr="//notebook/page[@name='order_lines']/field/tree/field[@name='product_template_id']" position='attributes'>
+            <attribute name="context">{
+                    'partner_id': parent.partner_id,
+                    'quantity': product_uom_qty,
+                    'pricelist': parent.pricelist_id,
+                    'uom':product_uom,
+                    'company_id': parent.company_id,
+                    'default_list_price': price_unit,
+                    'default_description_sale': name,
+                    'fee_product': True,
+                }
+            </attribute>
+            <attribute name="domain">['|', ('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id), ('fee_product', '=', True)]</attribute>
+          </xpath>
+          <xpath expr="//field[@name='order_line']//form//field[@name='product_id']" position='attributes'>
+            <attribute name="domain">['|', ('sale_ok', '=', True), '|', ('company_id', '=', False), ('company_id', '=', parent.company_id), ('fee_product', '=', True)]</attribute>
+          </xpath>
+
+        <xpath expr="//field[@name='order_line']//form//field[@name='product_uom_qty']" position='after'>
+            <field name="qty_invoiced" column_invisible="parent.is_enrol_order != True"/>
+            <field name="qty_to_invoice" optional="hide" column_invisible="parent.is_enrol_order != True"/>
+        </xpath>
+        <xpath expr="//notebook/page[@name='order_lines']/field/tree" position='inside'>
+            <field name="invoice_lines" widget="many2many_tags" optional="hide"/>
+            <field name="invoice_status" optional="hide"/>
+        </xpath>
+            
+            <xpath expr="//page[@name='customer_signature']" position="attributes">
+                <attribute name="string">Student Signature</attribute>
+            </xpath>
+        <xpath expr="//field[@name='user_id']" position="after">
+            <field name="admission_team_id" options='{"no_open": True, "no_create": True}' invisible="is_enrol_order == False"/>
+        </xpath>
+        </field>
+      </record>
+    
+    <record id="enrollment_order_view_tree" model="ir.ui.view">
+        <field name="name">enrol.order.tree</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <tree sample="1" decoration-info="enrol_status in ['draft', 'sent']" decoration-muted="enrol_status == 'cancel'">
+                <header>
+                    <button name="assign_roll_number" type="object" 
+                        string="Assign Roll Number" 
+                        class="oe_highlight"
+                    />
+                </header>
+          <field name="name" readonly="1" decoration-bf="1"/>
+          <field name="date_order" widget='date'/>
+          <field name="partner_id" string="student" readonly="1"/>
+          <field name="user_id" optional="show" widget='many2one_avatar_user'/>
+          <field name="team_id" optional="hide"/>
+          <field name="amount_total" sum="Total Tax Included" widget="monetary" decoration-bf="1"/>
+          <field name="enrol_status" widget='badge' decoration-info="enrol_status == 'draft' or enrol_status == 'sent'" decoration-warning="enrol_status == 'pickup'" decoration-success="enrol_status == 'return'"/>
+          <field name="state" />
+          <field name="currency_id" column_invisible="1"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- Search view -->
+    <record id="enrol_order_view_search" model="ir.ui.view">
+        <field name="name">enrol.order.search</field>
+        <field name="model">sale.order</field>
+        <field name="priority">100</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Order" filter_domain="['|', '|', ('name', 'ilike', self), ('client_order_ref', 'ilike', self), ('partner_id', 'child_of', self)]"/>
+                <field name="partner_id" operator="child_of"/>
+                <field name="user_id"/>
+                <field name="order_line" string="Product" filter_domain="[('order_line.product_id', 'ilike', self)]"/>
+                <field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>
+                <filter string="My Orders" domain="[('user_id','=',uid)]" name="my_enrol_orders"/>
+                <separator/>
+                <filter string="Enrollments" domain="[('is_enrol_order', '=', True)]" name="from_enrollment"/>
+                <separator/>
+                <filter string="To Process" domain="[('enrol_status', 'in', ['draft','submit','review','approved'])]" name="inprogress_orders"/>
+                <filter string="To Pay" domain="[('enrol_status', 'in', ['pending'])]" name="to_confirm_orders"/>
+                <filter string="To Confirm" domain="[('enrol_status', 'in', ['done'])]" name="to_confirm_orders"/>
+                <filter string="Running" domain="[('enrol_status', 'in', ['open'])]" name="running_orders"/>
+                <separator/>
+                <group expand="0" string="Group By">
+                    <filter string="Status" name="groupby_status" context="{'group_by': 'enrol_status'}"/>
+                    <separator/>
+                    <filter string="Admission Officer" name="user_id" domain="[]" context="{'group_by': 'user_id'}"/>
+                    <filter string="Team" name="admission_team" domain="[]" context="{'group_by': 'admission_team_id'}"/>
+                    <separator/>
+                    <filter string="Student" name="groupby_student" domain="[]" context="{'group_by': 'partner_id'}"/>
+                    <filter string="Course" name="groupby_course" domain="[]" context="{'group_by': 'course_id'}"/>
+                </group>
+                <searchpanel>
+                    <field name="enrol_status" icon="fa-retweet" enable_counters="1"/>
+                    <field name="invoice_status" icon="fa-retweet" enable_counters="1"/>
+                </searchpanel>
+            </search>
+        </field>
+    </record>
+    
+    <record id="enrollment_order_action" model="ir.actions.act_window">
+        <field name="name">Contracts</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,kanban,form,calendar,pivot,graph,activity</field>
+        <field name="search_view_id" ref="enrol_order_view_search"/>
+        <field name="domain">[('is_enrol_order', '=', True)]</field>
+        <field name="context">{'default_is_enrol_order': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new quotation, the first step of a new Enrollment Contract!
+            </p><p>
+                Once the quotation is confirmed, it becomes a Enrollment Contract.<br/> You will be able to create an invoice and collect the payment.
+            </p>
+        </field>
+    </record>
+
+    
+    <record id="enrollment_order_form" model="ir.actions.act_window.view">
+        <field name="sequence" eval="3"/>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="enrol_contract_primary_form_view"/>
+        <field name="act_window_id" ref="enrollment_order_action"/>
+    </record>
+    
+    <record id="enrollment_order_tree" model="ir.actions.act_window.view">
+        <field name="sequence" eval="2"/>
+        <field name="view_mode">tree</field>
+        <field name="view_id" ref="enrollment_order_view_tree"/>
+        <field name="act_window_id" ref="enrollment_order_action"/>
+    </record>
+    
+    <menuitem id="menu_school_enrollment_main_contracts" name="Contracts" parent="menu_school_enrollment_main" sequence="1" action="enrollment_order_action"/>
+
+</odoo>

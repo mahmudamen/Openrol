@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_school_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.school</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="90"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form" position="inside">
+                    <app data-string="School" string="School" name="de_school" groups="de_school.group_school_manager">
+                        <block title="School Management" name="school_setting_container">
+                            <setting class="col-6" 
+                                string="Activate School Mode"
+                                title="Activate School Mode"
+                                help="Transform Your Company into an Educational Institution"
+                                documentation="https://www.dynexcel.co/sms#activate-school"
+                            >
+                                <field name="is_school"/>
+                            </setting>
+                            <setting class="col-6"
+                                string="Operating Hours"
+                                title="Operating Hours"
+                                help="Manage schedules efficiently for a smooth academic experience."
+                                documentation="https://www.dynexcel.co/sms#activate-school"
+                                invisible="not is_school"
+                            >
+                                <field name="resource_calendar_id"
+                                    required="is_school == True"
+                                    invisible="not is_school"
+                                    />
+                            </setting>
+                            <setting class="col-6"
+                                string="School Type"
+                                title="School Type"
+                                help="Customize Your School Type to Tailor Your Institution's Identity"
+                                documentation="https://www.dynexcel.co/sms#activate-school"
+                                invisible="not is_school"
+                            >
+                                <field name="school_type"
+                                    required="is_school == True"
+                                    invisible="not is_school"
+                                    />
+                            </setting>
+                            
+                        </block>
+                        <block title="Class Management" class="mt0 mb0" name="class_setting_container">
+                            <setting class="col-6 mt8"
+                                string="Batch Management"
+                                title="Batch Management"
+                                help="Organize classes and students effectively with batch management"
+                                documentation="https://www.dynexcel.co/sms#activate-school"
+                                invisible="not is_school"
+                            >
+                                <field name="use_batch"
+                                    invisible="not is_school"
+                                    />
+                            </setting>
+                            <setting class="col-6 mt8"
+                                string="Section Management"
+                                title="Section Management"
+                                help="Organize Large Classes into Sections for Efficient Administration"
+                                documentation="https://www.dynexcel.co/sms#activate-school"
+                                invisible="not is_school"
+                            >
+                                <field name="use_section"
+                                    invisible="not is_school"
+                                    />
+                            </setting>
+                        </block>
+                    </app>
+                </xpath>
+            </field>
+        </record>
+    
+     <record id="action_school_config_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'de_school'}</field>
+    </record>
+
+    <menuitem id="menu_school_general_settings"
+        name="Settings"
+        parent="menu_school_config"
+        sequence="0"
+        action="action_school_config_settings"
+        />
+    
+</odoo>

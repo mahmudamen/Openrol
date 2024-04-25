@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Exam -->
+        <record id="exam_marksheet_tree_view" model="ir.ui.view">
+			<field name="name">exam.marksheet.tree.view</field>
+			<field name="model">oe.exam.marksheet</field>
+			<field name="arch" type="xml">
+				<tree string="Mark Sheet" >
+                    <field name="name" />
+                    <field name="student_id"/>
+                    <field name="state" />
+				</tree>
+			</field>
+		</record>
+
+        <record id="exam_marksheet_form_view" model="ir.ui.view">
+            <field name="name">exam.marksheet.form.view</field>
+            <field name="model">oe.exam.marksheet</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Exam MarkSheet">
+                    <header>
+                        <button name="button_draft" invisible="state != 'cancel'" string="Set to Draft" type="object" data-hotkey="n"/>
+                        <button name="button_generate" invisible="state != 'draft'" string="Generate" type="object" class="oe_highlight" data-hotkey="o" />                        
+                        <button name="button_cancel" invisible="state not in ('draft','schedule')" string="Cancel" type="object" data-hotkey="x" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done" readonly="1"/>
+                        
+                    </header>
+                    <sheet>
+                        <field name="company_id" invisible="1" />
+                        <div class="oe_button_box" name="button_box">
+                            
+                        </div>
+                        <div class="oe_title">
+                            <label for="student_id"/>
+                            <h1>
+                                <field name="student_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    required="1"
+                                    readonly="state != 'draft'"
+                                />
+                            </h1>
+                            <h2>
+                                <field name="name" readonly="1" />
+                            </h2>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="roll_no"/>
+                                <field name="batch_id"
+                                    invisible="not batch_id"
+                                />
+                                <field name="section_id"
+                                    invisible="not section_id"
+                                />
+                            </group>
+                            <group>
+                                <field name="marksheet_group_id"
+                                    options="{'no_open':True,'no_create':True}"
+                                    readonly="state != 'draft'"
+                                />
+                                <field name="domain_exam_session_ids" widget="many2many_tags" invisible="1" />
+                                <field name="exam_session_ids" 
+                                    widget="many2many_tags"
+                                    options="{'no_open':True,'no_create':True}"
+                                    readonly="state != 'draft'"
+                                />
+                            </group>
+                        </group>
+                        <notebook>
+                           <page string="Result" name="result">
+                                <field name="dynamic_view_arch" widget="html" readonly="1" style="height:250px;"/>
+                           </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record id="exam_marksheet_search_view" model="ir.ui.view">
+            <field name="name">exam.marksheet.search.view</field>
+            <field name="model">oe.exam.marksheet</field>
+            <field name="arch" type="xml">
+                <search string="Exam Marksheet">
+                    <field name="student_id" />
+                    <group expand="0" string="Group By">
+                        <filter string="Student" name="group_student" domain="[]" context="{'group_by': 'student_id'}"/>
+                        <filter string="State" name="group_state" domain="[]" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_marksheet" model="ir.actions.act_window">
+            <field name="name">Exam</field>
+            <field name="res_model">oe.exam.marksheet</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="exam_marksheet_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Mark Sheet
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Mark Sheets" id="menu_exam_main_marksheet"
+            parent="menu_exam_main" 
+            action="action_marksheet"
+            groups="de_school_exam.group_exam_user" 
+            sequence="30"
+        />
+        
+    </data>
+</odoo>

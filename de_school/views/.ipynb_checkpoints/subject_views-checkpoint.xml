@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Grading Type -->
+        <record id="school_course_subject_group_tree_view" model="ir.ui.view">
+			<field name="name">school.course.subject.group.tree.view</field>
+			<field name="model">oe.school.course.subject.group</field>
+			<field name="arch" type="xml">
+				<tree string="Courses" editable="bottom">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+        
+        <record id="action_school_course_subject_group" model="ir.actions.act_window">
+            <field name="name">Subject Group</field>
+            <field name="res_model">oe.school.course.subject.group</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new grading type
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Subject Group" id="menu_school_config_course_subject_group"
+                    parent="menu_school_config_course" action="action_school_course_subject_group"
+                    groups="group_school_manager" />
+        
+        <!-- Course -->
+        <record id="school_course_subject_tree_view" model="ir.ui.view">
+			<field name="name">school.course.subject_tree.view</field>
+			<field name="model">oe.school.course.subject</field>
+			<field name="arch" type="xml">
+				<tree string="Subjects">
+					<field name="name"/>
+                    <field name="subject_group_id"/>
+                    <field name="course_ids" widget="many2many_tags"/>
+                    <field name="batch_ids" widget="many2many_tags"/>
+                    <field name="color" widget="color_picker"/>
+				</tree>
+			</field>
+		</record>
+		<record id="school_course_subject_form_view" model="ir.ui.view">
+			<field name="name">school.course.subject.form.view</field>
+			<field name="model">oe.school.course.subject</field>
+			<field name="arch" type="xml">
+				<form string="Subjects">
+					<sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <field name="active" invisible="1"/>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name" /></h1>
+                        </div>
+                        <group >
+                            <group>
+                                <field name="code" />
+                                <field name="subject_group_id" options="{'no_open_create':True}"/>
+                                <field name="course_ids" widget="many2many_tags" options="{'no_open_create':True}" required="1"/>
+                                <field name="batch_ids" widget="many2many_tags" options="{'no_open_create':True}" domain="[('course_id','in',course_ids)]"/>
+                                <field name="color" widget="color_picker"/>
+                            </group>
+                            <group>
+                                
+                                <field name="max_weekly_class" required="1"/>
+                                <field name="credit_hours" required="1"/>
+                                <field name="no_exam" />
+                                <field name="exclude_total_score" />
+                            </group>
+                        </group>
+						
+					</sheet>
+				</form>
+			</field>
+		</record>
+        
+        <record id="view_course_subject_filter" model="ir.ui.view">
+            <field name="name">school.course.subject.search</field>
+            <field name="model">oe.school.course.subject</field>
+            <field name="arch" type="xml">
+                <search string="Courses">
+                    <field name="name" string="Subject"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_school_course_subject" model="ir.actions.act_window">
+            <field name="name">Subjects</field>
+            <field name="res_model">oe.school.course.subject</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_course_subject_filter"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new subjects
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Subjects" id="menu_school_courses_subjects"
+                    parent="menu_school_courses" action="action_school_course_subject"
+                    groups="group_school_user" sequence="3"/>
+        
+        
+        
+    </data>
+</odoo>

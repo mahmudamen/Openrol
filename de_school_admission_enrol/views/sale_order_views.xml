@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="enrol_contract_primary_form_view_inherit" model="ir.ui.view">
+        <field name="name">enrollment.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="de_school_enrollment.enrol_contract_primary_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='other_information']/group[1]" position="inside">
+                <group string="Admission" name="admission">
+                    <field name="admission_id" help="Log in the chatter from which opportunity the order originates" groups="de_school_team.group_school_admission_manager"/>
+                    <field name="admission_register_id" options='{"no_open": True, "no_create": True}'/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Search view -->
+    <record id="enrol_order_view_search_inherit" model="ir.ui.view">
+        <field name="name">enrol.order.view.search.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="de_school_enrollment.enrol_order_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='groupby_course']" position="after">
+                <filter string="Admission Register" name="groupby_admission_register" domain="[]" context="{'group_by': 'admission_register_id'}"/>
+            </xpath>
+        </field>
+    </record>
+    
+    <record id="action_enrol_order_new" model="ir.actions.act_window">
+        <field name="name">Quotation</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">form,tree,graph</field>
+        <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('de_school_enrollment.enrol_contract_primary_form_view')}),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('de_school_enrollment.enrollment_order_view_tree')}),
+            ]"/>
+        <field name="domain">[
+            ('is_enrol_order', '=', True)
+        ]</field>
+        <field name="context">{
+            'default_is_enrol_order': 1
+        }</field>
+    </record>
+    <menuitem
+        id="menu_admission_main_enrol_order"
+        name="My Enrollments"
+        parent="de_school_admission.menu_admission_main"
+        action="de_school_enrollment.enrollment_order_action"
+    sequence="25"/>
+</odoo>

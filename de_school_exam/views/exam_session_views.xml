@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Exam Session -->
+        <record id="exam_session_tree_view" model="ir.ui.view">
+			<field name="name">exam.session.tree.view</field>
+			<field name="model">oe.exam.session</field>
+			<field name="arch" type="xml">
+				<tree string="Exam Session" >
+					<field name="name"/>
+                    <field name="exam_type_id" />
+                    <field name="state" />
+				</tree>
+			</field>
+		</record>
+
+        <record id="exam_session_form_view" model="ir.ui.view">
+            <field name="name">exam.session.form.view</field>
+            <field name="model">oe.exam.session</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Exam Session">
+                    <header>
+                        <button name="button_draft" invisible="state != 'cancel'" string="Set to Draft" type="object" data-hotkey="n"/>
+                        <button name="button_open" invisible="state != 'draft'" string="Start Exam Session" type="object" class="oe_highlight" data-hotkey="o" />
+                        
+                        <button name="button_cancel" invisbile="state != 'draft'" string="Cancel" type="object" data-hotkey="x" />
+                        <button name="button_close" type="object" string="Close Session" invisible="state != 'progress'" class="oe_highlight" data-hotkey="l"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,progress,close" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <field name="company_id" invisible="1" />
+                        <field name="use_batch" invisible="1" />
+                        <field name="use_section" invisible="1" />
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_exams"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-clipboard"
+                            >
+                                <field name="exam_count" widget="statinfo" string="Exams"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="e.g Fall 2023-Mid Term"
+                                    readonly="state != 'draft'"
+                                />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="course_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    readonly="state != 'draft'"
+                                />
+                                <field name="exam_type_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    readonly="state != 'draft'"
+                                />
+                            </group>
+                            <group>
+                                <field name="batch_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    invisible="not use_batch"
+                                    readonly="state != 'draft'"
+                                />
+                                <field name="section_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    invisible="not use_section"
+                                    readonly="state != 'draft'"
+                                />
+                                <field name="company_id" groups="base.group_multi_company" options="{'no_open':True,'no_create':True}"/>
+                            </group>y
+                        </group>
+                        
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record id="exam_session_search_view" model="ir.ui.view">
+            <field name="name">exam.sessionsearch.view</field>
+            <field name="model">oe.exam.session</field>
+            <field name="arch" type="xml">
+                <search string="Exam Session">
+                    <field name="name" string="Exam Session"/>
+                    <field name="course_id" />
+                    <field name="state" />
+                    <filter string="Open" domain="[('state', '=', 'progress')]" name="open_exam_filter"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Course" name="group_course" domain="[]" context="{'group_by': 'course_id'}"/>
+                        <filter name="Exam Type" string="group_examtype" domain="[]" context="{'group_by': 'exam_type_id'}"/>
+                        <filter string="State" name="group_state" domain="[]" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_exam_session" model="ir.actions.act_window">
+            <field name="name">Exam Session</field>
+            <field name="res_model">oe.exam.session</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="exam_session_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new exam session
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Exam Sessions" id="menu_exam_config_main_exam_session"
+            parent="menu_exam_main" 
+            action="action_exam_session"
+            groups="de_school_exam.group_exam_user" 
+            sequence="10"
+        />
+        
+    </data>
+</odoo>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <menuitem name="Course" id="menu_school_config_course"
+                    parent="menu_school_config" 
+                    groups="group_school_manager" />
+        
+        <!-- Grading Type -->
+        <record id="school_course_grading_type_tree_view" model="ir.ui.view">
+			<field name="name">school.course.grading.type.tree.view</field>
+			<field name="model">oe.school.course.grading.type</field>
+			<field name="arch" type="xml">
+				<tree string="Courses" editable="bottom">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+        
+        <record id="action_school_course_grading_type" model="ir.actions.act_window">
+            <field name="name">Grading Type</field>
+            <field name="res_model">oe.school.course.grading.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new grading type
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Grading Type" id="menu_school_config_course_grading_type"
+                    parent="menu_school_config_course" action="action_school_course_grading_type"
+                    groups="group_school_manager" />
+        
+        <!-- Course -->
+        <record id="school_course_tree_view" model="ir.ui.view">
+			<field name="name">school.course.tree.view</field>
+			<field name="model">oe.school.course</field>
+			<field name="arch" type="xml">
+				<tree string="Courses">
+					<field name="display_name"/>
+                    <field name="company_id" />
+                    <field name="parent_id"/>
+				</tree>
+			</field>
+		</record>
+		<record id="school_course_form_view" model="ir.ui.view">
+			<field name="name">school.course.form.view</field>
+			<field name="model">oe.school.course</field>
+			<field name="arch" type="xml">
+				<form string="Courses">
+					<sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <field name="active" invisible="1"/>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name" placeholder="e.g. Master in Business Administration"/></h1>
+                            <label for="parent_id"/>
+                            <h2><field name="parent_id" /></h2>
+                        </div>
+                        <group col="4">
+                            <field name="code" />
+                            <field name="grading_type_id" options="{'no_open_create':True}"/>
+                            <field name="enable_elective" />
+                            <field name="color" widget="color_picker"/>
+                            <field name="sequence_id" />
+                            <field name="company_id" options="{'no_create': True}" />
+                        </group>
+						<notebook>
+                            <page string="Sbujects">
+                                <field name="subject_ids" widget="one2many_list" readonly="1">
+									<tree editable ="top" >
+										<field name="name" />
+                                         <field name="credit_hours"  />
+										<field name="subject_group_id"  />
+                                       
+									</tree>
+								</field>
+                        </page>
+                        </notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+        
+        <record id="view_course_filter" model="ir.ui.view">
+            <field name="name">school.course.search</field>
+            <field name="model">oe.school.course</field>
+            <field name="arch" type="xml">
+                <search string="Courses">
+                    <field name="name" string="Course"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_oe_school_course" model="ir.actions.act_window">
+            <field name="name">Courses</field>
+            <field name="res_model">oe.school.course</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_course_filter"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new course
+                </p><p>
+                    Courses are used to enroll students.
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Courses" id="menu_school_courses_courses"
+                    parent="menu_school_courses" action="action_oe_school_course"
+                    groups="group_school_user" sequence="1"/>
+        
+        
+        
+    </data>
+</odoo>

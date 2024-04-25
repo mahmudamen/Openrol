@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><data noupdate="1">
+    <!-- opportunities' lost causes -->
+    <record id="lost_reason_1" model="oe.admission.lost.reason">
+        <field name="name">Insufficient Academic Qualifications</field>
+    </record>
+    <record id="lost_reason_2" model="oe.admission.lost.reason">
+        <field name="name">Limited Space</field>
+    </record>
+    <record id="lost_reason_3" model="oe.admission.lost.reason">
+        <field name="name">Non-Payment of Fees</field>
+    </record>
+    <record id="lost_reason_4" model="oe.admission.lost.reason">
+        <field name="name">Incomplete Application</field>
+    </record>
+    <record id="lost_reason_5" model="oe.admission.lost.reason">
+        <field name="name">Misrepresentation</field>
+    </record>
+    <record id="lost_reason_6" model="oe.admission.lost.reason">
+        <field name="name">Late Submission</field>
+    </record>
+    <record id="lost_reason_7" model="oe.admission.lost.reason">
+        <field name="name">Academic Dishonesty</field>
+    </record>
+    <record id="lost_reason_8" model="oe.admission.lost.reason">
+        <field name="name">Disciplinary Issues</field>
+    </record>
+    <record id="lost_reason_9" model="oe.admission.lost.reason">
+        <field name="name">Inadequate Supporting Documents</field>
+    </record>
+    <record id="lost_reason_10" model="oe.admission.lost.reason">
+        <field name="name">Unavailability of Program</field>
+    </record>
+    <record id="lost_reason_11" model="oe.admission.lost.reason">
+        <field name="name">Failure to Meet Prerequisites</field>
+    </record>
+    <record id="lost_reason_12" model="oe.admission.lost.reason">
+        <field name="name">Incompatibility with Institutional Values</field>
+    </record>
+    <record id="lost_reason_13" model="oe.admission.lost.reason">
+        <field name="name">Legal or Visa Issues</field>
+    </record>
+</data></odoo>

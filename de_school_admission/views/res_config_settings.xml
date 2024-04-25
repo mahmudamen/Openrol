@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.admission</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="90"/>
+            <field name="inherit_id" ref="de_school.res_config_settings_school_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//block[@name='class_setting_container']" position="after">
+                    <block title="Admission" class="mt0 mb0" name="admission_setting_container">
+                        <setting class="col-6 mt8"
+                            string="Enquiries"
+                            title="Enquiries"
+                            help="Manage admission enquiries before creation of application"
+                            documentation="https://www.dynexcel.co/sms#activate-school"
+                        >
+                            <field name="group_use_enquiries"/>
+                        </setting>
+
+                        <setting class="col-6 mt8"
+                            string="Application Score"
+                            title="Application Score"
+                            help="Streamline admissions and identify top candidates efficiently."
+                            documentation="https://www.dynexcel.co/sms#activate-school"
+                        >
+                            <field name="is_application_score"/>
+                        </setting>
+
+                        <setting class="col-6 mt8"
+                            string="Expected Income"
+                            title="Expected Income"
+                            help="Plan ahead with accurate income estimations."
+                            documentation="https://www.dynexcel.co/sms#activate-school"
+                        >
+                            <field name="is_application_revenue"/>
+                        </setting>
+                        
+                    </block>
+                </xpath>
+            </field>
+        </record>
+
+    <record id="action_school_admision_config_settings" model="ir.actions.act_window">
+        <field name="name">Settings</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.config.settings</field>
+        <field name="view_mode">form</field>
+        <field name="target">inline</field>
+        <field name="context">{'module' : 'de_school'}</field>
+    </record>
+    
+    <menuitem id="menu_school_admission_general_settings"
+        name="Settings"
+        parent="menu_admission_config_main"
+        sequence="0"
+        action="action_school_admision_config_settings"
+        />
+    
+</odoo>

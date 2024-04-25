@@ -1,0 +1,16 @@
+<odoo>
+    <data noupdate="0">
+        <record id="base.main_company" model="res.company">
+            <field name="is_school" eval="True"/>
+            <field name="use_batch" eval="True"/>
+            <field name="school_type">uni</field>
+        </record>
+
+        <record id="academic_year_2024" model="oe.school.year">
+            <field name="active" eval="True"/>
+            <field name="name">2024-2025</field>
+            <field name="date_start">2024-01-01</field>
+            <field name="date_end">2025-12-31</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,184 @@
+<odoo>
+    <data noupdate="0">
+        <!--
+        Resource: res.partner.category
+        -->
+        
+        <record id="res_partner_category_student" model="res.partner.category">
+            <field name="name">Student</field>
+            <field name="color" eval="2"/>
+        </record>
+        <!-- Student -->
+        <record id="res_partner_student_1" model="res.partner">
+            <field name="name">Ayesha Khan</field>
+            <field eval="[Command.set([ref('res_partner_category_student')])]" name="category_id"/>
+            <field name="is_company">0</field>
+            <field name="is_student">1</field>
+            <field name="company_type">person</field>
+            <field name="street">S.I.E.</field>
+            <field name="city">Sialkot</field>
+            <field name="country_id" ref="base.pk"/>
+            <field name="email">ayesha.khan@example.com</field>
+            <field name="phone">+9252-6550165</field>
+            <field name="website"/>
+            <field name="image_1920" type="base64" file="de_school/static/img/student_1.jpg"/>
+            <field name="course_id" ref="course_mba"/>
+            <field name="batch_id" ref="course_mba_batch1"/>
+            <field name="roll_no">mba/0001</field>
+        </record>
+
+        <record id="res_partner_student_2" model="res.partner">
+            <field name="name">Hamza Ali</field>
+            <field eval="[Command.set([ref('res_partner_category_student')])]" name="category_id"/>
+            <field name="is_company">0</field>
+            <field name="is_student">1</field>
+            <field name="company_type">person</field>
+            <field name="street">60-A Muslimabad New M.A. Jinnah Road</field>
+            <field name="city">Sindh</field>
+            <field name="country_id" ref="base.pk"/>
+            <field name="email">hamza.ali@example.com</field>
+            <field name="phone">+92214913327</field>
+            <field name="website"/>
+            <field name="image_1920" type="base64" file="de_school/static/img/student_2.jpg"/>
+            <field name="course_id" ref="course_mba"/>
+            <field name="batch_id" ref="course_mba_batch1"/>
+            <field name="roll_no">mba/0002</field>
+        </record>
+        <record id="res_partner_student_3" model="res.partner">
+            <field name="name">Mehrbano Baloch</field>
+            <field eval="[Command.set([ref('res_partner_category_student')])]" name="category_id"/>
+            <field name="is_company">0</field>
+            <field name="is_student">1</field>
+            <field name="company_type">person</field>
+            <field name="street">Off:18/155 Mujahid Road</field>
+            <field name="city">Sialkot</field>
+            <field name="country_id" ref="base.pk"/>
+            <field name="email">mehrbano.baloch@example.com</field>
+            <field name="phone">+92432-596871</field>
+            <field name="website"/>
+            <field name="image_1920" type="base64" file="de_school/static/img/student_3.jpg"/>
+            <field name="course_id" ref="course_mba"/>
+            <field name="batch_id" ref="course_mba_batch1"/>
+            <field name="roll_no">mba/0003</field>
+        </record>
+        <record id="res_partner_student_4" model="res.partner">
+            <field name="name">Zaheer Abbas</field>
+            <field eval="[Command.set([ref('res_partner_category_student')])]" name="category_id"/>
+            <field name="is_company">0</field>
+            <field name="is_student">1</field>
+            <field name="company_type">person</field>
+            <field name="street">122-J Tariq Road</field>
+            <field name="city">Karachi</field>
+            <field name="country_id" ref="base.pk"/>
+            <field name="email">zaheer.abbas@example.com</field>
+            <field name="phone">+9571-4313364 / 4382057</field>
+            <field name="website"/>
+            <field name="image_1920" type="base64" file="de_school/static/img/student_4.jpg"/>
+            <field name="course_id" ref="course_mba"/>
+            <field name="batch_id" ref="course_mba_batch2"/>
+            <field name="roll_no">mba/0004</field>
+        </record>
+        <record id="res_partner_student_5" model="res.partner">
+            <field name="name">Ifrah Ahmed</field>
+            <field eval="[Command.set([ref('res_partner_category_student')])]" name="category_id"/>
+            <field name="is_company">0</field>
+            <field name="is_student">1</field>
+            <field name="company_type">person</field>
+            <field name="street">Neka Pura</field>
+            <field name="city">Sialkot</field>
+            <field name="country_id" ref="base.pk"/>
+            <field name="email">ifrah.ahmed@example.com</field>
+            <field name="phone">+9252-3540921 / 4588204 / 3540961</field>
+            <field name="website"/>
+            <field name="image_1920" type="base64" file="de_school/static/img/student_5.jpg"/>
+            <field name="course_id" ref="course_mba"/>
+            <field name="batch_id" ref="course_mba_batch2"/>
+            <field name="roll_no">mba/0005</field>
+        </record>
+        <record id="res_partner_student_6" model="res.partner">
+            <field name="name">Khurram Hussain</field>
+            <field eval="[Command.set([ref('res_partner_category_student')])]" name="category_id"/>
+            <field name="is_company">0</field>
+            <field name="is_student">1</field>
+            <field name="company_type">person</field>
+            <field name="street">The Mall Mansion The Mall</field>
+            <field name="city">Lahore</field>
+            <field name="country_id" ref="base.pk"/>
+            <field name="email">khurram.hussain@example.com</field>
+            <field name="phone">+9242-7244622 / 7232510</field>
+            <field name="website"/>
+            <field name="image_1920" type="base64" file="de_school/static/img/student_6.jpg"/>
+            <field name="course_id" ref="course_bba"/>
+            <field name="batch_id" ref="course_bba_batch1"/>
+            <field name="roll_no">bba/0001</field>
+        </record>
+        <record id="res_partner_student_7" model="res.partner">
+            <field name="name">Kainat Malik</field>
+            <field eval="[Command.set([ref('res_partner_category_student')])]" name="category_id"/>
+            <field name="is_company">0</field>
+            <field name="is_student">1</field>
+            <field name="company_type">person</field>
+            <field name="street">137 C.P. Berar Coop. Society Block 7-8 Sindh</field>
+            <field name="city">Pakistan</field>  
+            <field name="country_id" ref="base.pk"/>
+            <field name="email">kainat.malik@example.com</field>
+            <field name="phone">+9221-4944355</field>
+            <field name="website"/>
+            <field name="image_1920" type="base64" file="de_school/static/img/student_7.jpg"/>
+            <field name="course_id" ref="course_bba"/>
+            <field name="batch_id" ref="course_bba_batch1"/>
+            <field name="roll_no">bba/0002</field>
+        </record>
+        <record id="res_partner_student_8" model="res.partner">
+            <field name="name">Suleiman Qureshi</field>
+            <field eval="[Command.set([ref('res_partner_category_student')])]" name="category_id"/>
+            <field name="is_company">0</field>
+            <field name="is_student">1</field>
+            <field name="company_type">person</field>
+            <field name="street">G.T. Road</field>
+            <field name="city">Gujranwala</field>
+            <field name="country_id" ref="base.pk"/>
+            <field name="email">suleiman.qureshi@example.com</field>
+            <field name="phone">+9255-4284759 / 4284757 / 4284720</field>
+            <field name="website"/>
+            <field name="image_1920" type="base64" file="de_school/static/img/student_8.jpg"/>
+            <field name="course_id" ref="course_mca"/>
+            <field name="batch_id" ref="course_mca_batch1"/>
+            <field name="roll_no">mca/0001</field>
+        </record>
+        <record id="res_partner_student_9" model="res.partner">
+            <field name="name">Zoya Chaudhry</field>
+            <field eval="[Command.set([ref('res_partner_category_student')])]" name="category_id"/>
+            <field name="is_company">0</field>
+            <field name="is_student">1</field>
+            <field name="company_type">person</field>
+            <field name="street">H.O. HTAL House 36-38 Keamari</field>
+            <field name="city">Karachi</field>
+            <field name="country_id" ref="base.pk"/>
+            <field name="email">zoya.chaudhry@example.com</field>
+            <field name="phone">+9221-2851116 / 2852501 / 2852540</field>
+            <field name="website"/>
+            <field name="image_1920" type="base64" file="de_school/static/img/student_9.jpg"/>
+            <field name="course_id" ref="course_mca"/>
+            <field name="batch_id" ref="course_mca_batch1"/>
+            <field name="roll_no">mca/0002</field>
+        </record>
+        <record id="res_partner_student_10" model="res.partner">
+            <field name="name">Bilal Khan</field>
+            <field eval="[Command.set([ref('res_partner_category_student')])]" name="category_id"/>
+            <field name="is_company">0</field>
+            <field name="is_student">1</field>
+            <field name="company_type">person</field>
+            <field name="street">302-Business Plaza Mumtaz Hassan Road I.I.Chundrigar Road</field>
+            <field name="city">Karachi</field>
+            <field name="country_id" ref="base.pk"/>
+            <field name="email">bilal.khan@example.com</field>
+            <field name="phone">+9221-2421174 / 2421121</field>
+            <field name="website"/>
+            <field name="image_1920" type="base64" file="de_school/static/img/student_10.jpg"/>
+            <field name="course_id" ref="course_mca"/>
+            <field name="batch_id" ref="course_mca_batch1"/>
+            <field name="roll_no">mca/0003</field>
+        </record>
+    </data>
+</odoo>

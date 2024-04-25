@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="school_timetable_period_tree_view" model="ir.ui.view">
+			<field name="name">school.timetable.period.tree.view</field>
+			<field name="model">oe.report.timetable.period</field>
+			<field name="arch" type="xml">
+				<tree string="Periods" >
+					<field name="name"/>
+                    <field name="dayofweek" optional="hide"/>
+                    <field name="day_period"/>
+                    <field name="hour_from"/>
+                    <field name="hour_to"/>
+                    <field name="calendar_id" optional="hide"/>
+                    <field name="company_id" string="Institute" groups="base.group_multi_company"/>
+                    
+				</tree>
+			</field>
+		</record>
+        
+        <record id="view_timetable_period_search_form" model="ir.ui.view">
+            <field name="name">school.timetable.period.search.form</field>
+            <field name="model">oe.report.timetable.period</field>
+            <field name="arch" type="xml">
+                <search string="Classroom Periods">
+                    <field name="name" string="Period"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Company" name="company" context="{'group_by': 'company_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_timetable_classroom_periods" model="ir.actions.act_window">
+            <field name="name">Periods</field>
+            <field name="res_model">oe.report.timetable.period</field>
+            <field name="view_mode">tree,pivot</field>
+            <field name="view_id"></field>  <!-- force empty -->
+            <field name="search_view_id" ref="view_timetable_period_search_form"/>
+            <field name="context">{'search_default_company': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No periods found. 
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Periods" id="menu_school_timetable_classroom_periods"
+                    parent="menu_school_timetable_report_main" action="action_timetable_classroom_periods"
+                    groups="de_school.group_school_user" sequence="2"/>
+        
+    </data>
+</odoo>

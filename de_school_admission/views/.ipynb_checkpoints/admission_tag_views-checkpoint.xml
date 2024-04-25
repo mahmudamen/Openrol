@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <!--
+        admission.tag views
+    -->
+    <menuitem
+        id="admission_menu_config_admission_tag"
+        name="Tags"
+        parent="menu_school_admission_menu_admission_config"
+        action="de_school_team.admission_tag_action"
+        sequence="3"/>
+    
+</odoo>

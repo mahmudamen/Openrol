@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="enrol_order_template_form_view" model="ir.ui.view">
+        <field name="name">enrollment.order.template.form.view</field>
+        <field name="model">sale.order.template</field>
+        <field name="inherit_id" ref="sale_management.sale_order_template_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <field name="use_enrol_order" invisible="1" />
+            </xpath>
+            <xpath expr="//page[@name='order_lines']" position="attributes">
+                <attribute name="invisible">use_enrol_order</attribute>
+            </xpath>
+            <xpath expr="//page[@name='optional_products']" position="attributes">
+                <attribute name="invisible">use_enrol_order</attribute>
+            </xpath>
+            <xpath expr="//page[@name='order_lines']" position="after">
+                <page string="Lines" name="fee_order_lines" invisible="not use_enrol_order">
+                    <field name="sale_order_template_line_ids" widget="section_and_note_one2many">
+                        <form string="Quotation Template Lines">
+                            <field name="sequence" invisible="1"/>
+                            <field name="display_type" invisible="1"/>
+                            <field name="product_uom_category_id" invisible="1"/>
+                            <field name="company_id" invisible="1"/>
+                            <group invisible="display_type">
+                                <group>
+                                    <field name="product_id" 
+                                            domain="[('fee_product','=',True)]"
+                                            required="not display_type"
+                                    />
+                                    <label for="product_uom_qty"/>
+                                    <div>
+                                        <field name="product_uom_qty" class="oe_inline"/>
+                                    </div>
+                                </group>
+                            </group>
+                            <notebook colspan="4" name="description">
+                                <page string="Description" name="order_description" invisible="display_type">
+                                    <field name="name" />
+                                </page>
+                                <page string="Section" name="order_section" invisible="display_type != 'line_section'">
+                                    <field name="name" />
+                                </page>
+                                <page string="Note" name="order_note" invisible="display_type != 'line_note'">
+                                    <field name="name" />
+                                </page>
+                            </notebook>
+                        </form>
+                        <tree string="Quotation Template Lines" editable="bottom">
+                                <control>
+                                    <create name="add_product_control" string="Add a product"/>
+                                    <create name="add_section_control" string="Add a section" context="{'default_display_type': 'line_section'}"/>
+                                    <create name="add_note_control" string="Add a note" context="{'default_display_type': 'line_note'}"/>
+                                </control>
+
+                                <field name="display_type" column_invisible="True"/>
+                                <field name="company_id" column_invisible="True"/>
+                                <field name="sequence" widget="handle"/>
+                                <field name="product_id"
+                                    domain="[('fee_product','=',True)]"
+                                    />
+                                <field name="name"/>
+                                <field name="product_uom_qty"/>
+                                <field name="product_uom_category_id" column_invisible="True"/>
+                                <field
+                                    name="product_uom_id"
+                                    groups="uom.group_uom"
+                                    required="not display_type"/>
+                            </tree>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+    <record id="action_enrol_order_template" model="ir.actions.act_window">
+        <field name="name">Templates</field>
+        <field name="res_model">sale.order.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[('use_enrol_order', '=', True)]</field>
+        <field name="context">{'default_use_enrol_order': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your quotation template
+            </p><p>
+                The template will use for enrolment of students in different courses with similar charges.
+            </p>
+        </field>
+    </record>
+    
+    <menuitem id="enrol_order_template_menu" action="action_enrol_order_template" 
+        parent="menu_school_enrollment_menu_config" 
+        sequence="1" 
+        name="Templates" 
+        groups="group_enrol_template"/>
+
+</odoo>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+
+    </data>
+    <data noupdate="1">
+        <!-- Exam Type -->
+        <record model="oe.exam.type" id="exam_type_unit_test">
+          <field name="name">Unit Tests</field>
+        </record>
+        <record model="oe.exam.type" id="exam_type_class_test">
+          <field name="name">Class Tests</field>
+        </record>
+        <record model="oe.exam.type" id="exam_type_mid_term">
+          <field name="name">Midterm Exams</field>
+        </record>
+        <record model="oe.exam.type" id="exam_type_final_term">
+          <field name="name">Final Exams</field>
+        </record>
+        <record model="oe.exam.type" id="exam_type_project">
+          <field name="name">Project</field>
+        </record>
+    </data>
+</odoo>

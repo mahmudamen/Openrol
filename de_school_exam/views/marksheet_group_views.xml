@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Exam Grade -->
+        <record id="exam_grade_tree_view" model="ir.ui.view">
+			<field name="name">exam.type.tree.view</field>
+			<field name="model">oe.exam.msheet.group</field>
+			<field name="arch" type="xml">
+				<tree string="Weightage" >
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+
+        <record id="marksheet_group_form_view" model="ir.ui.view">
+            <field name="name">marksheet.group.form.view</field>
+            <field name="model">oe.exam.msheet.group</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Weightage">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="e.g Course-Wise Weightage"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                            </group>
+                        </group>
+                        <notebook>
+                           <page string="Weightage" name="weightage">
+                               <field name="ms_group_line">
+                                    <tree editable="bottom">
+                                        <field name="exam_type_id" />
+                                        <field name="grade_weightage" sum="Total"/>
+                                    </tree>
+                                </field>
+                           </page>
+                       </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_marksheet_weightage" model="ir.actions.act_window">
+            <field name="name">Marksheet Weightage</field>
+            <field name="res_model">oe.exam.msheet.group</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="exam_grade_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new exam grade
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Marksheet Weightage" id="menu_exam_config_main_marksheet_weightage"
+            parent="menu_exam_config_main" 
+            action="action_marksheet_weightage"
+            groups="de_school_exam.group_exam_manager" 
+            sequence="40"
+        />
+        
+    </data>
+</odoo>

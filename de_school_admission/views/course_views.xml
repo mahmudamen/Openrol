@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+        <!-- Partner kanban view inherit -->
+        <record id="school_course_form_view_inherit_admission_fee" model="ir.ui.view">
+            <field name="name">school.course.form.view.inherit.admission.fee</field>
+            <field name="model">oe.school.course</field>
+            <field name="inherit_id" ref="de_school.school_course_form_view"/>
+            <field name="priority" eval="10"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]/group[2]" position="inside">
+                    <field name="company_currency" invisible="1"/>
+                    <field name="is_application_revenue" invisible="1"/>
+                    <field name="expected_revenue" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_admission_course" model="ir.actions.act_window">
+            <field name="name">Courses</field>
+            <field name="res_model">oe.school.course</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="de_school.view_course_filter"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new course
+                </p><p>
+                    Courses are used to enroll students.
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Courses" id="menu_school_courses_courses"
+                    parent="menu_admission" action="action_admission_course"
+                    groups="de_school_team.group_school_admission_manager" sequence="30"/>
+        
+    </data>
+</odoo>

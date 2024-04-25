@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="admission_team_form_view_inherit_enrol" model="ir.ui.view">
+        <field name="name">admission.team.form.view.inherit.enrol</field>
+        <field name="model">oe.admission.team</field>
+        <field name="inherit_id" ref="de_school_admission.admission_team_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//t[@name='first_options']" position="after">
+                <div class="col-8 o_kanban_primary_right" style="padding-bottom:0;">
+                    <a name="action_open_enrol_orders" type="object" context="{'team_id': active_id}">
+                        <field name="enrol_orders_count" class="me-1"/>
+                        <t t-if="record.enrol_orders_count.raw_value == 1">Enrolment Order</t>
+                        <t t-else="">Enrollment Orders</t>
+                    </a>
+                </div>
+                <div class="col-4 text-end text-truncate" 
+                    invisible="is_application_revenue == False">
+                    <field name="enrol_orders_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </div>
+            </xpath>
+            <!-- add more links in view menu -->
+            <xpath expr="//div[hasclass('o_kanban_manage_view')]" position="inside">
+                <div role="menuitem">
+                    <a name="action_open_enrol_orders" type="object"  context="{'team_id': active_id}">Enrollments</a>
+                </div>
+            </xpath>
+            <!-- add more links in Reporting Menu -->
+            <xpath expr="//div[hasclass('o_kanban_manage_reports')]" position="inside">
+                <div role="menuitem">
+                    <a name="action_open_report_enrol_orders" type="object"  context="{'team_id': active_id}">Enrollments</a>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

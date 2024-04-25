@@ -1,0 +1,36 @@
+<odoo>
+    <data noupdate="0">
+        <!--
+        Resource: res.partner.category
+        -->
+        
+        <record id="res_partner_category_student" model="res.partner.category">
+            <field name="name">Student</field>
+            <field name="color" eval="2"/>
+        </record>
+        
+        <record id="res_partner_category_teacher" model="res.partner.category">
+            <field name="name">Teacher</field>
+            <field name="color" eval="3"/>
+        </record>
+        
+        <!-- Student -->
+        <record id="res_partner_student_1" model="res.partner">
+            <field name="name">Wood Corner</field>
+            <field eval="[Command.set([ref('res_partner_category_student')])]" name="category_id"/>
+            <field name="is_company">0</field>
+            <field name="is_student">1</field>
+            <field name="company_type">person</field>
+            <field name="street">1839 Arbor Way</field>
+            <field name="city">Turlock</field>
+            <field name="state_id" ref='state_us_5'/>
+            <field name="zip">95380</field>
+            <field name="country_id" ref="base.us"/>
+            <field name="email">wood.corner26@example.com</field>
+            <field name="phone">(623)-853-7197</field>
+            <field name="website">http://www.wood-corner.com</field>
+            <field name="image_1920" type="base64" file="base/static/img/res_partner_1-image.png"/>
+        </record>
+
+    </data>
+</odoo>

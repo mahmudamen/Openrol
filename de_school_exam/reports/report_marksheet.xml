@@ -1,0 +1,94 @@
+<odoo>
+    <data>
+        <template id="marksheet_template_report_view">
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <br/>
+                    <div class="oe_structure"/>
+                    <div class="mt-4 text-center">
+                        <h2 class="text-center">Marksheet</h2>
+                    </div>
+
+                    <div id="course_info" class="row mt-4 mb32">
+                        <div t-if="o.name" class="col-3 bm-2">
+                            <strong>Sheet Ref.</strong>
+                            <p t-field="o.name" class="m-0"/>
+                        </div>
+                        <div t-if="o.student_id.course_id" class="col-3 bm-2">
+                            <strong>Course</strong>
+                            <p t-field="o.student_id.course_id" class="m-0"/>
+                        </div>
+                    </div>
+                    
+                    <div id="student_info" class="row mt-4 mb32">
+                        <div t-if="o.student_id" class="col-3 bm-2">
+                            <strong>Student</strong>
+                            <p t-field="o.student_id" class="m-0"/>
+                        </div>
+                        <div t-if="o.roll_no" class="col-3 bm-2">
+                            <strong>Roll No</strong>
+                            <p t-field="o.roll_no" class="m-0"/>
+                        </div>
+                        <div t-if="o.student_id.admission_no" class="col-3 bm-2">
+                            <strong>Admission No</strong>
+                            <p t-field="o.student_id.admission_no" class="m-0"/>
+                        </div>
+                        <div t-if="o.batch_id" class="col-3 bm-2">
+                            <strong>Batch</strong>
+                            <p t-field="o.batch_id" class="m-0"/>
+                        </div>
+                        <div t-if="o.section_id" class="col-3 bm-2">
+                            <strong>Section</strong>
+                            <p t-field="o.section_id" class="m-0"/>
+                        </div>
+                    </div>
+                    
+                    
+                    <h4>Marksheet</h4>
+                    <table class="table table-sm o_main_table mt-4">
+                        <thead style="display: table-row-group">
+                            <tr>
+                                <th class="text-center">Subject</th>
+                                <t t-foreach="o.marksheet_group_id.ms_group_line.filtered(lambda r: r.ms_group_id.id == o.marksheet_group_id.id)" t-as="group_line">
+                                    <th class="text-center" t-field="group_line.exam_type_id.name"/>
+                                </t>
+                                <th class="text-center">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody class="consumed_tbody">
+                            <t t-foreach="o.marksheet_line" t-as="line">
+                                <tr>
+                                    <td class=""><span t-field="line.subject_id"/></td>
+                                    <t t-foreach="o.marksheet_group_id.ms_group_line.filtered(lambda r: r.ms_group_id.id == o.marksheet_group_id.id)" t-as="group_line">
+                                        <t t-foreach="line.marksheet_line_score_ids.filtered(lambda r: r.exam_type_id.id == group_line.exam_type_id.id)" t-as="score_id">
+                                             <td class="text-center"><span t-field="score_id.marks"/></td>
+                                        </t>
+                                    </t>
+                                    <td class=""><span t-field="line.marks_total"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+        <template id="marksheet_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="de_school_exam.marksheet_template_report_view" />
+                </t>
+            </t>
+        </template>
+        <!--  Exam Report  -->
+        <record id="exam_sheet_report" model="ir.actions.report">
+            <field name="name">Print Marksheet</field>
+            <field name="model">oe.exam.marksheet</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">de_school_exam.marksheet_report_template</field>
+            <field name="report_file">de_school_exam.marksheet_report_template</field>
+            <field name="print_report_name">'Exam Details'</field>
+            <field name="binding_model_id" ref="de_school_exam.model_oe_exam_marksheet"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-name="de_school_timetable.PlanningCalendarController" t-inherit="web.CalendarController" t-inherit-mode="primary">
+        <xpath expr="//div[contains(@class, 'o_calendar_header')]" position="inside">
+            <button class="btn btn-primary o-calendar-button-new me-1" t-on-click="onClickAddButton">
+                Planning
+            </button>
+        </xpath>
+        <xpath expr="//div[hasclass('o_calendar_renderer ')]" position="inside">
+            <button class="btn btn-primary o-calendar-button-new me-1" t-on-click="onClickAddButton">
+                Planning
+            </button>
+        </xpath>
+    </t>
+</templates>

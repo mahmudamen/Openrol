@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="enrollment_history_tree_view" model="ir.ui.view">
+        <field name="name">enrollment.history.tree.view</field>
+        <field name="model">oe.admission</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Enrollment" sample="1" multi_edit="1">
+            </tree>
+        </field>
+    </record>
+</odoo>

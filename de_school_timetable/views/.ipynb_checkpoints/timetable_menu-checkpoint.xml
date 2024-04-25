@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+    <menuitem name="Timetable"
+        id="menu_school_timetable"
+        web_icon="de_school_timetable,static/description/icon.png"
+        sequence="55" />
+    
+    <menuitem name="Timetable" id="menu_school_timetable_main"
+			parent="menu_school_timetable" 
+              sequence = "1"
+			groups="de_school.group_school_user" />
+    
+    <menuitem name="Classroom" id="menu_school_timetable_room_main"
+			parent="menu_school_timetable" 
+              sequence = "2"
+			groups="de_school.group_school_user" />
+    
+    <menuitem name="Configuration" id="menu_school_timetable_config"
+			parent="menu_school_timetable" 
+              sequence = "90"
+			groups="de_school.group_school_manager" />
+    
+</odoo>

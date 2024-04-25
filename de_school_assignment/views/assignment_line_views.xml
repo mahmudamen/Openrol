@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Assignment -->
+        <record id="assignment_line_tree_view" model="ir.ui.view">
+			<field name="name">assignment.line.tree.view</field>
+			<field name="model">oe.assignment.line</field>
+			<field name="arch" type="xml">
+				<tree string="Assignment Line" >
+                    <field name="student_id"/>
+                    <field name="assignment_id" optional="hide"/>
+                    <field name="course_id" optional="hide"/>
+					<field name="subject_id"/>
+                    <field name="date_due" />
+                    <field name="date" />
+                    <field name="file_assignment" widget="binary" />
+                    <field name="marks" />
+                    <field name="assignment_grade_line_id" />
+                    <field name="state" readonly="1"/>
+				</tree>
+			</field>
+		</record>
+
+        <record id="assignment_line_form_view" model="ir.ui.view">
+            <field name="name">assignment.line.form.view</field>
+            <field name="model">oe.assignment.line</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Assignment">
+                    <header>
+                        <button name="button_draft" invisible="state != 'cancel'" string="Set to Draft" type="object" data-hotkey="n"/>
+                        <!--
+                        <button name="button_submit" invisible="state != 'draft'" string="Submit" type="object" class="oe_highlight" data-hotkey="o" />
+                        -->
+                        <button name="button_cancel" invisible="state != 'draft'" string="Cancel" type="object" data-hotkey="x" />
+                        <button name="button_mark_late_submission" invisible="state not in ['draft','submitted'] or not user_teacher" string="Mark Late Submission" type="object" />
+
+                        <field name="state" widget="statusbar" statusbar_visible="draft,submitted,expired,close" readonly="1"/>
+                        
+                    </header>
+                    <sheet>
+                        <field name="user_teacher" invisible="1" />
+                        <group>
+                            <group>
+                                <field name="assignment_id" 
+                                    options="{'no_create':True}"
+                                    readonly="state != 'draft'"
+                                />
+                                <field name="student_id" 
+                                    options="{'no_create':True}"
+                                    readonly="state != 'draft'"
+                                />
+                                <field name="course_id" options="{'no_open':True,'no_create':True}"/>
+                                <field name="subject_id" options="{'no_open':True,'no_create':True}"/>
+                                <field name="batch_id" options="{'no_open':True,'no_create':True}"/>
+                            </group>
+                            <group>
+                                <field name="file_assignment" widget="binary" />
+                                <field name="file_submit" 
+                                    widget="binary" 
+                                    readonly="state in ['expired','cancel']"
+                                />
+                                <field name="marks" required="state == 'expired'" 
+                                    readonly="state != 'expired'" 
+                                    />
+                                <field name="assignment_grade_line_id" />
+                                <field name="date_due" />
+                                <field name="date" />
+                                
+                            </group>y
+                        </group>
+                         <notebook>
+                            <page name="description_page" string="Description">
+                                <field name="description" type="html" options="{'collaborative': true, 'resizable': false}" placeholder="Assignment description..."/>
+                            </page>
+                             <page name="feedback_page" string="Feedback">
+                                <field name="feedback" type="html" 
+                                    options="{'collaborative': true, 'resizable': false}" 
+                                    placeholder="Assignment Feedback..."
+                                    readonly="not user_teacher or state != 'expired'"
+                                />
+                            </page>
+                         </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="assignment_line_calendar_view" model="ir.ui.view">
+            <field name="name">assignment.line.calendar.view</field>
+            <field name="model">oe.assignment.line</field>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Assignments" 
+                    date_start="date"
+                    mode="month" color="subject_id"
+                    event_open_popup="true"
+                    event_limit="10"
+                    quick_create="0"
+                >
+                    <field name="subject_id" filters="1" invisible="1" />
+                    <field name="student_id" filters="2" invisible="1" />
+                    <field name="date_due" invisible="1" />
+                </calendar>
+            </field>
+        </record>
+        
+        <record id="assignment_line_search_view" model="ir.ui.view">
+            <field name="name">assignment.line.search.view</field>
+            <field name="model">oe.assignment.line</field>
+            <field name="arch" type="xml">
+                <search string="Assignment">
+                    <field name="subject_id"/>
+                    <field name="student_id"/>
+                    <field name="state" />
+                    <filter string="Due" name="due_assignment" domain="[('date_due','&gt;', context_today())]"/>
+                    <separator/>
+                    <filter string="Submitted" domain="[('state', '=', 'submitted')]" name="filter_submitted_assignments"/>
+                    <filter string="Expired" domain="[('state', '=', 'expired')]" name="filter_expired_assignments"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Student" name="group_student" context="{'group_by':'student_id'}"/>
+                        <separator/>
+                        <filter string="Subject" name="group_course" context="{'group_by':'subject_id'}"/>
+                        <separator/>
+                        <filter string="State" name="group_state" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_assignment_line" model="ir.actions.act_window">
+            <field name="name">Assignment</field>
+            <field name="res_model">oe.assignment.line</field>
+            <field name="view_mode">tree,calendar,form</field>
+            <field name="search_view_id" ref="assignment_line_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new assignment
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Submit Assignment" id="menu_assignment_main_submit_assignment"
+            parent="menu_assignment_main" 
+            action="action_assignment_line"
+            groups="de_school_assignment.group_assignment_user" 
+            sequence="20"
+        />
+        
+    </data>
+</odoo>

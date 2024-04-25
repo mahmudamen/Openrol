@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Assignment Type -->
+        <record id="assignment_type_tree_view" model="ir.ui.view">
+			<field name="name">assignment.type.tree.view</field>
+			<field name="model">oe.assignment.type</field>
+			<field name="arch" type="xml">
+				<tree string="Assignment Type" editable="bottom">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+        
+        <record id="assignment_type_search_view" model="ir.ui.view">
+            <field name="name">assignment.type.search.view</field>
+            <field name="model">oe.assignment.type</field>
+            <field name="arch" type="xml">
+                <search string="Assignment Type">
+                    <field name="name" string="Course"/>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_assignment_type" model="ir.actions.act_window">
+            <field name="name">Assignment Type</field>
+            <field name="res_model">oe.assignment.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="assignment_type_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new assignment type
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Assignment Type" id="menu_assignment_config_main_assignment_type"
+            parent="menu_assignment_config_main" 
+            action="action_assignment_type"
+            sequence="20"
+        />
+        
+    </data>
+</odoo>

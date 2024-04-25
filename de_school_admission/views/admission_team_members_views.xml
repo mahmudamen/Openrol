@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo><data>
+    <menuitem
+        id="admission_menu_config_admission_members"
+        name="Admission Members"
+        parent="menu_admission_config_main"
+        action="de_school_team.admission_team_member_action"
+        sequence="2"/>
+
+</data></odoo>

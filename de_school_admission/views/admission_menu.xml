@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+    <menuitem name="Admission"
+        id="menu_admission"
+        groups="de_school_team.group_school_admission_user,de_school_team.group_school_admission_manager"
+        web_icon="de_school_admission,static/description/icon.png"
+        sequence="57" />
+    
+    <menuitem name="Admissions" id="menu_admission_main"
+			parent="menu_admission" 
+              sequence = "10"
+			 />
+
+    <menuitem
+        id="menu_admission_main_admission_pipeline"
+        name="My Pipeline"
+        parent="menu_admission_main"
+        action="de_school_admission.action_admission_pipeline"
+        sequence="1"/>
+    
+    <menuitem name="Reports" id="menu_admission_reports"
+			parent="menu_admission" 
+              sequence = "90"
+			 />
+    
+    <menuitem name="Configuration" id="menu_admission_config_main"
+			parent="menu_admission" 
+              sequence = "100"
+			groups="de_school_team.group_school_admission_manager" />
+    
+    <menuitem name="Admission" id="menu_admission_config_main_admission"
+			parent="menu_admission_config_main" sequence = "20"/>
+    
+    
+    
+</odoo>

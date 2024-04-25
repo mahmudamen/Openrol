@@ -1,0 +1,304 @@
+<odoo>
+  <data> 
+      
+      <record id="admission_form_view" model="ir.ui.view">
+            <field name="name">admission.form.view</field>
+            <field name="model">oe.admission</field>
+            <field name="arch" type="xml">
+                <form class="o_lead_opportunity_form" js_class="crm_form">
+                    <header>
+                        <field name="stage_id" widget="statusbar"
+                            options="{'clickable': '1', 'fold_field': 'fold'}"
+                            domain="['|', ('team_id', '=', team_id), ('team_id', '=', False)]"
+                            attrs="{'invisible': ['|', ('active', '=', False), ('type', '=', 'lead')]}"/>
+
+                    </header>
+                    <sheet>
+                        <field name="company_id" invisible="1"/>
+                        <field name="active" invisible="1"/>
+                        <field name="user_company_ids" invisible="1"/>
+                        <!--
+                        <field name="is_blacklisted" invisible="1"/>
+                        <field name="phone_blacklisted" invisible="1"/>
+                        <field name="mobile_blacklisted" invisible="1"/>
+-->
+                        <field name="email_state" invisible="1"/>
+                        <field name="phone_state" invisible="1"/>
+                        <field name="partner_email_update" invisible="1"/>
+                        
+                        <field name="partner_phone_update" invisible="1"/>
+
+
+                        <div class="oe_button_box" name="button_box">
+                            
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" />
+                            <h1><field class="text-break" name="name" required="1"/></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <label for="contact_name_page_lead"/>
+                                <div class="o_row">
+                                    <field name="title" placeholder="Title" domain="[]" options='{"no_open": True}'/>
+                                    <field name="contact_name" required="1" id="contact_name_page_lead"/>
+                                </div>
+                                <label for="street_page_lead" string="Address"/>
+                                <div class="o_address_format">
+                                    <field name="street" id="street_page_lead" placeholder="Street..." class="o_address_street"/>
+                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                </div>
+                                <field name="partner_id"
+                                    widget="res_partner_many2one"
+                                    string="Student" attrs="{'invisible':[('partner_id','=',False)]}"
+                                    context="{
+                                        'default_name': contact_name,
+                                        'default_street': street,
+                                        'default_street2': street2,
+                                        'default_city': city,
+                                        'default_title': title,
+                                        'default_state_id': state_id,
+                                        'default_zip': zip,
+                                        'default_country_id': country_id,
+                                        'default_phone': phone,
+                                        'default_mobile': mobile,
+                                        'default_email': email_from,
+                                        'default_user_id': user_id,
+                                        'default_team_id': team_id,
+                                    }"
+                                />
+                                <label for="email_from" class="oe_inline"/>
+                                <div class="o_row o_row_readonly">
+                                    <!--
+                                    <button name="mail_action_blacklist_remove" class="fa fa-ban text-danger"
+                                        title="This email is blacklisted for mass mailings. Click to unblacklist."
+                                        type="object" context="{'default_email': email_from}" groups="base.group_user"
+                                        attrs="{'invisible': [('is_blacklisted', '=', False)]}"/>
+-->
+                                    <field name="email_from" string="Email" widget="email"/>
+                                    <span class="fa fa-exclamation-triangle text-warning oe_edit_only"
+                                        title="By saving this change, the customer email will also be updated."
+                                        attrs="{'invisible': [('partner_email_update', '=', False)]}"/>
+                                </div>
+                                <label for="phone" class="oe_inline"/>
+                                <div class="o_row o_row_readonly">
+                                    <field name="phone" widget="phone"/>
+                                    <span class="fa fa-exclamation-triangle text-warning oe_edit_only"
+                                        title="By saving this change, the customer phone number will also be updated."
+                                        attrs="{'invisible': [('partner_phone_update', '=', False)]}"/>
+                                </div>
+                                <label for="mobile" class="oe_inline"/>
+                                <div class="o_row o_row_readonly">
+                                    <!--
+                                    <button name="phone_action_blacklist_remove" class="fa fa-ban text-danger"
+                                        title="This phone number is blacklisted for SMS Marketing. Click to unblacklist."
+                                        type="object" context="{'default_phone': mobile}" groups="base.group_user"
+                                        attrs="{'invisible': [('mobile_blacklisted', '=', False)]}"/>
+-->
+                                    <field name="mobile" widget="phone" string="Mobile"/>
+                                </div>
+                                <field name="user_id"
+                                    context="{'default_sales_team_id': team_id}" widget="many2one_avatar_user"/>
+                                <field name="team_id" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="type" invisible="1"/>
+                            </group>
+                            <group string="Academic" name="academic">
+                                <field name="course_id" options="{'no_create_edit': True}" required="1"/>
+                                <field name="batch_id" options="{'no_create_edit': True}" domain="[('course_id','=',course_id)]"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            
+                            
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+    
+      <record id="admission_tree_view" model="ir.ui.view">
+            <field name="name">admission.tree.view</field>
+            <field name="model">oe.admission</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Opportunities" sample="1" multi_edit="1">
+                    <field name="company_id" invisible="1"/>
+                    <field name="create_date" optional="hide"/>
+                    <field name="name" string="Opportunity" readonly="1"/>
+                    <field name="partner_id" optional="hide"/>
+                    <field name="contact_name" optional="show"/>
+                    <field name="email_from"/>
+                    <field name="phone" class="o_force_ltr"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                    <field name="city" optional="hide"/>
+                    <field name="state_id" optional="hide"/>
+                    <field name="country_id" optional="hide" options="{'no_open': True, 'no_create': True}"/>
+                    <!-- Explicit domain due to multi edit -> real company domain would be complicated -->
+                    <field name="user_id" widget="many2one_avatar_user" optional="show"
+                        domain="[('share', '=', False)]"/>
+                    <field name="team_id" optional="hide"/>
+                    <field name="activity_ids" widget="list_activity"/>
+                    <field name="activity_user_id" optional="hide" string="Activity by" widget="many2one_avatar_user"/>
+                    <field name="activity_calendar_event_id" invisible="1"/>
+                    <field name="campaign_id" optional="hide"/>
+                    <field name="medium_id" optional="hide"/>
+                    <field name="source_id" optional="hide"/>
+                    <field name="company_currency" invisible="1"/>
+                    <field name="stage_id" optional="show" decoration-bf="1"/>
+                    <field name="active" invisible="1"/>
+                    <field name="tag_ids" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="referred" invisible="1"/>
+                    <field name="message_needaction" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+      <record id="admission_calendar_view" model="ir.ui.view">
+            <field name="name">admission.calendar.view</field>
+            <field name="model">oe.admission</field>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Leads Generation" create="0" mode="month" date_start="activity_date_deadline" color="user_id" hide_time="true" event_limit="5">
+                    <field name="partner_id" avatar_field="avatar_128"/>
+                    <field name="user_id" filters="1" invisible="1"/>
+                </calendar>
+            </field>
+        </record>
+      
+      <record id="admission_graph_view" model="ir.ui.view">
+            <field name="name">admission.graph.view</field>
+            <field name="model">oe.admission</field>
+            <field name="arch" type="xml">
+                <graph string="Opportunities" sample="1">
+                    <field name="stage_id"/>
+                    <field name="user_id"/>
+                    <field name="color" invisible="1"/>
+                </graph>
+            </field>
+        </record>
+      
+      <record id="admission_pivot_view" model="ir.ui.view">
+            <field name="name">admission.pivot.view</field>
+            <field name="model">oe.admission</field>
+            <field name="arch" type="xml">
+                <pivot string="Pipeline Analysis" sample="1">
+                    <field name="create_date" interval="month" type="row"/>
+                    <field name="stage_id" type="col"/>
+                    <field name="color" invisible="1"/>
+                    <field name="message_bounce" invisible="1"/>
+                </pivot>
+            </field>
+        </record>
+      
+      
+      <!-- My Inquiries -->
+      <record model="ir.actions.act_window" id="action_my_inquiries">
+            <field name="name">Inquiries</field>
+            <field name="res_model">oe.admission</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('admission_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('admission_form_view')}),
+            ]"/>
+            <field name="domain">[('type','=','opportunity'),('is_admission','=',True)]</field>
+            <field name="context">{
+                    'default_type': 'opportunity',
+                    'default_is_admission': True,
+                }
+            </field>
+        </record>
+      
+      
+      <menuitem
+        id="menu_admission_inquiries"
+        name="My Inquiries"
+        parent="menu_school_admission_admission_main"
+        action="action_my_inquiries"
+        sequence="2"/>
+      
+      <!-- My Admissions -->
+        <record model="ir.actions.act_window" id="action_my_admission">
+            <field name="name">Admissions</field>
+            <field name="res_model">oe.admission</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('admission_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('admission_form_view')}),
+            ]"/>
+            <field name="domain">[('type','=','opportunity'),('is_admission','=',True)]</field>
+            <field name="context">{
+                    'default_type': 'opportunity',
+                    'default_is_admission': True,
+                }
+            </field>
+        </record>
+      
+      
+      <menuitem
+        id="menu_admission_opportunities"
+        name="My Admissions"
+        parent="menu_school_admission_admission_main"
+        action="action_my_admission"
+        sequence="3"/>
+      
+      <!-- My Admission Activities -->
+      <record id="admission_activities_tree_view" model="ir.ui.view">
+            <field name="name">admission.activites.tree.view</field>
+            <field name="model">oe.admission</field>
+            <field name="mode">primary</field>
+            <field name="priority">20</field>
+            <field name="inherit_id" ref="admission_tree_view"/>
+            <field name="arch" type="xml">
+                
+                <field name="user_id" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </field>
+                <field name="team_id" position="attributes">
+                    <attribute name="optional">hide</attribute>
+                </field>
+            </field>
+        </record>
+      
+        <record id="action_my_admission_activities" model="ir.actions.act_window">
+            <field name="name">My Activities</field>
+            <field name="res_model">oe.admission</field>
+            <field name="view_mode">tree,calendar,form,activity</field>
+            <field name="view_id" ref="admission_activities_tree_view"/>
+            <field name="domain">[('activity_ids','!=',False)]</field>
+            <!--
+            <field name="search_view_id" ref="crm.view_crm_case_my_activities_filter"/>
+            <field name="context">{'default_type': 'opportunity',
+                    'search_default_assigned_to_me': 1}
+            </field>
+-->
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Looks like nothing is planned.
+                </p><p>
+                    Schedule activities to keep track of everything you have to do.
+                </p>
+            </field>
+        </record>
+      
+      <menuitem
+        id="menu_admission_activities"
+        name="My Activities"
+        parent="menu_school_admission_admission_main"
+        action="action_my_admission_activities"
+        sequence="4"/>
+      
+      
+      
+  </data>
+</odoo>

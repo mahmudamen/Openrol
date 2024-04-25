@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <record id="enrollment_order_form_view" model="ir.ui.view">
+      <field name="name">enrollment.order.form</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//header" position="inside">
+          <field name="is_enrol_order" invisible="1"/>
+          <field name="enrol_status" invisible="1"/>
+        </xpath>
+        
+      </field>
+  </record>
+
+</odoo>

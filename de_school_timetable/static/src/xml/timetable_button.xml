@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates>
+    <t t-extend="ListView.buttons" t-name="de_school_timetable.timetable_button_tree">
+        <t t-jquery=".o_list_button_add" t-operation="after">
+                <button type="button" class="btn btn-primary open_wizard_action_timetable" style="margin-right: 10px; margin-left: 10px;">
+                    Timetable
+                </button>
+        </t>
+    </t>
+<!--
+    <t t-extend="CalendarView.buttons" t-name="de_school_timetable.timetable_button_calendar">
+        <t t-jquery=".o_calendar_buttons" t-operation="append">
+            <button>Custom Action</button>
+        </t>
+    </t>
+    -->
+    
+    <!--
+    <t t-name="de_school_timetable.timetable_button_calendar" t-extend="CalendarView.Buttons">
+       <xpath expr="//*[@class='btn btn-primary o_calendar_button_prev']" position="after">
+           <button type="button" class="btn btn-primary" style="margin-left: 10px;"  t-on-click="OnTestClick">
+               Open Wizard
+           </button>
+       </xpath>
+   </t>
+    -->
+    
+    <!--
+    <t t-extend="CalendarView.buttons" t-name="de_school_timetable.timetable_button_calendar">
+        <t t-jquery=".o_calendar_button_prev" t-operation="after">
+                <button type="button" class="btn btn-primary open_wizard_action_timetable" style="margin-right: 10px; margin-left: 10px;">
+                    Timetable
+                </button>
+        </t>
+    </t>
+    -->
+</templates>

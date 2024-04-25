@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="admission_stage_0" model="oe.admission.stage">
+        <field name="sequence">10</field>
+        <field name="name">New</field>
+    </record>
+
+    <record id="admission_stage_1" model="oe.admission.stage">
+        <field name="sequence">15</field>
+        <field name="name">Application Recived</field>
+    </record>
+
+    <record id="admission_stage_2" model="oe.admission.stage">
+        <field name="sequence">20</field>
+        <field name="name">Review</field>
+    </record>
+
+    <record id="admission_stage_3" model="oe.admission.stage">
+        <field name="sequence">25</field>
+        <field name="name">Interview</field>
+        <field name="fold" eval="False"/>
+    </record>
+
+    <record id="admission_stage_4" model="oe.admission.stage">
+        <field name="sequence">30</field>
+        <field name="name">Accepted</field>
+        <field name="fold" eval="True"/>
+        <field name="is_close" eval="True"/>
+    </record>
+
+    <record id="admission_stage_5" model="oe.admission.stage">
+        <field name="sequence">35</field>
+        <field name="name">Reject</field>
+        <field name="fold" eval="True"/>
+    </record>
+</odoo>

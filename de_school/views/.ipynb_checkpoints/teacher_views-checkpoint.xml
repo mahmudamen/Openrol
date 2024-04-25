@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        
+        <record id="view_employee_form_inherit_teacher" model="ir.ui.view">
+            <field name="name">view.employee.form.inherit.teacher</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name = 'category_ids']" position="after">
+                    <style>
+                        div[name="options"] .o_field_boolean {
+                            margin-left: 10px;
+                            margin-right: 0px;
+                        }
+                    </style>
+                    <div name="options" >
+                        <span class="d-inline-block">
+                            <field name="is_teacher"/>
+                            <label for="is_teacher"/>
+                        </span>
+                    </div>
+                </xpath>
+                <xpath expr="//notebook[1]" position="inside">
+                    <page string="Subjects" name="subjects" attrs="{'invisible':[('is_teacher','=',False)]}">
+                        <field name="subject_ids" widget="one2many_list" readonly="1">
+                            <tree>
+								<field name="name" />
+                                <field name="credit_hours"  />
+								<field name="subject_group_id"  />       
+							</tree>
+						</field>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="action_hr_employees_teachers"
+			model="ir.actions.act_window">
+			<field name="name">Teacher</field>
+			<field name="res_model">hr.employee</field>
+			<field name="context">{'default_is_teacher':'True'}</field>
+			<field name="domain">[('is_teacher','=','True')]</field>
+			<field name="view_ids"
+				eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('hr.view_employee_tree')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('hr.view_employee_form')})]" />
+		</record>
+        
+        <menuitem name="Teachers" id="menu_school_teachers_teachers"
+			parent="menu_school_teachers" action="action_hr_employees_teachers"
+			groups="group_school_user" />
+        
+    </data>
+</odoo>

@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_admission_enrol_student_wizard,access.admission.enrol.student.wizard,model_oe_admission_enrol_student_wizard,de_school_team.group_school_admission_user,1,1,1,0

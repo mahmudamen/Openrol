@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Exam -->
+        <record id="exam_tree_view" model="ir.ui.view">
+			<field name="name">exam.tree.view</field>
+			<field name="model">oe.exam</field>
+			<field name="arch" type="xml">
+				<tree string="Exam " >
+                    <field name="exam_session_id"/>
+                    <field name="course_id"/>
+					<field name="subject_id"/>
+                    <field name="date_start" />
+                    <field name="date_end" />
+                    <field name="state" />
+				</tree>
+			</field>
+		</record>
+
+        <record id="exam_form_view" model="ir.ui.view">
+            <field name="name">exam.form.view</field>
+            <field name="model">oe.exam</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Exam">
+                    <header>
+                        <button name="button_draft" invisible="state != 'cancel'" string="Set to Draft" type="object" data-hotkey="n"/>
+                        <button name="button_schedule" invisible="state != 'draft'" string="Schedule Exam" type="object" class="oe_highlight" data-hotkey="o" />
+
+                        <button name="button_open_results" invisible="state not in ('prepare','done')" string="Open Result" type="object" class="oe_highlight" data-hotkey="o" />
+
+                        
+                        <button name="button_close" type="object" string="Close Exam" invisible="state != 'schedule'" class="oe_highlight" data-hotkey="l"/>
+                        <button name="button_prepare_result" type="object" string="Prepare Result" invisible="state != 'complete'" class="oe_highlight" data-hotkey="l"/>
+                        <button name="button_complete_result" type="object" string="Result Completed" 
+                            invisible="state != 'prepare'" class="oe_highlight" data-hotkey="l"/>
+                        
+                        <button name="button_cancel" invisible="state not in ('draft','schedule')" string="Cancel" type="object" data-hotkey="x" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,schedule,complete,prepare,done" readonly="1"/>
+                        
+                    </header>
+                    <sheet>
+                        <field name="company_id" invisible="1" />
+                        
+                        <field name="subject_ids" invisible="1" />
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_attendees"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-users"
+                            >
+                                <field name="attendees_count" widget="statinfo" string="Attendees"/>
+                            </button>
+                            
+                            <button name="button_open_results"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-trophy"
+                            >
+                                <field name="exam_result_count" widget="statinfo" string="Results"/>
+                            </button>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="exam_session_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    readonly="state != 'draft'"
+                                />
+                                <field name="code" readonly="state != 'draft'"/>
+                                <field name="course_id" />
+                                 <field name="subject_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    required="1"
+                                    readonly="state != 'draft'"
+                                />
+                                
+                                <label for="date_start" string="Schedule"/>
+                                <div name="dates" class="o_row">
+                                    <field name="date_start" readonly="state != 'draft'"/>
+                                    <i class="fa fa-long-arrow-right mx-2 oe_edit_only" aria-label="Arrow icon" title="Arrow"/>
+                                    <field name="date_end" readonly="state != 'draft'"/>
+                                </div>
+                                <field name="exam_hours" readonly="state != 'draft'"/>
+                                
+                            </group>
+                            <group>
+                                <field name="marks_min" />
+                                <field name="marks_max" />
+                                <field name="exam_grade_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    readonly="state not in ('draft','schedule','complete')"
+                                    required="state == 'complete'"
+                                />
+                                <field name="company_id" groups="base.group_multi_company" options="{'no_open':True,'no_create':True}"/>
+                                <field name="exam_mode" 
+                                    widget="radio" 
+                                    options="{'horizontal':true}"
+                                    readonly="state != 'draft'"
+                                />
+                                <separator class="mt-0 mb-0" string="Exam Venue" 
+                                    invisible="exam_mode == 'online'"
+                                    readonly="state != 'draft'"/>
+                                <field name="address_id" options="{'no_create':True}" 
+                                    invisible="exam_mode == 'online'"
+                                    readonly="state != 'draft'"/>
+                                <field name="exam_location_id" options="{'no_create':True}" 
+                                    invisible="exam_mode == 'online'"
+                                    readonly="state != 'draft'"/>
+                            </group>
+                        </group>
+                        
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record id="exam_search_view" model="ir.ui.view">
+            <field name="name">exam.search.view</field>
+            <field name="model">oe.exam</field>
+            <field name="arch" type="xml">
+                <search string="Exam">
+                    <field name="subject_id" />
+                    <filter string="Scheduled" domain="[('state', '=', 'schedule')]" name="schedule_exam_filter"/>
+                    <filter string="Awaiting Result" domain="[('state', 'in', ['complete','prepare'])]" name="awaiting_result_filter"/>
+                    <filter string="Result Updated" domain="[('state', 'in', ['done'])]" name="result_updated_filter"/>
+
+                    <group expand="0" string="Group By">
+                        <filter string="Subject" name="group_subject" domain="[]" context="{'group_by': 'subject_id'}"/>
+                        <filter string="State" name="group_state" domain="[]" context="{'group_by': 'state'}"/>
+                    </group>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_exam" model="ir.actions.act_window">
+            <field name="name">Exam</field>
+            <field name="res_model">oe.exam</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="exam_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new exam
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Exams" id="menu_exam_main_exams"
+            parent="menu_exam_main" 
+            action="action_exam"
+            groups="de_school_exam.group_exam_user" 
+            sequence="20"
+        />
+        
+    </data>
+</odoo>

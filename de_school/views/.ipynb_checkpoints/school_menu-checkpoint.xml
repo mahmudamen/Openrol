@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+    <menuitem name="School"
+        id="menu_school"
+        groups="group_school_user,group_school_manager"
+        web_icon="de_school,static/description/icon.png"
+        sequence="55" />
+    
+    <menuitem name="Teachers" id="menu_school_teachers"
+			parent="menu_school" 
+              sequence = "10"
+			groups="group_school_user" />
+    
+    <menuitem name="Students" id="menu_school_students"
+			parent="menu_school" 
+              sequence = "20"
+			groups="group_school_user" />
+    
+    <menuitem name="Courses" id="menu_school_courses"
+			parent="menu_school" 
+              sequence = "30"
+			groups="group_school_user" />
+    
+    <menuitem name="Timetable" id="menu_school_timetable"
+			parent="menu_school" 
+              sequence = "40"
+			groups="group_school_user" />
+    
+    <menuitem name="Reports" id="menu_school_reports"
+			parent="menu_school" 
+              sequence = "50"
+			groups="group_school_user" />
+    
+    <menuitem name="Configuration" id="menu_school_config"
+			parent="menu_school" 
+              sequence = "100"
+			groups="group_school_user" />
+    
+</odoo>

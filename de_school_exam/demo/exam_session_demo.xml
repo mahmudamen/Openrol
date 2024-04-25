@@ -1,0 +1,42 @@
+<odoo>
+    <data>
+        <!-- Percentage-Based Grading -->
+        <record id="exam_session_mba_mid" model="oe.exam.session">
+            <field name="name">MBA - MID Term</field>
+            <field name="exam_type_id" ref="exam_type_mid_term"/>
+            <field name="course_id" ref="de_school.course_mba"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="exam_session_mba_final" model="oe.exam.session">
+            <field name="name">MBA - Final Term</field>
+            <field name="exam_type_id" ref="exam_type_final_term"/>
+            <field name="course_id" ref="de_school.course_mba"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="exam_session_mba_project" model="oe.exam.session">
+            <field name="name">MBA - Project</field>
+            <field name="exam_type_id" ref="exam_type_project"/>
+            <field name="course_id" ref="de_school.course_mba"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="exam_session_mca_mid" model="oe.exam.session">
+            <field name="name">MCA - MID Term</field>
+            <field name="exam_type_id" ref="exam_type_mid_term"/>
+            <field name="course_id" ref="de_school.course_mca"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="exam_session_mca_final" model="oe.exam.session">
+            <field name="name">MCA - Final Term</field>
+            <field name="exam_type_id" ref="exam_type_final_term"/>
+            <field name="course_id" ref="de_school.course_mca"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="exam_session_mca_project" model="oe.exam.session">
+            <field name="name">MCA - Project</field>
+            <field name="exam_type_id" ref="exam_type_project"/>
+            <field name="course_id" ref="de_school.course_mca"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <menuitem name="Medical" id="menu_school_config_medical"
+            sequence="30"
+                    parent="menu_school_config" 
+                    />
+        
+        <!-- Medical Category  -->
+        <record id="medical_category_tree_view" model="ir.ui.view">
+			<field name="name">oe.school.medical.cat.tree.view</field>
+			<field name="model">oe.school.medical.cat</field>
+			<field name="arch" type="xml">
+				<tree string="Categories" sample="1" multi_edit="1" editable="bottom">
+                    <field name="name" />
+				</tree>
+			</field>
+		</record>
+        <record id="action_medical_category" model="ir.actions.act_window">
+            <field name="name">Categories</field>
+            <field name="res_model">oe.school.medical.cat</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem name="Category" id="menu_school_config_medical_category"
+                    parent="menu_school_config_medical" action="action_medical_category"
+                    sequence="1"/>
+
+        <!-- Medical Type  -->
+        <record id="medical_type_tree_view" model="ir.ui.view">
+			<field name="name">oe.school.medical.type.tree.view</field>
+			<field name="model">oe.school.medical.type</field>
+			<field name="arch" type="xml">
+				<tree string="Categories" sample="1" multi_edit="1" editable="bottom">
+                    <field name="name" />
+                    <field name="med_cat_id"
+                        options="{'no_create':True,'no_edit':True}"
+                    />
+				</tree>
+			</field>
+		</record>
+        <record id="action_medical_type" model="ir.actions.act_window">
+            <field name="name">Type</field>
+            <field name="res_model">oe.school.medical.type</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        
+        <menuitem name="Type" id="menu_school_config_medical_type"
+                    parent="menu_school_config_medical" action="action_medical_type"
+                    sequence="2"/>
+        
+    </data>
+</odoo>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+
+    </data>
+    <data noupdate="1">
+        <!-- Grading Type -->
+        <record model="oe.school.course.grading.type" id="school_course_grading_type_normal">
+          <field name="name">Normal</field>
+        </record>
+        <record model="oe.school.course.grading.type" id="school_course_grading_type_gpa">
+          <field name="name">GPA</field>
+        </record>
+        <record model="oe.school.course.grading.type" id="school_course_grading_type_cwa">
+          <field name="name">CWA</field>
+        </record>
+        <record model="oe.school.course.grading.type" id="school_course_grading_type_cce">
+          <field name="name">CCE</field>
+        </record>
+        <record model="oe.school.course.grading.type" id="school_course_grading_type_icse">
+          <field name="name">ICSE</field>
+        </record>
+        
+        <!-- working time / timetable data -->
+        <record id="school_resource_calendar_std" model="resource.calendar">
+            <field name="name">Standard School Calendar</field>
+            <field name="company_id" ref="base.main_company"/>
+            <field name="hours_per_day">7.0</field>
+            <field name="is_school_calendar">True</field>
+            <field name="attendance_ids"
+                eval="[(5, 0, 0),
+                (0, 0, {'name': 'Monday - Period 1', 'dayofweek': '0', 'hour_from': 9, 'hour_to': 15, 'day_period': 'morning'}),                      
+                (0, 0, {'name': 'Tuesday - Period 1', 'dayofweek': '1', 'hour_from': 9, 'hour_to': 15, 'day_period': 'morning'}),                
+                (0, 0, {'name': 'Wednesday - Period 1', 'dayofweek': '2', 'hour_from': 9, 'hour_to': 15, 'day_period': 'morning'}),                      
+                (0, 0, {'name': 'Thursday - Period 1', 'dayofweek': '3', 'hour_from': 9, 'hour_to': 15, 'day_period': 'afternoon'}),                      
+                (0, 0, {'name': 'Friday - Period 1', 'dayofweek': '4', 'hour_from': 9, 'hour_to': 15, 'day_period': 'afternoon'}),                      
+            ]"
+            />
+        </record>
+        <record id="base.main_company" model="res.company">
+            <field name="resource_calendar_id" ref="school_resource_calendar_std"/>
+        </record>
+
+    </data>
+</odoo>

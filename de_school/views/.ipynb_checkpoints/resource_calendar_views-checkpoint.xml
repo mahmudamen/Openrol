@@ -1,0 +1,24 @@
+<odoo>
+	<data>
+		<!-- School Timings -->
+        
+        <record id="action_school_resource_calendar" model="ir.actions.act_window">
+            <field name="name">School Times</field>
+            <field name="res_model">resource.calendar</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" eval="False"/>
+            <field name="search_view_id" ref="resource.view_resource_calendar_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Define school timings, period and time table that could be scheduled student classes.
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="School Times" id="menu_school_config_resource_calendar"
+                    parent="menu_school_config" action="action_school_resource_calendar"
+                    groups="group_school_manager" sequence="4"/>
+        
+        
+	</data>
+</odoo>

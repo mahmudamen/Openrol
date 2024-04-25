@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Exam -->
+        <record id="exam_attendees_tree_view" model="ir.ui.view">
+			<field name="name">exam.attendees.tree.view</field>
+			<field name="model">oe.exam.attendees</field>
+			<field name="arch" type="xml">
+				<tree string="Exam" editable="bottom">
+                    <header>
+                        <button name="Mark_attendance" type="object" 
+                            string="Mark Attendance" 
+                            class="oe_highlight"
+                            />
+                    </header>
+                    <field name="exam_id" optional="hide" options="{'no_open':True,'no_create':True}"/>
+                    <field name="student_id" readonly="1" options="{'no_open':True,'no_create':True}"/>
+                    <field name="status" readonly="exam_state not in ('draft','schedule')"/>
+                    <field name="slip_no" />
+                    <field name="exam_state" column_invisible="1" />
+				</tree>
+			</field>
+		</record>
+
+        <record id="exam_attendees_form_view" model="ir.ui.view">
+            <field name="name">exam.attendees.form.view</field>
+            <field name="model">oe.exam.attendees</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Exam Attendees">
+                   
+                    <sheet>
+                        <field name="exam_id" invisible="1" />
+                        <group>
+                            <group>
+                                <field name="student_id" options="{'no_open':True,'no_create':True}"/>
+                            </group>
+                            <group>
+                            </group>y
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record id="exam_attendees_search_view" model="ir.ui.view">
+            <field name="name">exam.attendees.search.view</field>
+            <field name="model">oe.exam.attendees</field>
+            <field name="arch" type="xml">
+                <search string="Exam">
+                    <field name="exam_id" />
+                    <field name="student_id" />
+                    <group expand="0" string="Group By">
+                        <filter string="Exams" name="group_exams" domain="[]" context="{'group_by': 'exam_id'}"/>
+                    </group>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_exam_attendees" model="ir.actions.act_window">
+            <field name="name">Exam Attendees</field>
+            <field name="res_model">oe.exam.attendees</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="exam_attendees_search_view"/>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('exam_attendees_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('exam_attendees_form_view')}),
+            ]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Exam Attendees
+                </p>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

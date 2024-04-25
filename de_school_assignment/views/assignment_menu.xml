@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+    <menuitem name="Assignment"
+        id="menu_assignment"
+        groups="de_school_assignment.group_assignment_user,de_school_assignment.group_assignment_manager"
+        web_icon="de_school_assignment,static/description/icon.png"
+        sequence="57" />
+    
+    <menuitem name="Assignments" id="menu_assignment_main"
+			parent="menu_assignment" 
+              sequence = "10"
+			groups="de_school_assignment.group_assignment_user" />
+    
+    <menuitem name="Reports" id="menu_assignment_reports"
+			parent="menu_assignment" 
+              sequence = "90"
+			groups="de_school_assignment.group_assignment_user" />
+    
+    <menuitem name="Configuration" id="menu_assignment_config_main"
+			parent="menu_assignment" 
+              sequence = "100"
+			groups="de_school_assignment.group_assignment_manager" />
+    
+</odoo>

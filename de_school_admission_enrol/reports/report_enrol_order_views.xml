@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="enrol_report_pivot_view_inherit" model="ir.ui.view">
+        <field name="name">report.enrol.order.pivot.view</field>
+        <field name="model">report.enrol.order</field>
+        <field name="inherit_id" ref="de_school_enrollment.enrol_report_pivot_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='admission_team_id']" position="after">
+                <field name="admission_register_id" type="col"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="enrol_report_tree_view_inherit" model="ir.ui.view">
+        <field name="name">report.enrol.order.tree.view</field>
+        <field name="model">report.enrol.order</field>
+        <field name="inherit_id" ref="de_school_enrollment.enrol_report_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='admission_team_id']" position="after">
+                <field name="admission_register_id" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="enrol_report_search_view_inherit" model="ir.ui.view">
+        <field name="name">report.enrol.order.pivot.view</field>
+        <field name="model">report.enrol.order</field>
+        <field name="inherit_id" ref="de_school_enrollment.enrol_report_search_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='admission_team']" position="after">
+                <filter string="Admissions Register" name="admission_register" context="{'group_by':'admission_register_id'}"/>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

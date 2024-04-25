@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="medical_history_tree_view" model="ir.ui.view">
+        <field name="name">medical.history.tree.view</field>
+        <field name="model">oe.school.student.medical</field>
+        <field name="priority">1</field>
+        <field name="arch" type="xml">
+            <tree string="Medical History" sample="1" multi_edit="1" editable="bottom">
+                <field name="student_id" column_invisible="1" />
+                <field name="med_cat_id"
+                    options="{'no_create':True,'no_edit':True}"
+                    />
+                <field name="med_type_id"
+                    options="{'no_create':True,'no_edit':True}"
+                    />
+                <field name="med_condition"/>
+                <field name="med_remarks"/>
+            </tree>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="action_medical_history">
+        <field name="name">Medical Info</field>
+        <field name="res_model">oe.school.student.medical</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+    
+</odoo>

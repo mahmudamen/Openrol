@@ -1,0 +1,107 @@
+<odoo>
+    <data>
+        <!-- Percentage-Based Grading -->
+        <record id="exam_grade_percent" model="oe.exam.grade">
+            <field name="name">Percentage-Based Grading</field>
+        </record>
+
+        <record id="exam_grade_percent_0" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_percent"/>
+            <field name="name">Fail</field>
+            <field name="score_min">0</field>
+        </record>
+        <record id="exam_grade_percent_40" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_percent"/>
+            <field name="name">40%</field>
+            <field name="score_min">40</field>
+        </record>
+        <record id="exam_grade_percent_50" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_percent"/>
+            <field name="name">50%</field>
+            <field name="score_min">50</field>
+        </record>
+        <record id="exam_grade_percent_60" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_percent"/>
+            <field name="name">60%</field>
+            <field name="score_min">60</field>
+        </record>
+        <record id="exam_grade_percent_70" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_percent"/>
+            <field name="name">70%</field>
+            <field name="score_min">70</field>
+        </record>
+        <record id="exam_grade_percent_80" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_percent"/>
+            <field name="name">80%</field>
+            <field name="score_min">80</field>
+        </record>
+
+        <!-- Letter Grades Grading -->
+        <record id="exam_grade_letter" model="oe.exam.grade">
+            <field name="name">Letter Grades Grading</field>
+        </record>
+
+        <record id="exam_grade_letter_0" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_letter"/>
+            <field name="name">F</field>
+            <field name="score_min">0</field>
+        </record>
+        <record id="exam_grade_letter_d" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_letter"/>
+            <field name="name">D</field>
+            <field name="score_min">40</field>
+        </record>
+        <record id="exam_grade_letter_c" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_letter"/>
+            <field name="name">C</field>
+            <field name="score_min">50</field>
+        </record>
+        <record id="exam_grade_letter_b" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_letter"/>
+            <field name="name">B</field>
+            <field name="score_min">70</field>
+        </record>
+        <record id="exam_grade_letter_a" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_letter"/>
+            <field name="name">A</field>
+            <field name="score_min">80</field>
+        </record>
+
+        <!-- Grade Point Average (GPA) -->
+        <record id="exam_grade_gpa" model="oe.exam.grade">
+            <field name="name">Grade Point Average (GPA)</field>
+            <field name="enable_credit_points" eval="True"/>
+        </record>
+        <record id="exam_grade_gpa_0" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_gpa"/>
+            <field name="name">F</field>
+            <field name="score_min">0</field>
+            <field name="credit_points">0</field>
+        </record>
+        <record id="exam_grade_gpa_d" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_gpa"/>
+            <field name="name">D</field>
+            <field name="score_min">40</field>
+            <field name="credit_points">1</field>
+        </record>
+        <record id="exam_grade_gpa_c" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_gpa"/>
+            <field name="name">C</field>
+            <field name="score_min">50</field>
+            <field name="credit_points">2</field>
+        </record>
+        <record id="exam_grade_gpa_b" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_gpa"/>
+            <field name="name">B</field>
+            <field name="score_min">70</field>
+            <field name="credit_points">3</field>
+        </record>
+        <record id="exam_grade_gpa_a" model="oe.exam.grade.line">
+            <field name="exam_grade_id" ref="exam_grade_gpa"/>
+            <field name="name">A</field>
+            <field name="score_min">80</field>
+            <field name="credit_points">4</field>
+        </record>
+
+    </data>
+</odoo>

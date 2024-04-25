@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_school_timetable,access.school.timetable,model_oe_school_timetable,,1,0,0,0
+access_school_timetable_user,access.school.timetable.user,model_oe_school_timetable,de_school.group_school_user,1,1,1,1
+
+access_school_timetable_recurrency_employee,school.timetable.recurrency.employee,model_oe_school_timetable_recurrency,base.group_user,1,0,0,0
+access_school_timetable_recurrency_user,access.school.timetable.recurrency.user,model_oe_school_timetable_recurrency,de_school.group_school_user,1,0,0,0
+access_school_timetable_recurrency_manager,access.school.timetable.recurrency.manager,model_oe_school_timetable_recurrency,de_school.group_school_manager,1,1,1,1
+
+access_report_timetable_period,access.report.timetable.period,model_oe_report_timetable_period,,1,0,0,0
+

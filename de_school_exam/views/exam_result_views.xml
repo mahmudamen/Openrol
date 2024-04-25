@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Exam -->
+        <record id="exam_result_tree_view" model="ir.ui.view">
+			<field name="name">exam.result.tree.view</field>
+			<field name="model">oe.exam.result</field>
+			<field name="arch" type="xml">
+				<tree string="Exam" editable="bottom">
+                    <field name="student_id" readonly="1" options="{'no_open':True,'no_create':True}"/>
+                    <field name="roll_no" />
+                    <field name="admission_no" />
+					<field name="subject_id"/>
+                    <field name="attendance_status" />
+                    <field name="exam_state" column_invisible="1"/>
+                    <field name="marks" readonly="exam_state != 'prepare'"/>
+                    <field name="exam_grade_line_id" />
+				</tree>
+			</field>
+		</record>
+
+        
+        <record id="exam_result_grade_tree_view" model="ir.ui.view">
+			<field name="name">exam.result.grade.tree.view</field>
+			<field name="model">oe.exam.result</field>
+			<field name="arch" type="xml">
+				<tree string="Exam" editable="bottom">
+                    <field name="student_id" readonly="1" options="{'no_open':True,'no_create':True}"/>
+                    <field name="roll_no" />
+                    <field name="admission_no" />
+					<field name="subject_id"/>
+                    <field name="attendance_status" />
+                    <field name="exam_state" column_invisible="1"/>
+                    <field name="marks" readonly="exam_state != 'prepare'" />
+                    <field name="exam_grade_line_id" />
+                    <field name="credit_points" readonly="exam_state != 'prepare'"/>
+				</tree>
+			</field>
+		</record>
+
+        
+        <record id="exam_result_form_view" model="ir.ui.view">
+            <field name="name">exam.result.form.view</field>
+            <field name="model">oe.exam.result</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Exam Result">
+                   
+                    <sheet>
+                        <field name="company_id" invisible="1" />
+                        <group>
+                            <group>
+                                <field name="student_id" options="{'no_open':True,'no_create':True}"/>
+                                <field name="subject_id" options="{'no_open':True,'no_create':True}"/>
+                                
+                            </group>
+                            <group>
+                                <field name="marks" />
+                                <field name="company_id" groups="base.group_multi_company" options="{'no_open':True,'no_create':True}"/>
+                            </group>y
+                        </group>
+                        
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        
+        <record id="exam_result_search_view" model="ir.ui.view">
+            <field name="name">exam.result.search.view</field>
+            <field name="model">oe.exam.result</field>
+            <field name="arch" type="xml">
+                <search string="Exam">
+                    <field name="student_id" />
+                    <field name="seat_no" />
+                    <group expand="0" string="Group By">
+                        <filter string="Subject" name="group_subject" domain="[]" context="{'group_by': 'subject_id'}"/>
+                        <filter string="attendance_status" name="group_state" domain="[]" context="{'group_by': 'attendance_status'}"/>
+                    </group>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_exam_result" model="ir.actions.act_window">
+            <field name="name">Exam Result</field>
+            <field name="res_model">oe.exam.result</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="exam_result_search_view"/>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('exam_result_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('exam_result_form_view')}),
+            ]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Exam Result
+                </p>
+            </field>
+        </record>
+
+        <!--
+        <menuitem name="Exam Results" id="menu_exam_main_exam_results"
+            parent="menu_exam_main" 
+            action="action_exam_result"
+            groups="de_school_exam.group_exam_user" 
+            sequence="30"
+        />
+        -->
+
+        <record id="action_exam_result_grade" model="ir.actions.act_window">
+            <field name="name">Exam Result</field>
+            <field name="res_model">oe.exam.result</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="exam_result_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Exam Result with grade
+                </p>
+            </field>
+        </record>
+
+        <record id="exam_result_grade_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="exam_result_grade_tree_view"/>
+            <field name="act_window_id" ref="action_exam_result_grade"/>
+        </record>
+
+        
+        
+    </data>
+</odoo>

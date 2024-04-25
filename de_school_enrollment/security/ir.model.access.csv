@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_enrol_report_user,enrol.report.user,model_report_enrol_order,group_enrol_user,1,0,0,0
+

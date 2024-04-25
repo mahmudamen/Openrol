@@ -1,0 +1,195 @@
+<odoo>
+    <data noupdate="0">
+
+        <!-- Subjects -->
+        <record id="subject_mgt" model="oe.school.subject">
+            <field name="name">Management</field>
+            <field name="code">MGT</field>
+        </record>
+        <record id="subject_mkt" model="oe.school.subject">
+            <field name="name">Marketing</field>
+            <field name="code">MKT</field>
+        </record>
+        <record id="subject_acc" model="oe.school.subject">
+            <field name="name">Accounting &amp; Fianance</field>
+            <field name="code">ACC</field>
+        </record>
+        <record id="subject_itm" model="oe.school.subject">
+            <field name="name">Information Technology Management</field>
+            <field name="code">ITM</field>
+        </record>
+        <record id="subject_ib" model="oe.school.subject">
+            <field name="name">International Business</field>
+            <field name="code">IB</field>
+        </record>
+        <record id="subject_ent" model="oe.school.subject">
+            <field name="name">Entrepreneurship</field>
+            <field name="code">ENT</field>
+        </record>
+        <record id="subject_se" model="oe.school.subject">
+            <field name="name">Software Engineering</field>
+            <field name="code">SE</field>
+        </record>
+        <record id="subject_os" model="oe.school.subject">
+            <field name="name">Operating Systems</field>
+            <field name="code">OS</field>
+        </record>
+        <record id="subject_spm" model="oe.school.subject">
+            <field name="name">Software Project Management</field>
+            <field name="code">SPM</field>
+        </record>
+        
+        <!-- MBA -->
+        <record id="sequence_course_mba" model="ir.sequence">
+            <field name="name">Course: MBA Sequence</field>
+            <field name="code">mba</field>
+            <field name="prefix">MBA/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <record id="course_mba" model="oe.school.course">
+            <field name="name">Master of Business Administration</field>
+            <field name="code">MBA</field>
+            <field name="sequence_id" ref="sequence_course_mba"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="course_mba_batch1" model="oe.school.course.batch">
+            <field name="name">Batch 01</field>
+            <field name="course_id" ref="course_mba"/>
+            <field name="year_id" ref="academic_year_2024"/>
+            <field name="date_start">2024-01-01</field>
+            <field name="date_end">2025-12-31</field>
+        </record>
+        <record id="course_mba_batch2" model="oe.school.course.batch">
+            <field name="name">Batch 02</field>
+            <field name="course_id" ref="course_mba"/>
+            <field name="year_id" ref="academic_year_2024"/>
+            <field name="date_start">2024-01-01</field>
+            <field name="date_end">2025-12-31</field>
+        </record>
+        <record id="course_mba_subject_1" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_mba"/>
+            <field name="subject_id" ref="subject_mgt"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_mba_batch1'), ref('course_mba_batch2')])]"/>
+        </record>
+        <record id="course_mba_subject_2" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_mba"/>
+            <field name="subject_id" ref="subject_mkt"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_mba_batch1'), ref('course_mba_batch2')])]"/>
+        </record>
+        <record id="course_mba_subject_3" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_mba"/>
+            <field name="subject_id" ref="subject_acc"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_mba_batch1'), ref('course_mba_batch2')])]"/>
+        </record>
+        <record id="course_mba_subject_4" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_mba"/>
+            <field name="subject_id" ref="subject_itm"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_mba_batch1'), ref('course_mba_batch2')])]"/>
+        </record>
+        <record id="course_mba_subject_5" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_mba"/>
+            <field name="subject_id" ref="subject_ib"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_mba_batch1'), ref('course_mba_batch2')])]"/>
+        </record>
+        <!-- MCA -->
+        <record id="sequence_course_mca" model="ir.sequence">
+            <field name="name">Course: MCA Sequence</field>
+            <field name="code">mca</field>
+            <field name="prefix">MCA/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="course_mca" model="oe.school.course">
+            <field name="name">Master of Compute Applications</field>
+            <field name="code">MCA</field>
+            <field name="sequence_id" ref="sequence_course_mca"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+
+        <record id="course_mca_batch1" model="oe.school.course.batch">
+            <field name="name">Batch 01</field>
+            <field name="course_id" ref="course_mca"/>
+            <field name="year_id" ref="academic_year_2024"/>
+            <field name="date_start">2024-01-01</field>
+            <field name="date_end">2025-12-31</field>
+        </record>
+
+        <record id="course_mca_subject_1" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_mca"/>
+            <field name="subject_id" ref="subject_mgt"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_mca_batch1')])]"/>
+        </record>
+        <record id="course_mca_subject_2" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_mca"/>
+            <field name="subject_id" ref="subject_ent"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_mca_batch1')])]"/>
+        </record>
+        <record id="course_mca_subject_3" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_mca"/>
+            <field name="subject_id" ref="subject_spm"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_mca_batch1')])]"/>
+        </record>
+        <record id="course_mca_subject_4" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_mca"/>
+            <field name="subject_id" ref="subject_os"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_mca_batch1')])]"/>
+        </record>
+        <record id="course_mca_subject_5" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_mca"/>
+            <field name="subject_id" ref="subject_se"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_mca_batch1')])]"/>
+        </record>
+        
+
+        <!-- BBA -->
+        <record id="sequence_course_bba" model="ir.sequence">
+            <field name="name">Course: BBA Sequence</field>
+            <field name="code">bba</field>
+            <field name="prefix">BBA/</field>
+            <field name="padding">4</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        <record id="course_bba" model="oe.school.course">
+            <field name="name">Bechelor of Business Administration</field>
+            <field name="code">BBA</field>
+            <field name="sequence_id" ref="sequence_course_bba"/>
+            <field name="company_id" ref="base.main_company"/>
+        </record>
+        <record id="course_bba_batch1" model="oe.school.course.batch">
+            <field name="name">Batch 01</field>
+            <field name="course_id" ref="course_bba"/>
+            <field name="year_id" ref="academic_year_2024"/>
+            <field name="date_start">2024-01-01</field>
+            <field name="date_end">2025-12-31</field>
+        </record>
+
+        <record id="course_bba_subject_1" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_bba"/>
+            <field name="subject_id" ref="subject_mgt"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_bba_batch1')])]"/>
+        </record>
+        <record id="course_bba_subject_2" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_bba"/>
+            <field name="subject_id" ref="subject_mkt"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_bba_batch1')])]"/>
+        </record>
+        <record id="course_bba_subject_3" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_bba"/>
+            <field name="subject_id" ref="subject_acc"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_bba_batch1')])]"/>
+        </record>
+        <record id="course_bba_subject_4" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_bba"/>
+            <field name="subject_id" ref="subject_itm"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_bba_batch1')])]"/>
+        </record>
+        <record id="course_bba_subject_5" model="oe.school.course.subject.line">
+            <field name="course_id" ref="course_bba"/>
+            <field name="subject_id" ref="subject_ib"/>
+            <field name="batch_ids" eval="[Command.set([ref('course_bba_batch1')])]"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="action_timetable_classroom" model="ir.actions.act_window">
+            <field name="name">Schedule by Classroom</field>
+            <field name="res_model">oe.school.timetable</field>
+            <field name="view_mode">gantt,calendar,tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'gantt', 'view_id': ref('school_timetable_view_gantt')}),
+                (0, 0, {'view_mode': 'calendar', 'view_id': ref('view_timetable_calendar')}),
+                (0, 0, {'view_mode': 'tree'}),
+                (0, 0, {'view_mode': 'form'})]"/>
+            <field name="search_view_id" ref="view_timetable_search_form"/>
+            <field name="context">{'search_default_course': 1,'search_default_subject': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No timetable found. 
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Schedule by Class" id="menu_school_timetable_classroom"
+                    parent="menu_school_timetable_report_main" action="action_timetable_classroom"
+                    groups="de_school.group_school_user" sequence="1"/>
+        
+    </data>
+</odoo>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Exam Type -->
+        <record id="exam_type_tree_view" model="ir.ui.view">
+			<field name="name">exam.type.tree.view</field>
+			<field name="model">oe.exam.type</field>
+			<field name="arch" type="xml">
+				<tree string="Exam Type" editable="bottom">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+        
+        <record id="exam_type_search_view" model="ir.ui.view">
+            <field name="name">exam.type.search.view</field>
+            <field name="model">oe.exam.type</field>
+            <field name="arch" type="xml">
+                <search string="Exam Type">
+                    <field name="name" string="Course"/>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_exam_type" model="ir.actions.act_window">
+            <field name="name">Exam Type</field>
+            <field name="res_model">oe.exam.type</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="exam_type_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new exam type
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Exam Type" id="menu_exam_config_main_exam_type"
+            parent="menu_exam_config_main" 
+            action="action_exam_type"
+            groups="de_school_exam.group_exam_manager" 
+            sequence="20"
+        />
+        
+    </data>
+</odoo>

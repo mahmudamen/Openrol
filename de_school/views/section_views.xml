@@ -1,0 +1,41 @@
+<odoo>
+	<data>
+		<!-- Academic Year -->
+		<record id="course_section_tree_view" model="ir.ui.view">
+			<field name="name">course.section.tree.view</field>
+			<field name="model">oe.school.course.section</field>
+			<field name="arch" type="xml">
+				<tree string="Section" editable="bottom" edit="1">
+                    <field name="name"/>
+                    <field name="course_id" 
+                        options="{'no_create': True,'no_edit': True}" 
+                        />
+				</tree>
+			</field>
+		</record>
+        
+         <record id="section_search_view" model="ir.ui.view">
+            <field name="name">school.year.search</field>
+            <field name="model">oe.school.course.section</field>
+            <field name="arch" type="xml">
+                <search string="Sections">
+                    <field name="name" string="Section"/>
+                    <separator/>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_school_seciton" model="ir.actions.act_window">
+            <field name="name">Course Section</field>
+            <field name="res_model">oe.school.course.section</field>
+            <field name="search_view_id" ref="section_search_view"/>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new section
+                </p>
+            </field>
+        </record>
+        
+	</data>
+</odoo>

@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_admission_team,admission.team,model_oe_admission_team,base.group_user,1,0,0,0
+access_admission_team_user,admission.team.user,model_oe_admission_team,group_school_admission_user,1,0,0,0
+access_admission_team_manager,admission.team.manager,model_oe_admission_team,group_school_admission_manager,1,1,1,1
+
+access_admission_team_member,admission.team.member,model_oe_admission_team_member,base.group_user,1,0,0,0
+access_admission_team_member_user,admission.team.member.user,model_oe_admission_team_member,group_school_admission_user,1,0,0,0
+access_admission_team_member_manager,admission.team.member.manager,model_oe_admission_team_member,group_school_admission_manager,1,1,1,1
+
+access_admission_tag,admission_tag,model_oe_admission_tag,base.group_user,0,0,0,0
+access_admission_tag_user,admission_tag user,model_oe_admission_tag,group_school_admission_user,1,1,1,0
+access_admission_tag_manager,admission_tag manager,model_oe_admission_tag,group_school_admission_manager,1,1,1,1

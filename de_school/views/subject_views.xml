@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Grading Type -->
+        <record id="school_subject_group_tree_view" model="ir.ui.view">
+			<field name="name">school.subject.group.tree.view</field>
+			<field name="model">oe.school.subject.group</field>
+			<field name="arch" type="xml">
+				<tree string="Subject Group" editable="bottom">
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+        
+        <record id="action_school_subject_group" model="ir.actions.act_window">
+            <field name="name">Subject Group</field>
+            <field name="res_model">oe.school.subject.group</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new subject group
+                </p>
+            </field>
+        </record>
+
+        
+        <menuitem name="Subject Group" id="menu_school_config_subject_group"
+                    parent="menu_school_config_course" action="action_school_subject_group"
+                    groups="group_school_manager" />
+        
+        <!-- Subject -->
+        <record id="school_subject_tree_view" model="ir.ui.view">
+			<field name="name">school.subject_tree.view</field>
+			<field name="model">oe.school.subject</field>
+			<field name="arch" type="xml">
+				<tree string="Subjects">
+					<field name="name"/>
+                    <field name="subject_group_id"/>
+                    <field name="color" widget="color_picker"/>
+				</tree>
+			</field>
+		</record>
+		<record id="school_subject_form_view" model="ir.ui.view">
+			<field name="name">school.subject.form.view</field>
+			<field name="model">oe.school.subject</field>
+			<field name="arch" type="xml">
+				<form string="Subjects">
+					<sheet>
+                        <field name="company_id" invisible="1"/>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" 
+                            invisible="active == True"/>
+                        <field name="active" invisible="1"/>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1><field name="name" /></h1>
+                        </div>
+                        <group >
+                            <group>
+                                <field name="code" />
+                                <field name="subject_group_id" options="{'no_open_create':True}"/>
+                                <field name="color" widget="color_picker"/>
+                            </group>
+                            <group>
+                                <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" force_save="1"/>
+                            </group>
+                        </group>
+						
+					</sheet>
+				</form>
+			</field>
+		</record>
+        
+        <record id="view_subject_filter" model="ir.ui.view">
+            <field name="name">school.subject.search</field>
+            <field name="model">oe.school.subject</field>
+            <field name="arch" type="xml">
+                <search string="Subjects">
+                    <field name="name" string="Subject"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active','=',False)]"/>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_school_subject" model="ir.actions.act_window">
+            <field name="name">Subjects</field>
+            <field name="res_model">oe.school.subject</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_subject_filter"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new subjects
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Subjects" id="menu_school_subjects"
+                    parent="menu_school_courses" action="action_school_subject"
+                    groups="group_school_user" sequence="3"/>
+        
+        
+        
+    </data>
+</odoo>

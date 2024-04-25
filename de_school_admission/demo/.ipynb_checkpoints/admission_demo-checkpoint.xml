@@ -1,0 +1,28 @@
+<odoo>
+    <data>
+        <record id="admission_case_1" model="crm.lead">
+            <field name="create_date" eval="DateTime.now() - relativedelta(days=8)"/>
+            <field name="type">lead</field>
+            <field name="name">Club Office Furnitures</field>
+            <field name="contact_name">Jacques Dunagan</field>
+            <field name="partner_name">Le Club SARL</field>
+            <field name="email_from">jdunagan@leclub.example.com</field>
+            <field name="function">Training Manager</field>
+            <field name="country_id" ref="base.fr"/>
+            <field name="city">Paris</field>
+            <field name="zip">93190</field>
+            <field name="street">Rue Léon Dierx 73</field>
+            <field name="phone">+33 1 25 54 45 69</field>
+            <field name="tag_ids" eval="[(6, 0, [ref('sales_team.categ_oppor6')])]"/>
+            <field name="priority">1</field>
+            <field name="team_id" ref="sales_team.team_sales_department"/>
+            <field name="user_id" ref="base.user_admin"/>
+            <field name="date_open" eval="(DateTime.today() - relativedelta(months=2)).strftime('%Y-%m-%d %H:%M')"/>
+            <field name="stage_id" ref="stage_lead1"/>
+            <field name="campaign_id" ref="utm.utm_campaign_email_campaign_services"/>
+            <field name="medium_id" ref="utm.utm_medium_email"/>
+            <field name="source_id" ref="utm.utm_source_mailing"/>
+        </record>
+        
+    </data>
+</odoo>

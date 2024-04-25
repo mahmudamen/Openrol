@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Assignment -->
+        <record id="assignment_tree_view" model="ir.ui.view">
+			<field name="name">assignment.tree.view</field>
+			<field name="model">oe.assignment</field>
+			<field name="arch" type="xml">
+				<tree string="Assignment " >
+                    <field name="name"/>
+                    <field name="course_id"/>
+					<field name="subject_id"/>
+                    <field name="date" />
+                    <field name="state" />
+				</tree>
+			</field>
+		</record>
+
+        <record id="assignment_form_view" model="ir.ui.view">
+            <field name="name">assignment.form.view</field>
+            <field name="model">oe.assignment</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Assignment">
+                    <header>
+                        <button name="button_draft" invisible="state != 'cancel'" string="Set to Draft" type="object" data-hotkey="n"/>
+                        <button name="button_publish" invisible="state != 'draft'" string="Publish" type="object" class="oe_highlight" data-hotkey="o" />
+                        <button name="button_close" type="object" string="Close assignment" invisible="state != 'publish'" class="oe_highlight" data-hotkey="l"/>
+                        
+                        <button name="button_cancel" invisible="state != 'publish'" string="Cancel" type="object" data-hotkey="x" />
+                        <field name="state" widget="statusbar" statusbar_visible="draft,publish,close" readonly="1"/>
+                        
+                    </header>
+                    <sheet>
+                        <field name="company_id" invisible="1" />
+                        <field name="subject_ids" invisible="1" />
+                        <field name="use_batch" invisible="1" />
+                        <field name="use_section" invisible="1" />
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_view_assigned_assignments"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-file-o"
+                            >
+                                <field name="assignment_count" widget="statinfo" string="Assigned"/>
+                            </button>
+                            <button name="action_view_assigned_assignments"
+                                type="object"
+                                class="oe_stat_button"
+                                icon="fa-file"
+                            >
+                                <field name="assignment_submit_count" widget="statinfo" string="Submit"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="e.g Assignment 01"
+                                    readonly="state != 'draft'"
+                                />
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="teacher_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    readonly="state != 'draft'"
+                                />
+                                <field name="course_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    readonly="state != 'draft'"
+                                />
+                                <field name="batch_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    invisible="not use_batch"
+                                    readonly="state != 'draft'"
+                                />
+                                <field name="section_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    invisible="not use_section"
+                                    readonly="state != 'draft'"
+                                />
+                                <field name="subject_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    readonly="state != 'draft'"
+                                />
+                                
+                                
+                                <field name="file_assignment" widget="binary" 
+                                    readonly="state != 'draft'"
+                                    />
+                            </group>
+                            <group>
+                                <field name="assignment_type_id" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    readonly="state != 'draft'"
+                                    required="state == 'draft'"
+                                />
+                                <field name="assignment_grade_id" />
+                                <field name="marks_min" readonly="state != 'draft'"/>
+                                <field name="marks_max" readonly="state != 'draft'"/>
+                                <field name="date" readonly="state != 'draft'"/>
+                                <field name="date_due" readonly="state != 'draft'"/>
+                                <field name="date_publish" readonly="1" invisible="not date_publish"
+                                    />
+                                <field name="company_id" 
+                                    groups="base.group_multi_company" 
+                                    options="{'no_open':True,'no_create':True}"
+                                    readonly="state != 'draft'"
+                                />
+                            </group>y
+                        </group>
+                        <notebook>
+                            <page name="description_page" string="Description">
+                                <field name="description" type="html" 
+                                    options="{'collaborative': true, 'resizable': false}" 
+                                    placeholder="Add details about this assignment..."
+                                    readonly="state != 'draft'"
+                                />
+                            </page>
+                        </notebook>
+                         
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="assignment_calendar_view" model="ir.ui.view">
+            <field name="name">assignment.calendar.view</field>
+            <field name="model">oe.assignment</field>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Assignments" 
+                    date_start="date"
+                    mode="month" color="course_id"
+                    event_open_popup="true"
+                    event_limit="10"
+                    quick_create="0"
+                >
+                    <field name="course_id" filters="1" invisible="1" />
+                    <field name="teacher_id" filters="2" invisible="1" />
+                    <field name="subject_id" invisible="1" />
+                    <field name="date" invisible="1" />
+                    <field name="date_due" invisible="1" />
+                </calendar>
+            </field>
+        </record>
+        
+        <!-- Search view -->
+        <record id="assignment_search_view" model="ir.ui.view">
+            <field name="name">assignment.search.view</field>
+            <field name="model">oe.assignment</field>
+            <field name="arch" type="xml">
+                <search string="Assignment Search">
+                    <field name="name" string="Assignment" filter_domain="[('name', 'ilike', self)]"/>
+                    <field name="course_id" />
+                    <field name="subject_id"/>
+                    <field name="teacher_id"/>
+                    <field name="state" />
+                    
+                    <filter string="Due" name="due_assignment" domain="[('date_due','&gt;', context_today())]"/>
+                    <separator/>
+                    <filter string="Publish" domain="[('state', '=', 'publish')]" name="filter_publish_assignments"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                            <filter string="Type" name="group_assignment_type" context="{'group_by':'assignment_type_id'}"/>
+                            <filter string="Teacher" name="group_teacher" context="{'group_by':'teacher_id'}"/>
+                            <separator/>
+                            <filter string="Course" name="group_course" context="{'group_by':'course_id'}"/>
+                            <filter string="Subject" name="group_course" context="{'group_by':'subject_id'}"/>
+                            <separator/>
+                            <filter string="State" name="group_state" context="{'group_by':'state'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_assignment" model="ir.actions.act_window">
+            <field name="name">Assignment</field>
+            <field name="res_model">oe.assignment</field>
+            <field name="view_mode">tree,calendar,form</field>
+            <field name="search_view_id" ref="assignment_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new assignment
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Assignment" id="menu_assignment_main_assignment"
+            parent="menu_assignment_main" 
+            action="action_assignment"
+            groups="de_school_assignment.group_assignment_user" 
+            sequence="10"
+        />
+        
+    </data>
+</odoo>

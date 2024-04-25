@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_backend" name="school_timetable_backend_assets" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/de_school_timetable/static/src/js/timetable_gantt_view.js" />
+            <script type="text/javascript" src="/de_school_timetable/static/src/js/timetable_gantt_model.js" />
+        </xpath>
+    </template>
+</odoo>

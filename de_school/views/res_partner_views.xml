@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <record id="view_partner_form_inherit_student" model="ir.ui.view">
+            <field name="name">view.partner.form.inherit.student</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                
+                <xpath expr="//group[1]/group[2]" position='inside'>
+                    <field name="is_student" invisible="1"/>
+                    <field name="is_parent_student" invisible="1"/>
+                    <field name="use_batch" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="view_partner_tree_inherit_student" model="ir.ui.view">
+            <field name="name">view.partner.tree.inherit.student</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position='inside'>
+                    <field name="is_student" invisible="1"/>
+                    <field name="is_parent_student" invisible="1"/>
+                    <field name="use_batch" invisible="1"/>
+                </xpath>
+            </field>
+        </record>
+        
+    </data>
+</odoo>

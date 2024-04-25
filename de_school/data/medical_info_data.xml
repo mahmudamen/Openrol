@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Medical Category -->
+        <record model="oe.school.medical.cat" id="school_medical_category_allergy">
+          <field name="name">Allergy</field>
+        </record>
+        <record model="oe.school.medical.cat" id="school_medical_category_disease">
+          <field name="name">Disease</field>
+        </record>
+        <record model="oe.school.medical.cat" id="school_medical_category_injury">
+          <field name="name">Injury</field>
+        </record>
+        <record model="oe.school.medical.cat" id="school_medical_category_immunization">
+          <field name="name">Immunization</field>
+        </record>
+        <record model="oe.school.medical.cat" id="school_medical_category_surgery">
+          <field name="name">Surgery</field>
+        </record>
+        <record model="oe.school.medical.cat" id="school_medical_category_others">
+          <field name="name">Others</field>
+        </record>
+        
+
+        <record model="oe.school.medical.type" id="school_medical_type_dust">
+            <field name="name">Dust Mite Allergy</field>
+            <field name="med_cat_id" ref="school_medical_category_allergy"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_seasonal">
+            <field name="name">Seasonal Allergies</field>
+            <field name="med_cat_id" ref="school_medical_category_allergy"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_food">
+            <field name="name">Food Allergy</field>
+            <field name="med_cat_id" ref="school_medical_category_allergy"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_pet">
+            <field name="name">Pet Allergy</field>
+            <field name="med_cat_id" ref="school_medical_category_allergy"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_environment">
+            <field name="name">Environmental Allergy</field>
+            <field name="med_cat_id" ref="school_medical_category_allergy"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_others">
+            <field name="name">Others</field>
+            <field name="med_cat_id" ref="school_medical_category_allergy"/>
+        </record>
+
+        <record model="oe.school.medical.type" id="school_medical_type_asthma">
+            <field name="name">Asthma</field>
+            <field name="med_cat_id" ref="school_medical_category_disease"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_diabetes">
+            <field name="name">Diabetes</field>
+            <field name="med_cat_id" ref="school_medical_category_disease"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_epilepsy">
+            <field name="name">Epilepsy</field>
+            <field name="med_cat_id" ref="school_medical_category_disease"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_adhd">
+            <field name="name">Attention-Deficit/Hyperactivity Disorder (ADHD)</field>
+            <field name="med_cat_id" ref="school_medical_category_disease"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_depression">
+            <field name="name">Depression</field>
+            <field name="med_cat_id" ref="school_medical_category_disease"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_others">
+            <field name="name">Others</field>
+            <field name="med_cat_id" ref="school_medical_category_disease"/>
+        </record>
+
+        <record model="oe.school.medical.type" id="school_medical_type_appendectomy">
+            <field name="name">Appendectomy</field>
+            <field name="med_cat_id" ref="school_medical_category_surgery"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_tonsillectomy">
+            <field name="name">Tonsillectomy</field>
+            <field name="med_cat_id" ref="school_medical_category_surgery"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_wisom_teeth">
+            <field name="name">Wisdom Teeth Extraction</field>
+            <field name="med_cat_id" ref="school_medical_category_surgery"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_hernia">
+            <field name="name">Hernia Repair Surgery</field>
+            <field name="med_cat_id" ref="school_medical_category_surgery"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_acl">
+            <field name="name">ACL Reconstruction</field>
+            <field name="med_cat_id" ref="school_medical_category_surgery"/>
+        </record>
+        <record model="oe.school.medical.type" id="school_medical_type_cholecystectomy">
+            <field name="name">Cholecystectomy</field>
+            <field name="med_cat_id" ref="school_medical_category_surgery"/>
+        </record>
+        
+    </data>
+</odoo>

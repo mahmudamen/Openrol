@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="student_marksheet_sequence" model="ir.sequence">
+            <field name="name">Marksheet Sequence</field>
+            <field name="code">marksheet.sequence</field>
+            <field name="prefix">MS/</field>
+            <field name="padding">5</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

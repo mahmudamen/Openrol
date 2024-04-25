@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+    <menuitem name="Exam"
+        id="menu_exam"
+        groups="de_school_exam.group_exam_user,de_school_exam.group_exam_manager"
+        web_icon="de_school_exam,static/description/icon.png"
+        sequence="57" />
+    
+    <menuitem name="Exams" id="menu_exam_main"
+			parent="menu_exam" 
+              sequence = "10"
+			groups="de_school_exam.group_exam_user" />
+
+    <menuitem name="Course" id="menu_exam_course"
+			parent="menu_exam" 
+              sequence = "30"
+			groups="de_school_exam.group_exam_user" />
+    
+    <menuitem name="Reports" id="menu_exam_reports"
+			parent="menu_exam" 
+              sequence = "90"
+			groups="de_school_exam.group_exam_user" />
+    
+    <menuitem name="Configuration" id="menu_exam_config_main"
+			parent="menu_exam" 
+              sequence = "100"
+			groups="de_school_exam.group_exam_manager" />
+    
+</odoo>

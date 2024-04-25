@@ -1,0 +1,542 @@
+<odoo>
+  <data> 
+      <!-- form view -->
+      <record id="admission_form_view" model="ir.ui.view">
+            <field name="name">admission.form.view</field>
+            <field name="model">oe.admission</field>
+            <field name="arch" type="xml">
+                <form class="o_lead_opportunity_form" js_class="crm_form">
+                    <header>
+                        <button name="action_accept_application" string="Accept"
+                            type="object" class="oe_highlight" data-hotkey="w" title="Accept Application"
+                            invisible="active == False or probability == 100 or type == 'lead' or won_status == 'won'"/>
+
+                        <button name="action_confirm_admission" string="Confirm Admission"
+                            type="object" class="oe_highlight" 
+                            title="Confirm Admission"
+                            invisible="won_status != 'won' or admission_confirmed"/>
+                        
+                        <button name="action_application_lost" string="Reject" data-hotkey="l" title="Reject Application" type="object" context="{'admission_id': active_id}" 
+                            invisible="type == 'lead' or (active == False and probability &lt; 100)"/>
+
+                        <button name="action_convert_application" string="Convert to Application" type="object" help="Convert to Application"
+                            class="oe_highlight" invisible="type == 'opportunity' or not active" data-hotkey="v"/>
+                        
+                         <button name="toggle_active" string="Restore" type="object" data-hotkey="z"
+                            invisible="probability >= 0 or active == True"/>
+                        <button name="action_set_lost" string="Lost" type="object" data-hotkey="l" title="Mark as lost"
+                            invisible="type == 'opportunity' or (probability ==0 and active == False)"/>
+
+                        
+                        <field name="stage_id" widget="statusbar"
+                            options="{'clickable': '1', 'fold_field': 'fold'}"
+                            domain="['|', ('team_id', '=', team_id), ('team_id', '=', False)]"
+                            invisible="active == False or type == 'lead'"/>
+
+                    </header>
+                    <sheet>
+                        <field name="company_id" invisible="1"/>
+                        <field name="active" invisible="1"/>
+                        <field name="user_company_ids" invisible="1"/>
+                        <field name="won_status" invisible="1" />
+                        <field name="is_application_score" invisible="1" />
+                        <field name="is_application_revenue" invisible="1" />
+                        <field name="use_batch" invisible="1"/>
+                        <field name="use_section" invisible="1"/>
+                        <field name="admission_confirmed" invisible="1"/>
+                        <!--
+                        <field name="is_blacklisted" invisible="1"/>
+                        <field name="phone_blacklisted" invisible="1"/>
+                        <field name="mobile_blacklisted" invisible="1"/>
+-->
+                        <field name="email_state" invisible="1"/>
+                        <field name="phone_state" invisible="1"/>
+                        <field name="partner_email_update" invisible="1"/>
+                        
+                        <field name="partner_phone_update" invisible="1"/>
+
+
+                        <div class="oe_button_box" name="button_box">
+                             <button name="action_schedule_meeting" type="object"
+                                class="oe_stat_button" icon="fa-calendar"
+                                context="{'partner_id': partner_id}"
+                                invisible="type == 'lead'">
+                                <div class="o_stat_info">
+                                    <field name="calendar_event_count" class="o_stat_value"/>
+                                    <span class="o_stat_text" 
+                                        invisible="calendar_event_count &lt; 2"> Meetings</span>
+                                    <span class="o_stat_text" 
+                                        invisible="calendar_event_count &gt; 1"> Meeting</span>
+                                </div>
+                            </button>
+                            <button
+                                name="open_enrollment_history"
+                                class="oe_stat_button"
+                                icon="fa-history"
+                                type="object"
+                            >
+                                <field name="enrollment_count" widget="statinfo" string="Enrollments"/>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="Rejected" bg_color="bg-danger" 
+                            invisible="probability >= 0 or active == True"/>
+                        <widget name="web_ribbon" title="Accepted" 
+                            invisible="probability &lt; 100" />
+                        <field name="avatar_128" invisible="1"/>
+                         <field name="image_1920" widget="image" class="oe_avatar" options="{&quot;preview_image&quot;: &quot;avatar_128&quot;}"/>
+                        <div class="oe_title">
+                            <label for="contact_name" string="Applicant Name" invisible="won_status == 'won'"/>
+                            <label for="contact_name" string="Student Name" invisible="won_status != 'won'"/>
+
+                            <div class="row justify-content-between position-relative w-100 m-0 mb-2">
+                                <div class="oe_title mw-75 ps-0 pe-2">
+                                    <h3 class="d-flex flex-row align-items-start">
+                                         <field name="title" class="oe_inline" nolabel="1" style="width: 3rem;" />
+                                    </h3>
+                                    <h1 class="d-flex flex-row align-items-center">
+                                       <field name="contact_name" required="1" style="font-size: min(4vw, 2.6rem);" placeholder="Full Name e.g John Doe"/>
+                                    </h1>
+                                    <field name="name" />
+                                </div>
+                                
+                            </div>
+                            
+                            <h2 class="d-flex gap-2 g-0 align-items-end pb-3" 
+                                invisible="is_application_revenue == False and                       is_application_revenue == False">
+                                <div invisible="type =='lead' or is_application_revenue != True">
+                                    <label for="expected_revenue" string="Estimated Fees" class="oe_edit_only pb-1"/>
+                                    <div class="d-flex align-items-end">
+                                        <field name="company_currency" invisible="1"/>
+                                        <field name="expected_revenue" class="oe_inline o_input_8ch" widget="monetary" options="{'currency_field': 'company_currency'}"/>
+                                    </div>
+                                </div>
+                                <div invisible="type != 'opportunity' and not is_application_score" >
+                                    <div class="oe_edit_only d-md-flex align-items-center">
+                                        <label for="probability"/>
+                                    </div>
+                                    <div id="probability" 
+                                        class="d-inline-block"
+                                        invisible="type != 'opportunity' and not is_application_score"
+                                    >
+                                        <field name="probability" widget="float" class="oe_inline o_input_6ch"/>
+                                        <span class="oe_grey"> %</span>
+                                    </div>
+                                </div>
+                            </h2>
+                        </div>
+                        <group>
+                            <group>
+                                <label for="street_page_lead" string="Address"/>
+                                <div class="o_address_format">
+                                    <field name="street" id="street_page_lead" placeholder="Street..." class="o_address_street"/>
+                                    <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                    <field name="city" placeholder="City" class="o_address_city"/>
+                                    <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                    <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                </div>
+                                <field name="partner_id"
+                                    widget="res_partner_many2one"
+                                    string="Student" invisible="partner_id == False"
+                                    context="{
+                                        'default_name': contact_name,
+                                        'default_street': street,
+                                        'default_street2': street2,
+                                        'default_city': city,
+                                        'default_title': title,
+                                        'default_state_id': state_id,
+                                        'default_zip': zip,
+                                        'default_country_id': country_id,
+                                        'default_phone': phone,
+                                        'default_mobile': mobile,
+                                        'default_email': email_from,
+                                        'default_user_id': user_id,
+                                        'default_team_id': team_id,
+                                    }"
+                                />
+                                <label for="email_from" class="oe_inline"/>
+                                <div class="o_row o_row_readonly">
+                                    
+                                    <field name="email_from" string="Email" widget="email"/>
+                                    <span class="fa fa-exclamation-triangle text-warning oe_edit_only"
+                                        title="By saving this change, the customer email will also be updated."
+                                        invisible="partner_email_update == False"/>
+                                </div>
+                                <label for="phone" class="oe_inline"/>
+                                <div class="o_row o_row_readonly">
+                                    <field name="phone" widget="phone"/>
+                                    <span class="fa fa-exclamation-triangle text-warning oe_edit_only"
+                                        title="By saving this change, the customer phone number will also be updated."
+                                        invisible="partner_phone_update == False"/>
+                                </div>
+                                <label for="mobile" class="oe_inline"/>
+                                <div class="o_row o_row_readonly">
+                                    <field name="mobile" widget="phone" string="Mobile"/>
+                                </div>
+                                <field name="user_id"
+                                    context="{'default_team_id': team_id}" widget="many2one_avatar_user"/>
+                                <field name="team_id" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="type" invisible="1"/>
+                                <field name="lost_reason_id" invisible="active == True"/>
+                            </group>
+                            <group string="Academic" name="academic">
+                                <field name="admission_register_id" required="type == 'opportunity'" options="{'no_create_edit': True}" />
+                                <field name="course_id" options="{'no_create_edit': True}" />
+                                <field name="batch_id" options="{'no_create_edit': True}" 
+                                    domain="[('course_id','=',course_id)]"
+                                    invisible="not use_batch"
+                                />
+                                <field name="section_id" options="{'no_create_edit': True}" 
+                                    domain="[('course_id','=',course_id)]"
+                                    invisible="not use_section"
+                                />
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                        </group>
+
+                        <notebook>
+                            
+                            
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids" options="{'post_refresh': 'recipients'}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+      <!-- Quick create form view -->
+      <record id="quick_create_admission_form" model="ir.ui.view">
+            <field name="name">admission.form.quick_create</field>
+            <field name="model">oe.admission</field>
+            <field name="priority">1000</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="contact_name" string="Student Name" placeholder="Full Name e.g. John Doe" />
+                        <field name="admission_register_id"  options="{'no_open': True, 'no_create': True}"/>
+                        <field name="course_id" />
+                        <field name="email_from" string="Email" />
+                        <field name="phone" string="Phone" />
+                        <field name="priority" class="oe_inline" nolabel="1" widget="priority"/>
+                        <field name="company_currency" invisible="1"/>
+                        <field name="company_id" invisible="1"/>
+                        <field name="user_id" invisible="1"/>
+                        <field name="user_company_ids" invisible="1"/>
+                        <field name="team_id" invisible="1"/>
+                        <field name="type" invisible="1"/>
+                        <field name="partner_name" invisible="1"/>
+                        <field name="partner_id" invisible="1"/>
+                        <field name="country_id" invisible="1"/>
+                        <field name="state_id" invisible="1"/>
+                        <field name="city" invisible="1"/>
+                        <field name="street" invisible="1"/>
+                        <field name="street2" invisible="1"/>
+                        <field name="zip" invisible="1"/>
+                        <field name="mobile" invisible="1"/>
+                        <field name="website" invisible="1"/>
+                        <field name="title" invisible="1"/>
+                        <field name="activity_ids" invisible="1"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+    <!-- Tree view -->
+      <record id="admission_tree_view" model="ir.ui.view">
+            <field name="name">admission.tree.view</field>
+            <field name="model">oe.admission</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Opportunities" sample="1" multi_edit="1">
+                    <header>
+                        <button name="action_confirm_admission" type="object" 
+                                string="Confirm Admission" 
+                                class="oe_highlight"
+                                />
+                    </header>
+                    <field name="company_id" column_invisible="1"/>
+                    <field name="create_date" optional="hide"/>
+                    <field name="name" string="Opportunity" readonly="1"/>
+                    <field name="partner_id" optional="hide"/>
+                    <field name="contact_name" optional="show"/>
+                    <field name="email_from"/>
+                    <field name="phone" class="o_force_ltr"/>
+                    <field name="company_id" groups="base.group_multi_company" optional="show"/>
+                    <field name="city" optional="hide"/>
+                    <field name="state_id" optional="hide"/>
+                    <field name="country_id" optional="hide" options="{'no_open': True, 'no_create': True}"/>
+                    <!-- Explicit domain due to multi edit -> real company domain would be complicated -->
+                    <field name="user_id" widget="many2one_avatar_user" optional="show"
+                        domain="[('share', '=', False)]"/>
+                    <field name="team_id" optional="hide"/>
+                    <field name="activity_ids" widget="list_activity"/>
+                    <field name="activity_user_id" optional="hide" string="Activity by" widget="many2one_avatar_user"/>
+                    <field name="campaign_id" optional="hide"/>
+                    <field name="medium_id" optional="hide"/>
+                    <field name="source_id" optional="hide"/>
+                    <field name="company_currency" column_invisible="1"/>
+                    <field name="stage_id" optional="show" decoration-bf="1"/>
+                    <field name="active" column_invisible="1"/>
+                    <field name="tag_ids" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="referred" column_invisible="1"/>
+                    <field name="message_needaction" column_invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+      <record id="admission_calendar_view" model="ir.ui.view">
+            <field name="name">admission.calendar.view</field>
+            <field name="model">oe.admission</field>
+            <field name="priority" eval="2"/>
+            <field name="arch" type="xml">
+                <calendar string="Admissions" create="0" mode="month" date_start="activity_date_deadline" color="user_id" hide_time="true" event_limit="5">
+                    <field name="expected_revenue"/>
+                    <field name="partner_id" avatar_field="avatar_128"/>
+                    <field name="user_id" filters="1" invisible="1"/>
+                    <field name="team_id" invisible="1"/>
+                </calendar>
+            </field>
+        </record>
+      
+      <record id="admission_graph_view" model="ir.ui.view">
+            <field name="name">admission.graph.view</field>
+            <field name="model">oe.admission</field>
+            <field name="arch" type="xml">
+                <graph string="Opportunities" sample="1">
+                    <field name="stage_id"/>
+                    <field name="user_id"/>
+                    <field name="color" invisible="1"/>
+                </graph>
+            </field>
+        </record>
+      
+      <record id="admission_pivot_view" model="ir.ui.view">
+            <field name="name">admission.pivot.view</field>
+            <field name="model">oe.admission</field>
+            <field name="arch" type="xml">
+                <pivot string="Pipeline Analysis" sample="1">
+                    <field name="create_date" interval="month" type="row"/>
+                    <field name="stage_id" type="col"/>
+                    <field name="color" invisible="1"/>
+                    <field name="message_bounce" invisible="1"/>
+                </pivot>
+            </field>
+        </record>
+
+      <record model="ir.ui.view" id="admission_kanban_view">
+            <field name="name">admission.kanban.view</field>
+            <field name="model">oe.admission</field>
+            <field name="arch" type="xml">
+                <kanban
+                    default_group_by="stage_id"
+                    class="o_kanban_small_column o_kanban_admissions"
+                    on_create="quick_create"
+                    quick_create_view="de_school_admission.quick_create_admission_form"
+                    examples="Admission"
+                   archivable="false" sample="1" js_class="crm_kanban"
+                >
+                    <field name="probability"/>
+                    <field name="color"/>
+                    <field name="priority"/>
+                    <field name="stage_id" options='{"group_by_tooltip": {"description": "Description"}}'/>
+                    <field name="expected_revenue"/>
+                    <field name="kanban_state"/>
+                    <field name="activity_date_deadline"/>
+                    <field name="user_id"/>
+                    <field name="partner_id"/>
+                    <field name="activity_summary"/>
+                    <field name="active"/>
+                    <field name="company_currency"/>
+                    <field name="activity_state"/>
+                    <field name="activity_ids"/>
+                    <field name="is_application_revenue" invisible="1" />
+                    <progressbar field="activity_state" colors="{&quot;planned&quot;: &quot;success&quot;, &quot;today&quot;: &quot;warning&quot;, &quot;overdue&quot;: &quot;danger&quot;}" sum_field="expected_revenue"  help="This bar allows to filter the opportunities based on scheduled activities."/>
+                    <templates>
+                        <t t-name="kanban-menu">
+                            <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit</a></t>
+                            <t t-if="widget.deletable"><a role="menuitem" type="delete" class="dropdown-item">Delete</a></t>
+                            <ul class="oe_kanban_colorpicker" data-field="color"/>
+                        </t>
+                        <!-- Kanban box -->
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''}  oe_kanban_global_click oe_kanban_card d-flex flex-column">
+                                <!-- Kanban Content -->
+                                <div class="oe_kanban_content flex-grow-1">
+                                    <div class="o_kanban_record_title oe_kanban_details">
+                                        <strong><field name="contact_name"/></strong>
+                                        
+                                    </div>
+                                    <div>
+                                        <strong><field name="name"/></strong>
+                                    </div>
+                                    <div invisible="is_application_revenue == False">
+                                        <field name="expected_revenue"/>
+                                    </div>
+                                    <div>
+                                        <field name="course_code" options="{'color_field': 'color'}"/> / <field name="batch_id" />
+                                    </div>
+                                    <div>
+                                        <field name="admission_register_id"/>
+                                    </div>
+                                    <div>
+                                        <field name="tag_ids" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                                    </div>
+                                </div>
+                                <div class="oe_kanban_footer">
+                                    <div class="o_kanban_record_bottom">
+                                        <div class="oe_kanban_bottom_left">
+                                            <field name="priority" widget="priority" groups="base.group_user"/>
+                                            <field name="activity_ids" widget="kanban_activity"/>
+                                        </div>
+                                        <div class="oe_kanban_bottom_right">
+                                            <field name="user_id" widget="many2one_avatar_user"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"/>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+      </record>
+
+      <!-- Search view -->
+      <record id="admission_search_view" model="ir.ui.view">
+            <field name="name">admission.search.view</field>
+            <field name="model">oe.admission</field>
+            <field name="priority">15</field>
+            <field name="arch" type="xml">
+                <search string="Search Opportunities">
+                    <field name="name" string="Opportunity" filter_domain="[
+                        '|', '|', '|', '|',
+                        ('partner_id', 'ilike', self),
+                        ('partner_name', 'ilike', self),
+                        ('email_from', 'ilike', self),
+                        ('name', 'ilike', self),
+                        ('contact_name', 'ilike', self)]"/>
+                    <field name="partner_id" operator="child_of" string="Applicant" filter_domain="[
+                        '|', '|', '|',
+                        ('partner_id', 'ilike', self),
+                        ('partner_name', 'ilike', self),
+                        ('email_from', 'ilike', self),
+                        ('contact_name', 'ilike', self)]"/>
+                    <field name="tag_ids" string="Tag" filter_domain="[('tag_ids', 'ilike', self)]"/>
+                    <field name="user_id"/>
+                    <field name="team_id"/>
+                    <field name="stage_id" domain="[]"/>
+                    <field name="country_id"/>
+                    <field name="city"/>
+                    <field name="activity_state"/>
+                    <separator/>
+                    <filter string="My Pipeline" name="assigned_to_me"
+                        domain="[('user_id', '=', uid)]"
+                        help="Opportunities that are assigned to me"/>
+                    <filter string="Unassigned" name="unassigned"
+                        domain="[('user_id', '=', False)]" help="No salesperson"/>
+                    <separator/>
+                    <filter string="Creation Date" name="creation_date" date="create_date"/>
+                    <separator/>
+                    <filter invisible="1" string="Overdue Opportunities" name="overdue_opp" domain="['&amp;', ('date_closed', '=', False), ('date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter invisible="1" string="Late Activities" name="activities_overdue"
+                        domain="[('my_activity_date_deadline', '&lt;', context_today().strftime('%Y-%m-%d'))]"
+                        help="Show all opportunities for which the next action date is before today"/>
+                    <filter invisible="1" string="Today Activities" name="activities_today"
+                        domain="[('my_activity_date_deadline', '=', context_today().strftime('%Y-%m-%d'))]"/>
+                    <filter invisible="1" string="Future Activities" name="activities_upcoming_all"
+                        domain="[('my_activity_date_deadline', '&gt;', context_today().strftime('%Y-%m-%d'))]"/>
+                    <separator/>
+                    <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                    <group expand="0" string="Group By" colspan="16">
+                        <filter string="Salesperson" name="salesperson" context="{'group_by':'user_id'}"/>
+                        <filter string="Sales Team" name="saleschannel" context="{'group_by':'team_id'}"/>
+                        <filter name="stage" string="Stage" context="{'group_by':'stage_id'}"/>
+                        <filter name="city" string="City" context="{'group_by': 'city'}"/>
+                        <filter string="Country" name="country" context="{'group_by':'country_id'}" />
+                        <filter string="Company" name="company" context="{'group_by':'company_id'}" groups="base.group_multi_company"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+      <!-- My Admission Pipeline -->
+      <record id="action_my_admission_pipeline" model="ir.actions.act_window">
+            <field name="name">Pipeline</field>
+            <field name="res_model">oe.admission</field>
+            <field name="view_mode">kanban,tree,form,calendar,pivot,graph,activity</field>
+            <field name="search_view_id" ref="admission_search_view"/>
+          <field name="domain">[('type','=','opportunity')]</field>
+            <field name="context">{
+                'default_type': 'opportunity',
+                'search_default_assigned_to_me': 1
+            }</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No application found. Let's create one!
+                </p>
+                <p>
+                    Organize admission applications by dispatching them across the pipeline.<br/>
+                    Collaborate efficiently by chatting in real-time or via email.
+                </p>
+            </field>
+        </record>
+
+      <!--
+      <menuitem
+        id="menu_admission_pipeline"
+        name="My Piepeline"
+        parent="menu_admission_main"
+        action="action_my_admission_pipeline"
+        sequence="3"/>
+      -->
+
+      <record model="ir.actions.act_window" id="action_admission_application_pipeline">
+            <field name="name">Pipeline</field>
+            <field name="res_model">oe.admission</field>
+            <field name="view_mode">kanban,tree,graph,pivot,form,calendar,activity</field>
+            <field name="domain">[('type','=','opportunity')]</field>
+            <field name="context">{
+                    'default_type': 'opportunity',
+                    'search_default_assigned_to_me': 1
+            }</field>
+            <field name="search_view_id" ref="de_school_admission.admission_search_view"/>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('admission_kanban_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('admission_form_view')}),
+            ]"/>
+        </record>
+      
+      
+      <!-- My Admissions -->
+      <!--
+        <record model="ir.actions.act_window" id="action_my_admission">
+            <field name="name">Admissions</field>
+            <field name="res_model">oe.admission</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('admission_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('admission_form_view')}),
+            ]"/>
+            <field name="domain">[('type','=','opportunity'),('is_admission','=',True)]</field>
+            <field name="context">{
+                    'default_type': 'opportunity',
+                    'default_is_admission': True,
+                }
+            </field>
+        </record>
+      
+      
+      <menuitem
+        id="menu_admission_opportunities"
+        name="My Admissions"
+        parent="menu_admission_main"
+        action="action_my_admission"
+        sequence="3"/>
+      -->
+      
+  </data>
+</odoo>

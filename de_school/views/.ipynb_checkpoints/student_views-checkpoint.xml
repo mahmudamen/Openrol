@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>       
+        <record id="student_primary_form_view" model="ir.ui.view">
+            <field name="name">student.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="de_school.view_partner_form_inherit_student"/>
+            <field name="mode">primary</field>
+            <field name="priority">999</field>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='company_type']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='type']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='parent_id']" position="attributes">
+                    <attribute name="attrs">{'invisible': [('is_student', '=', True)],'required': [('is_parent_student', '=', True)]}</attribute>
+                </xpath>
+                
+                
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='function']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//field[@name='website']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/group[1]/group[1]" position="attributes">
+                    <attribute name="string">Address</attribute>
+                </xpath>
+                <xpath expr="//form[1]/sheet[1]/group[1]/group[2]" position="attributes">
+                    <attribute name="string">Contact Info</attribute>
+                </xpath>
+                
+                <xpath expr="//field[@name='title']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//div[hasclass('o_row')]" position="inside">
+                    <field name="is_parent_student" invisible="1"/>
+                    <field name="parent_id" domain="[('is_student','=',True),('is_parent_student','=',False)]" placeholder="Student Name" attrs="{'invisible': [('is_parent_student', '!=', True)],'required': [('is_parent_student', '=', True)]}" />
+                </xpath>
+                
+                <!-- Add Current Enrollment Detail -->
+                <xpath expr="//group[1]" position="after">
+                    <group>
+                        <group string="Enrollment" attrs="{'invisible': ['|',('is_student', '!=', True),('is_parent_student', '=', True)]}">
+                            <field name="course_id"  options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{'required': [('is_student', '=', True),('is_parent_student', '=', False)]}" />
+                            <field name="batch_id"  options="{'no_quick_create': True, 'no_create_edit' : True}" attrs="{'required': [('is_student', '=', True),('is_parent_student', '=', False)]}" />
+                            <field name="roll_no"  />
+                            <field name="admission_no" string="Registraion No" />
+                        </group>
+                        <group>
+                             <separator />
+                            <field name="ref" string="Reference" />
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}" attrs="{'readonly': [('parent_id', '!=', False)]}" force_save="1"/>
+
+                        </group>
+                    </group>
+                </xpath>
+                
+                <xpath expr="//field[@name='child_ids']/form[1]/sheet[1]" position="inside">
+                    <field name="is_parent_student" invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='child_ids']/form[1]/sheet[1]//field[@name='type']" position="before">
+                    <group>
+                        <group>
+                            <field name="contact_type" widget="radio" options="{'horizontal': true}" required="1"/>
+                            <field name="relation" placeholder="Relation" attrs="{'invisible': [('contact_type', '!=', 'parent')]}"/>
+                            <field name="is_guardian" />
+                        </group>
+                        <group>
+                            <field name="avatar_128" nolabel="1" invisible="1"/>
+                            <field name="image_1920" nolabel="1" widget='image' class="oe_avatar" options='{"preview_image": "avatar_128"}' attrs="{'invisible': [('contact_type', '!=', 'parent')]}"/>
+                        </group>
+                    </group>
+                </xpath>
+              
+                <xpath expr="//field[@name='child_ids']/form[1]/sheet[1]//field[@name='type']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                 <xpath expr="//field[@name='child_ids']/form[1]/sheet[1]//div[1]" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                
+                <xpath expr="//page[@name='sales_purchases']" position="attributes">
+                    <attribute name="attrs">{}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//page[@name='contact_addresses']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|',('is_student', '!=', True),('is_parent_student', '=', True)]}</attribute>
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+                
+                <xpath expr="//page[1]" position='after'>
+                    <page name='demographic_info' string="Demographic Info" attrs="{'invisible': ['|',('is_student', '!=', True),('is_parent_student', '=', True)]}">
+                        <group>
+                            <group>
+                                <field name="date_birth" />
+                                <field name="gender" />
+                                <field name="merital_status"/>
+                            </group>
+                            <group>
+                                <field name="country_birth" placeholder="Country of Birth" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                                <field name="country_nationality" placeholder="Nationality" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                            </group>
+                        </group>
+                    </page>
+                    <page name='sibling_info' string="Siblings" attrs="{'invisible': ['|',('is_student', '!=', True),('is_parent_student', '=', True)]}">
+                        <field name="sibling_ids" widget="one2many_list" >
+                            <tree editable ="bottom" >
+                                <field name="name" />
+                                <field name="date_birth" />
+                                <field name="relation" />
+                                <field name="course_id"  options="{'no_quick_create': True, 'no_create_edit' : True}" required="1" />
+                                <field name="roll_no" />
+                            </tree>
+                        </field>
+					</page>
+                    <page name='enrollment_history' string="Enrollment History" attrs="{'invisible': ['|',('is_student', '!=', True),('is_parent_student', '=', True)]}">
+                                <field name="enrollment_ids" widget="one2many_list" >
+                                    <tree editable ="top" >
+                                        <field name="school_name" required="1" />
+                                        <field name="school_year"  />
+                                        <field name="level_grade"  />
+                                        <field name="date_start"  />
+                                        <field name="date_end"  />
+                                        <field name="address_school" optional="hide" />
+                                    </tree>
+                                </field>
+					</page>
+                    <page name='active_subjects' string="Subjects" attrs="{'invisible': ['|',('is_student', '!=', True),('is_parent_student', '=', True)]}">
+                        <field name="subject_ids" widget="one2many_list" readonly="1" nolabel="1">
+                            <tree >
+                                <field name="name" />
+                                <field name="credit_hours"  />
+                                <field name="subject_group_id"  />
+                            </tree>
+                        </field>
+                    </page>
+                    <page name='medical_info' string="Medical Info" attrs="{'invisible': ['|',('is_student', '!=', True),('is_parent_student', '=', True)]}">
+                        <group>
+                            <group>
+                                <field name="student_complexion" />
+                                <field name="student_weight" />
+                                <field name="student_height"/>
+                            </group>
+                            <group>
+                                <field name="student_mark_identify" />
+                                <field name="student_clinic_history" />
+                                <field name="student_allergic_history" />
+                            </group>
+                        </group>
+                        <group>
+                            <group name="emergency_contact" string="Emergency Contact">
+                                <field name="student_emergency_contact" string="Contact Name"/>
+                                <field name="student_emergency_phone" string="Contact No." />
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+        
+        <!-- Student Tree View -->
+        <record id="partner_student_tree_view" model="ir.ui.view">
+            <field name="name">res.partner.student.tree.view</field>
+            <field name="model">res.partner</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Students" sample="1" multi_edit="1">
+                    <field name="display_name" string="Name"/>
+                    <field name="function" invisible="1"/>
+                    <field name="course_id" />
+                    <field name="batch_id" />
+                    <field name="roll_no" />
+                    <field name="admission_no" />
+                    <field name="ref" optional="hide" />
+                    <field name="phone" class="o_force_ltr" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="user_id" optional="hide" widget="many2one_avatar_user" domain="[('share', '=', False)]"/>
+                    <field name="city" optional="show"/>
+                    <field name="state_id" optional="hide" readonly="1"/>
+                    <field name="country_id" optional="show" readonly="1"/>
+                    <field name="category_id" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="company_id" string="School" groups="base.group_multi_company" readonly="1"/>
+                    <field name="is_company" invisible="1"/>
+                    <field name="parent_id" invisible="1" readonly="1"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_res_partner_student" model="ir.actions.act_window">
+            <field name="name">Students</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <!--
+            <field name="search_view_id" ref="rental_order_view_search"/>
+            -->
+            <field name="context">{'default_is_student':'True','default_company_type':'person','default_type':'contact'}</field>
+            <field name="domain">[('is_student','=','True'),('is_parent_student','=',False),('parent_id','=',False)]</field>
+            <field name="view_ids"
+				eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('partner_student_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('student_primary_form_view')})]" />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a student
+                  </p><p>
+                
+                </p>
+            </field>
+        </record>
+
+        
+        <menuitem name="Students" id="menu_school_students_student" sequence="1" parent="menu_school_students" action="action_res_partner_student" />
+        
+        <!-- Parent Tree View -->
+        <record id="partner_parent_tree_view" model="ir.ui.view">
+            <field name="name">res.partner.student.tree.view</field>
+            <field name="model">res.partner</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Students" sample="1" multi_edit="1">
+                    <field name="display_name" string="Name"/>
+                    <field name="parent_id" string="Student" optional="show" />
+                    <field name="ref" optional="show" />
+                    <field name="function" optional="show"/>
+                    <field name="phone" class="o_force_ltr" optional="show"/>
+                    <field name="email" optional="show"/>
+                    <field name="user_id" optional="hide" widget="many2one_avatar_user" domain="[('share', '=', False)]"/>
+                    <field name="city" optional="show"/>
+                    <field name="state_id" optional="hide" readonly="1"/>
+                    <field name="country_id" optional="show" readonly="1"/>
+                    <field name="category_id" optional="hide" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="company_id" string="School" groups="base.group_multi_company" readonly="1"/>
+                    <field name="is_company" invisible="1"/>
+                    <field name="parent_id" invisible="1" readonly="1"/>
+                    <field name="active" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="action_res_partner_parent" model="ir.actions.act_window">
+            <field name="name">Parents</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <!--
+            <field name="search_view_id" ref="rental_order_view_search"/>
+            -->
+            <field name="context">{'default_is_student':'True','default_company_type':'person','default_type':'contact','default_is_parent_student':True}</field>
+            <field name="domain">[('is_student','=','True'),('is_parent_student','=',True),('parent_id','!=',False)]</field>
+            <field name="view_ids"
+				eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'tree', 'view_id': ref('partner_parent_tree_view')}),
+                (0, 0, {'view_mode': 'form', 'view_id': ref('student_primary_form_view')})]" />
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a parent
+                  </p><p>
+                
+                </p>
+            </field>
+        </record>
+
+        
+        <menuitem name="Parents" id="menu_school_students_parent" sequence="2" parent="menu_school_students" action="action_res_partner_parent" />
+        
+        
+        <!-- Server Action to generate roll number -->
+        <record model="ir.actions.server" id="action_generate_student_roll_no">
+            <field name="name">Generate Roll No</field>
+            <field name="model_id" ref="model_res_partner"/>
+            <field name="binding_model_id" ref="model_res_partner"/>
+            <field name="state">code</field>
+            <field name="code">
+                action = env['res.partner'].generate_roll_number()
+            </field>
+        </record>
+        
+    </data>
+</odoo>

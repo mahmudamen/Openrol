@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Exam Grade -->
+        <record id="exam_grade_tree_view" model="ir.ui.view">
+			<field name="name">exam.type.tree.view</field>
+			<field name="model">oe.exam.grade</field>
+			<field name="arch" type="xml">
+				<tree string="Exam Grade" >
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+
+        <record id="exam_grade_form_view" model="ir.ui.view">
+            <field name="name">exam.grade.form.view</field>
+            <field name="model">oe.exam.grade</field>
+            <field name="priority" eval="1"/>
+            <field name="arch" type="xml">
+                <form string="Exam Grade">
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name"/>
+                            <h1>
+                                <field name="name" placeholder="e.g Numerical Grading"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="enable_credit_points" />
+                            </group>
+                        </group>
+                        <notebook>
+                           <page string="Grading" name="grading">
+                               <field name="exam_grade_line">
+                                    <tree editable="bottom">
+                                        <field name="exam_grade_id" column_invisible="1"/>
+                                        <field name="name"/>
+                                        <field name="score_min" />
+                                        <field name="credit_points" 
+                                            column_invisible="parent.enable_credit_points != True"
+                                            required="parent.enable_credit_points == True"/>
+
+                                    </tree>
+                                </field>
+                           </page>
+                       </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="exam_grade_search_view" model="ir.ui.view">
+            <field name="name">exam.grade.search.view</field>
+            <field name="model">oe.exam.grade</field>
+            <field name="arch" type="xml">
+                <search string="Exam Type">
+                    <field name="name" string="Course"/>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_exam_grade" model="ir.actions.act_window">
+            <field name="name">Exam Grade</field>
+            <field name="res_model">oe.exam.grade</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="exam_grade_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new exam grade
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Exam Grade" id="menu_exam_config_main_exam_grade"
+            parent="menu_exam_config_main" 
+            action="action_exam_grade"
+            groups="de_school_exam.group_exam_manager" 
+            sequence="30"
+        />
+        
+    </data>
+</odoo>

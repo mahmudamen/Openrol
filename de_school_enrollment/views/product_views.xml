@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="enrollment_fee_product_form_view" model="ir.ui.view">
+            <field name="name">product.product.expense.form</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <form string="Fee Categories">
+                    <sheet>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" 
+                            invisible="active == True"/>
+                        <field name='product_variant_count' invisible='1'/>
+                        <field name="id" invisible="True"/>
+                        <field name="image_1920" widget="image" class="oe_avatar" options="{'image_preview': 'image_128'}"/>
+                        <field name="detailed_type" invisible="1"/>
+                        <div class="oe_title">
+                            <label for="name" string="Product Name" />
+                            <h1><field name="name" placeholder="e.g. Tuition Fee"/></h1>
+                        </div>
+                        <group name="product_details">
+                            <group string="General Information">
+                                <field name="active" invisible="1"/>
+                                <field name="type" invisible="1"/>
+                                <field name="detailed_type" invisible="1"/>
+                                <field name="lst_price" help="sale price for the fee product"/>
+                                <field name="uom_id" groups="uom.group_uom" options="{'no_create': True}"/>
+                                <field name="uom_po_id" invisible="1"/>
+                                <label for="default_code"/>
+                                <div>
+                                    <field name="default_code"/>
+                                    <span class="d-inline-block"><i class="text-muted">Use this reference as a subject prefix when submitting by email.</i></span>
+                                </div>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                            </group>
+                            <group string="Accounting">
+                                <field name="property_account_income_id" groups="account.group_account_readonly"/>
+                                <field name="taxes_id" widget="many2many_tags"
+                                       context="{'default_type_tax_use':'sale', 'default_price_include': 1}"
+                                       options="{'no_quick_create': True}"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Internal Note" name="internal_note">
+                                <field name="description" placeholder="This note will be shown to users when they select this expense product."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+    
+    <record model="ir.ui.view" id="enrollment_fee_product_tree_view">
+            <field name="name">enrollment.fee.product.ree.view</field>
+            <field name="model">product.product</field>
+            <field name="arch" type="xml">
+                <tree class="o_fee_products">
+                    <field name="name" readonly="1"/>
+                    <field name="default_code" optional="show" readonly="1"/>
+                    <field name="description" widget="html" string="Internal Note" optional="show" readonly="1"/>
+                    <field name="lst_price" optional="show" string="Sales Price"/>
+                    <field name="taxes_id" widget="many2many_tags" optional="show"/>
+                </tree>
+            </field>
+    </record>
+    
+    <record id="enrollment_fee_product_action" model="ir.actions.act_window">
+            <field name="name">Fee Products</field>
+            <field name="res_model">product.product</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="product.product_search_form_view"/>
+            <field name="context">{"default_fee_product": 1, "default_sale_ok": 1, 'default_detailed_type': 'service'}</field>
+            <field name="domain">[('fee_product', '=', True)]</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                No fee products found. Let's create one!
+              </p><p>
+                Fee products can be invoiced to students.
+              </p>
+            </field>
+    </record>
+
+    <record id="enrollment_free_product_tree" model="ir.actions.act_window.view">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="enrollment_fee_product_tree_view"/>
+            <field name="act_window_id" ref="enrollment_fee_product_action"/>
+    </record>
+     <record id="enrollment_fee_product_form" model="ir.actions.act_window.view">
+            <field name="sequence" eval="3"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="enrollment_fee_product_form_view"/>
+            <field name="act_window_id" ref="enrollment_fee_product_action"/>
+    </record>
+    
+    <menuitem id="menu_school_enrollment_fee_products" name="Fee Products" 
+        parent="menu_school_enrollment_menu_config" 
+        sequence="2" 
+        action="enrollment_fee_product_action"/>
+
+</odoo>

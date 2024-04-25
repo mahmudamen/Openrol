@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Top menu item -->
+    <menuitem name="Enrollment"
+        id="menu_school_enrollment"
+        groups="group_enrollment_user,group_enrollment_manager"
+        web_icon="de_school_enrollment,static/description/icon.png"
+        sequence="57" />
+    
+    <menuitem name="Enrollment" id="menu_school_enrollment_main"
+			parent="menu_school_enrollment" 
+              sequence = "10"
+			groups="group_enrollment_user" />
+    
+    <menuitem name="Reports" id="menu_school_enrollment_menu_reports"
+			parent="menu_school_enrollment" 
+              sequence = "90"
+			groups="group_enrollment_user" />
+    
+    <menuitem name="Configuration" id="menu_school_enrollment_menu_config"
+			parent="menu_school_enrollment" 
+              sequence = "100"
+			groups="group_enrollment_manager" />
+    
+    
+    
+</odoo>

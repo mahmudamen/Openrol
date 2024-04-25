@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>     
+
+        <record id="course_form_view_inherit_exam" model="ir.ui.view">
+            <field name="name">school.couse.form.view.inherit.exam</field>
+            <field name="model">oe.school.course</field>
+            <field name="inherit_id" ref="de_school.school_course_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]/group[2]" position="inside">
+                    <field name="exam_grade_id" options="{'no_open': True, 'no_create': True}" groups="de_school_exam.group_exam_user,de_school_exam.group_exam_manager" />
+                </xpath>
+                <xpath expr="//field[@name='course_subject_line']/tree[1]" position="inside">
+                    <field name="marks_min" />
+                    <field name="marks_max" />
+                </xpath>
+            </field>
+        </record>
+        
+        <menuitem name="Course" id="menu_exam_course_course"
+            parent="menu_exam_course" 
+            action="de_school.action_oe_school_course"
+            groups="de_school_exam.group_exam_user" 
+            sequence="10"
+        />
+    </data>
+</odoo>

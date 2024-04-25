@@ -1,0 +1,126 @@
+<odoo>
+	<data>
+		<!-- Institute Setup -->
+		
+        <record id="view_company_form_inherit" model="ir.ui.view">
+            <field name="name">view.company.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]/group[1]" position="inside">
+                    <field name="is_school" />
+                </xpath>
+                <xpath expr="//group[1]" position="after">
+                    <h2 invisible="not is_school">Basic Features</h2>
+                    <block class="row col-12" title="Basic Features" name="basic_features_setting_container" invisible="not is_school">
+                        <setting class="col-6" 
+                                string="Activate School Mode"
+                                title="Activate School Mode"
+                                help="Transform Your Company into an Educational Institution"
+                                documentation="https://www.dynexcel.co/sms#activate-school"
+                            >
+                                <field name="is_school"/>
+                            </setting>
+                            <setting class="col-6"
+                                string="Operating Hours"
+                                title="Operating Hours"
+                                help="Manage schedules efficiently for a smooth academic experience."
+                                documentation="https://www.dynexcel.co/sms#activate-school"
+                                invisible="not is_school"
+                            >
+                                <field name="resource_calendar_id"
+                                    required="is_school == True"
+                                    invisible="not is_school"
+                                    />
+                            </setting>
+                            <setting class="col-6"
+                                string="School Type"
+                                title="School Type"
+                                help="Customize Your School Type to Tailor Your Institution's Identity"
+                                documentation="https://www.dynexcel.co/sms#activate-school"
+                                invisible="not is_school"
+                            >
+                                <field name="school_type"
+                                    required="is_school == True"
+                                    invisible="not is_school"
+                                    />
+                            </setting>
+                            <setting class="col-6"
+                                string="Batch Management"
+                                title="Batch Management"
+                                help="Organize classes and students effectively with batch management"
+                                documentation="https://www.dynexcel.co/sms#activate-school"
+                                invisible="not is_school"
+                            >
+                                <field name="use_batch"
+                                    invisible="not is_school"
+                                    />
+                            </setting>
+                            <setting class="col-6"
+                                string="Section Management"
+                                title="Section Management"
+                                help="Organize classes and students effectively with batch management"
+                                documentation="https://www.dynexcel.co/sms#activate-school"
+                                invisible="not is_school"
+                            >
+                                <field name="use_section"
+                                    invisible="not is_school"
+                                    />
+                            </setting>
+                    </block>
+                    <h2 invisible="not is_school">Additional Features</h2>
+                    <block class="row col-12" title="Additional Features" name="add_features_setting_container" invisible="not is_school">
+                        <setting help="Calendar" class="col-6">
+                            
+                        </setting>
+                        <setting class="col-6">
+                           
+                        </setting>
+                    </block>
+                    <h2 invisible="not is_school">Advanced Features</h2>
+                    <block class="row col-12" title="Advanced Features" name="addvanced_features_setting_container" invisible="not is_school">
+                        <setting help="Calendar" class="col-6">
+                            
+                        </setting>
+                        <setting class="col-6">
+                           
+                        </setting>
+                    </block>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_company_search_form" model="ir.ui.view">
+            <field name="name">company.search.form</field>
+            <field name="model">res.company</field>
+            <field name="arch" type="xml">
+                <search string="Timetable">
+                    <field name="name" string="Company"/>
+                    <filter string="Institutes" name="institutes" domain="[('is_school', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_school_setup" model="ir.actions.act_window">
+            <field name="name">Institute Setup</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.company</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="view_company_search_form"/>
+            <field name="context">{'search_default_institutes': 1, 'default_is_school':1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new institute
+              </p><p>
+                Create and manage the institutes/colleges/schools.
+              </p>
+            </field>
+        </record>
+        
+        <menuitem name="Institute Setup" id="menu_school_config_school_setup"
+                    parent="menu_school_config" action="action_school_setup"
+                    groups="group_school_manager" sequence="2"/>
+        
+        
+	</data>
+</odoo>

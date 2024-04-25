@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">        
+        <record id="group_enrol_user" model="res.groups">
+            <field name="name">Enrollment Officer</field>
+            <field name="category_id" ref="de_school.module_category_openrol_school"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user')),(4, ref('base.group_erp_manager'))]"/>
+        </record>
+        
+        <record id="group_enrol_manager" model="res.groups">
+            <field name="name">Enrollment Manager</field>
+            <field name="category_id" ref="de_school.module_category_openrol_school"/>
+            <field name="implied_ids" eval="[(4, ref('group_enrol_user'))]"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+        </record>
+        
+        <record id="group_enrol_template" model="res.groups">
+            <field name="name">Enrolment Templates</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+            <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+            <field name="implied_ids" eval="[(4, ref('sale_management.group_sale_order_template'))]"/>
+        </record>
+        
+    </data>
+    
+
+    <data noupdate="1">
+        
+    </data>
+    
+</odoo>

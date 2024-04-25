@@ -1,0 +1,96 @@
+<odoo>
+    <data>
+        <template id="exam_result_template_report_view">
+            <t t-call="web.external_layout">
+                <t t-foreach="o.exam_line.exam_result_line.mapped('student_id')" t-as="student">
+                    <div class="page">
+                        <br/>
+                        <div class="oe_structure"/>
+                        <div class="mt-4 text-center">
+                            <h2 class="text-center">Result Card</h2>
+                            <h3 class="text-center"><span t-field="o.name"/></h3>
+                        </div>
+
+                        <div id="student_info" class="row mt-4 mb32">
+                            <div t-if="student" class="col-3 bm-2">
+                                <strong>Student</strong>
+                                <p t-field="student.name" class="m-0"/>
+                            </div>
+                            <div t-if="student.roll_no" class="col-3 bm-2">
+                                <strong>Roll No</strong>
+                                <p t-field="student.roll_no" class="m-0"/>
+                            </div>
+                            <div t-if="student.admission_no" class="col-3 bm-2">
+                                <strong>Admission No</strong>
+                                <p t-field="student.admission_no" class="m-0"/>
+                            </div>
+                        </div>
+                        
+                        <div id="course_info" class="row mt-4 mb32">
+                            <div t-if="o.course_id" class="col-3 bm-2">
+                                <strong>Course</strong>
+                                <p t-field="o.course_id" class="m-0"/>
+                            </div>
+                            <div t-if="o.batch_id" class="col-3 bm-2">
+                                <strong>Batch</strong>
+                                <p t-field="o.batch_id" class="m-0"/>
+                            </div>
+                            <div t-if="o.section_id" class="col-3 bm-2">
+                                <strong>Section</strong>
+                                <p t-field="o.section_id" class="m-0"/>
+                            </div>
+                            <div  class="col-3 bm-2">
+                                <strong>Status</strong>
+                                <p t-field="o.state" class="m-0"/>
+                            </div>
+                        </div>                        
+                        <table class="table table-sm o_main_table mt-4">
+                            <thead style="display: table-row-group">
+                                <tr>
+                                    <th class="text-center">Subject</th>
+                                    <th class="text-center">Attendance</th>
+                                    <th class="text-center">Total Marks</th>
+                                    <th class="text-center">Obtain Marks</th>
+                                    <th class="text-center">Grade</th>
+                                </tr>
+                            </thead>
+                            <tbody class="consumed_tbody">
+                                <t t-foreach="o.exam_line" t-as="line">
+                                    <t t-foreach="line.exam_result_line.filtered(lambda r: r.student_id.id == student.id)" t-as="result">
+
+                                        <tr>
+                                            <td class=""><span t-field="line.subject_id"/></td>
+                                            <td class="text-center"><span t-field="result.attendance_status" /></td>
+                                            <td class="text-center"><span t-field="line.marks_max" /></td>
+                                            <td class="text-center"><span t-field="result.marks" /></td>
+                                            <td class="text-center"><span t-field="result.exam_grade_line_id" /></td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div style="page-break-after: always;"/>
+                </t>
+            </t>
+        </template>
+        <template id="exam_result_report_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="de_school_exam.exam_result_template_report_view" />
+                </t>
+            </t>
+        </template>
+        <!--  Exam Result Report  -->
+        <record id="exam_result_report" model="ir.actions.report">
+            <field name="name">Print Result Card</field>
+            <field name="model">oe.exam.session</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">de_school_exam.exam_result_report_template</field>
+            <field name="report_file">de_school_exam.exam_result_report_template</field>
+            <field name="print_report_name">'Exam Details'</field>
+            <field name="binding_model_id" ref="de_school_exam.model_oe_exam_session"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

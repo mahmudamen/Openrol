@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem name="Students" id="menu_school_admission_admission_student" 
+        sequence="90" 
+        parent="menu_admission_main" 
+        action="de_school.action_res_partner_student" 
+        />
+</odoo>

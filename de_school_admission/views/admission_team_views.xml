@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem
+            id="admission_menu_config_admission_teams"
+            name="Admission Teams"
+            parent="menu_admission_config_main"
+            action="de_school_team.action_school_team_config"
+            sequence="2"/>
+
+        <!-- Admission kanban view -->
+        <record id="admission_team_kanban_view" model="ir.ui.view">
+            <field name="name">admission.kanban.view</field>
+            <field name="model">oe.admission.team</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_crm_team_kanban" create="0" sample="1">
+                    <field name="name"/>
+                    <field name="user_id"/>
+                    <field name="member_ids"/>
+                    <field name="color"/>
+                    <field name="is_application_revenue" invisible="1" />
+                    <templates>
+                        <t t-name="kanban-menu">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-4 o_kanban_card_manage_section o_kanban_manage_view">
+                                            <div role="menuitem" class="o_kanban_card_manage_title">
+                                                <strong>View</strong>
+                                            </div>
+                                            <div role="menuitem">
+                                                <a name="action_open_team_admissions_all" type="object"  context="{'team_id': active_id}">Applications</a>
+                                            </div>
+                                           
+                                        </div>
+                                        <div class="col-4 o_kanban_card_manage_section o_kanban_manage_new">
+                                            <div role="menuitem" class="o_kanban_card_manage_title">
+                                                <strong>New</strong>
+                                            </div>
+                                            <div role="menuitem">
+                                                <a name="action_open_new_admissions" type="object"  context="{'team_id': active_id}">Application</a>
+                                            </div>
+                                        </div>
+                                        <div class="col-4 o_kanban_card_manage_section o_kanban_manage_reports">
+                                            <div role="menuitem" class="o_kanban_card_manage_title">
+                                                <strong>Reporting</strong>
+                                            </div>
+                                            <div role="menuitem">
+                                                <a name="action_report_admission_analysis" type="object"  context="{'team_id': active_id}">Applications</a>
+                                            </div>
+                                            <div role="menuitem">
+                                                <a name="admission_activity_report_action_team" type="object"  context="{'team_id': active_id}">Activities</a>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div t-if="widget.editable" class="o_kanban_card_manage_settings row">
+                                    <div role="menuitem" aria-haspopup="true" class="col-8">
+                                        <ul class="oe_kanban_colorpicker" data-field="color" role="menu"/>
+                                    </div>
+                                    <div role="menuitem" class="col-4">
+                                        <a class="dropdown-item" role="menuitem" type="edit">Settings</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                        <!-- Kanbon box -->
+                        <t t-name="kanban-box">
+                            <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''}">
+                                <div t-attf-class="o_kanban_card_header">
+                                    <div class="o_kanban_card_header_title">
+                                        <div class="o_primary o_text_overflow"><field name="name"/></div>
+                                    </div>
+                                </div>
+                                <!-- Content -->
+                                <div class="container o_kanban_card_content">
+                                    <div class="row o_kanban_card_upper_content">
+                                        <div class="col-4 o_kanban_primary_left" name="to_replace_in_sale_crm">
+                                            <button type="object" class="btn btn-primary" name="action_open_team_admissions_all" context="{'team_id': active_id}" >APPLICATIONS</button>
+                                        </div>
+                                        <div class="row col-8" >
+                                            <div class="col-8 o_kanban_primary_right" style="padding-bottom:0;">
+                                                <a name="action_open_applications" type="object" context="{'search_default_open_opportunities': True, 'team_id': active_id}">
+                                                    <field name="opportunities_count" class="me-1"/>
+                                                    <t t-if="record.opportunities_count.raw_value == 1">Open Application</t>
+                                                    <t t-else="">Open Applications</t>
+                                                </a>
+                                            </div>
+                                            <div class="col-4 text-end text-truncate" 
+                                                invisible="is_application_revenue == False">
+                                                <field name="opportunities_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                            </div>
+                                            <div class="col-8 o_kanban_primary_right" style="padding-bottom:0;">
+                                                <a name="action_open_overdue_applications" type="object" context="{'search_default_open_opportunities': True,'team_id': active_id}"> <!-- context="{'search_default_probability': NOT or < 100}" -->
+                                                    <field name="opportunities_count" class="me-1"/>
+                                                    <t t-if="record.opportunities_count.raw_value == 1">Overdue Application</t>
+                                                    <t t-else="">Overdue Applications</t>
+                                                </a>
+                                            </div>
+                                            <div class="col-4 text-end text-truncate" 
+                                                invisible="is_application_revenue == False">
+                                                <field name="opportunities_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                            </div>
+                                            <t name="first_options"/>
+                                            <t name="second_options"/>
+                                            <t name="third_options"/>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="row" 
+                                        invisible="is_application_revenue == False">
+                                        <div class="col-12 o_kanban_primary_bottom">
+                                            <t t-call="AdmissionTeamDashboardGraph"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </t>
+                        <!-- start call -->
+                        <t t-name="AdmissionTeamDashboardGraph">
+                            <div t-if="record.dashboard_graph_data.raw_value" class="o_sales_team_kanban_graph_section">
+                                <field name="dashboard_graph_data" widget="dashboard_graph" t-att-graph_type="'bar'"/>
+                            </div>
+                        </t>
+                        <!-- End Call -->
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+        
+      <record id="action_my_admission_team" model="ir.actions.act_window">
+            <field name="name">Admission</field>
+            <field name="res_model">oe.admission.team</field>
+            <field name="view_mode">kanban</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'kanban', 'view_id': ref('admission_team_kanban_view')}),
+            ]"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Define a new admission team!
+                </p>
+                <p>
+                    Use Admissions Teams to organize your admission departments. Each team will work with a separate pipeline.
+                </p>
+            </field>
+        </record>
+      <menuitem
+        id="menu_admission_main_teams"
+        name="Teams"
+        parent="menu_admission_main"
+        action="action_my_admission_team"
+        sequence="30"/>
+        
+    </data>
+</odoo>

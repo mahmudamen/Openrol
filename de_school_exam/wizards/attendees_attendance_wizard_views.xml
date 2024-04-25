@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="exam_attendees_attend_form_view" model="ir.ui.view">
+        <field name="name">exam.attendees.attend.form</field>
+        <field name="model">oe.exam.attendees.attend</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <group>
+                        <field name="exam_attendee_ids" invisible="1"/>
+                        <field name="status" required="1" />
+                    </group>
+                </group>
+                <footer>
+                    <button name="action_apply_attendance" string="Apply" type="object" class="btn-primary"/>
+                    <button special="cancel" string="Cancel" class="btn-secondary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>

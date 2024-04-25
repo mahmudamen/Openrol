@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_fees_template,sale.order.fees.template,model_sale_order_fees_template,group_enrollment_user,1,0,0,0
+access_sale_order_template_fees_manager,sale.order.fees.template,model_sale_order_fees_template,group_enrollment_manager,1,1,1,1
+access_sale_order_fees_template_system,sale.order.fees.template,model_sale_order_fees_template,base.group_system,1,0,0,0
+access_sale_order_fees_template_line,sale.order.fees.template.line,model_sale_order_fees_template_line,group_enrollment_user,1,0,0,0
+access_sale_order_fees_template_line_manager,sale.order.fees.template.line,model_sale_order_fees_template_line,group_enrollment_manager,1,1,1,1

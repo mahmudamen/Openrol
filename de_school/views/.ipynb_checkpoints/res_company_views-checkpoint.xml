@@ -1,0 +1,50 @@
+<odoo>
+	<data>
+		<!-- Institute Setup -->
+		
+        <record id="view_company_form_inherit" model="ir.ui.view">
+            <field name="name">view.company.form.inherit</field>
+            <field name="model">res.company</field>
+            <field name="inherit_id" ref="base.view_company_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]/group[2]" position="inside">
+                    <field name="is_school" />
+                    <field name="resource_calendar_id" string="Calendar" attrs="{'required':[('is_school','=',True)]}"/>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_company_search_form" model="ir.ui.view">
+            <field name="name">company.search.form</field>
+            <field name="model">res.company</field>
+            <field name="arch" type="xml">
+                <search string="Timetable">
+                    <field name="name" string="Company"/>
+                    <filter string="Institutes" name="institutes" domain="[('is_school', '=', True)]"/>
+                </search>
+            </field>
+        </record>
+        
+        <record id="action_school_setup" model="ir.actions.act_window">
+            <field name="name">Institute Setup</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.company</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="view_company_search_form"/>
+            <field name="context">{'search_default_institutes': 1, 'default_is_school':1}</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new institute
+              </p><p>
+                Create and manage the institutes/colleges/schools.
+              </p>
+            </field>
+        </record>
+        
+        <menuitem name="Institute Setup" id="menu_school_config_school_setup"
+                    parent="menu_school_config" action="action_school_setup"
+                    groups="group_school_manager" sequence="2"/>
+        
+        
+	</data>
+</odoo>

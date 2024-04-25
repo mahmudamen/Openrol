@@ -1,0 +1,77 @@
+<odoo>
+	<data>
+		<!-- Academic Year -->
+		<record id="school_academic_year_tree_view" model="ir.ui.view">
+			<field name="name">school.academic.year.tree.view</field>
+			<field name="model">oe.school.year</field>
+			<field name="arch" type="xml">
+				<tree string="Academic Year" editable="bottom" edit="1">
+                    <field name="name"/>
+					<field name="date_start"/>
+					<field name="date_end"/>
+                    <field name="active" invisible="1"/>
+				</tree>
+			</field>
+		</record>
+        
+		<record id="school_academic_year_form_view" model="ir.ui.view">
+			<field name="name">school.academic.year.form.view</field>
+			<field name="model">oe.school.year</field>
+			<field name="arch" type="xml">
+				<form string="Academic Year">
+					<sheet>
+                        <field name="active" invisible="1"/>
+                        <div class="oe_title">
+                            <div class="oe_edit_only">
+								<label for="name" />
+							</div>
+							<h1>
+								<field name="name" />
+							</h1>
+						</div>
+                        <group>
+                            <group>
+                                <field name="date_start"/>
+                            </group>
+                                 
+                            <group>
+                                <field name="date_end"/>
+                            </group>
+                        </group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+        
+         <record id="view_academic_year_filter" model="ir.ui.view">
+            <field name="name">school.year.search</field>
+            <field name="model">oe.school.year</field>
+            <field name="arch" type="xml">
+                <search string="Batches">
+                    <field name="name" string="Year"/>
+                    <filter string="Active" name="year_active" domain="[('active', '=', True)]"/>
+                    <separator/>
+                </search>
+             </field>
+        </record>
+        
+        <record id="action_school_academic_year" model="ir.actions.act_window">
+            <field name="name">Academic year</field>
+            <field name="res_model">oe.school.year</field>
+            <field name="search_view_id" ref="view_academic_year_filter"/>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new academic year
+                </p>
+            </field>
+        </record>
+        
+        
+        <menuitem name="Academic Year" id="menu_school_config_academic_year"
+                    parent="menu_school_config" action="action_school_academic_year"
+                    groups="group_school_manager" sequence="3"/>
+        
+        
+	</data>
+</odoo>

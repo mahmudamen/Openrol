@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+        <record id="admission_form_view_inherit_enrol" model="ir.ui.view">
+            <field name="name">admission.form.view.inherit.enrol</field>
+            <field name="model">oe.admission</field>
+            <field name="inherit_id" ref="de_school_admission.admission_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <field name="sale_order_count" />
+                </xpath>
+                <xpath expr="//button[@name='action_accept_application']" position="before">
+                    <button string="New Enrollment Order" name="action_new_enrol_order" type="object" class="oe_highlight" data-hotkey="q"
+                        title="Create new enrollment order"
+                        invisible="type == 'lead' or (probability == 0 and active == False)"
+                    />
+                </xpath>
+                
+                <button name="action_schedule_meeting" position="after">
+                    <button class="oe_stat_button" type="object" 
+                        invisible="sale_order_count == 0 or type == 'lead'"
+                        name="action_view_enrol_order" icon="fa-usd">
+                        <div class="o_field_widget o_stat_info">
+                            <span class="o_stat_value"><field name="sale_amount_total" widget="monetary" options="{'currency_field': 'company_currency'}"/></span>
+                            <span class="o_stat_text"> Orders</span>
+                            <field name="sale_order_count" invisible="1"/>
+                        </div>
+                    </button>
+                    
+                </button>
+            </field>
+        </record>
+</odoo>

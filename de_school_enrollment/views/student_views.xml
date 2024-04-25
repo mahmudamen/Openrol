@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+        <menuitem id="menu_enrollment_main_students" name="Students" parent="menu_school_enrollment_main" sequence="40" action="de_school.action_res_partner_student"/>
+</odoo>

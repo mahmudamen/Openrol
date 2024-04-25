@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+        <!-- Timetable -->
+        <record id="planning_timetable_view_form" model="ir.ui.view">
+            <field name="name">planning.timetable.form</field>
+            <field name="model">oe.school.timetable</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        
+
+                    </header>
+                    <sheet string="Timetable">
+                        <div class="oe_button_box" name="button_box">
+                            <!-- Used by other modules-->
+                        </div>
+                        <group name="timetable_periods" class="oe_edit_only">
+                            <label for="timetable_period_id"/>
+                            <field name="timetable_period_id" nolabel="1" class="text-break flex-wrap"
+                                widget="selection_badge" options="{'horizontal': true}"
+                            />
+                        </group>
+                        <group>
+                            <group>
+                                <field name="course_id"/>
+                                <field name="batch_id" />
+                                <field name="subject_id"/>
+                                <field name="teacher_id"/>
+                                <field name="user_id" invisible="1"/>
+                            </group>
+                            <group>
+                                <field name="start_datetime"/>
+                                <field name="end_datetime"/>
+                                <field name="classroom_id" options="{'no_create':True}"/>
+                                <field name="company_id" groups="base.group_multi_company"/>
+                                <field name="calendar_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <group col="4">
+                            <label for="repeat" groups="de_school.group_school_manager"/>
+                            <div class="o_row">
+                                <field name="repeat" groups="de_school.group_school_manager"/>
+                                <label for="repeat_interval" string="Every" attrs="{'invisible': [('repeat', '=', False)]}"/>
+                                <div class="o_row" attrs="{'invisible': [('repeat', '=', False)]}">
+                                    <field name="repeat_interval" class="oe_inline col-lg-1" nolabel="1"/>
+                                    <span>Weeks</span>
+                                    <field name="repeat_type" class="oe_inline col-lg-2" nolabel="1" attrs="{'required': [('repeat', '=', True)]}"/>
+                                    <span class="col-lg-2">
+                                        <field name="repeat_until" class="oe_inline" attrs="{'invisible': [('repeat_type', '!=', 'until')], 'required': [('repeat_type', '=', 'until')]}" nolabel="1"/>
+                                    </span>
+                                </div>
+                            </div>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="school_timetable_pivot_view" model="ir.ui.view">
+            <field name="name">school.timetable.pivot.view</field>
+            <field name="model">oe.school.timetable</field>
+            <field name="arch" type="xml">
+                <pivot string="Timetable" disable_linking="False" sample="1">
+                    <field name="course_id" type="row"/>
+                    <field name="subject_id" type="row"/>
+                    <field name="timetable_period_id" type="col"/>
+                    <field name="start_datetime" type="measure"/>
+                    <field name="end_datetime" type="measure"/>
+                 </pivot>
+            </field>
+        </record>
+        
+        <record id="view_timetable_search_form" model="ir.ui.view">
+            <field name="name">school.timetable.search.form</field>
+            <field name="model">oe.school.timetable</field>
+            <field name="arch" type="xml">
+                <search string="Timetable">
+                    <field name="name" string="Timetable"/>
+                    <field name="course_id" />
+                    <field name="batch_id" />
+                    <field name="subject_id" />
+                    <field name="teacher_id" />
+                    <filter string="My Timetable" name="my_timetable" domain="[('user_id', '=', uid)]"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Course" name="course" context="{'group_by': 'course_id'}"/>
+                        <filter string="Batch" name="batch" context="{'group_by': 'batch_id'}"/>
+                        <filter string="Subject" name="subject" context="{'group_by': 'subject_id'}"/>
+                        <filter string="Teacher" name="teacher" context="{'group_by': 'teacher_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+                   
+        <record id="timetable_view_form_inherit" model="ir.ui.view">
+            <field name="name">oe.school.timetable.form.inherit</field>
+            <field name="model">oe.school.timetable</field>
+            <field name="inherit_id" ref="planning_timetable_view_form"/>
+            <field name="mode">primary</field>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="view_timetable_calendar" model="ir.ui.view">
+            <field name="name">school.calendar</field>
+            <field name="model">oe.school.timetable</field>
+            <field name="arch" type="xml">
+                <calendar string="Planning" date_start="start_datetime" date_stop="end_datetime" color="color" form_view_id="%(timetable_view_form_inherit)d" event_open_popup="True" quick_add="False" mode="month" >
+                    <field name="course_id" filters="1" color="color" />
+                    <field name="is_hatched" invisible="1" />
+                    <field name="subject_id" filters="2" color="color"/>
+                    <field name="start_datetime"/>
+                    <field name="allocated_hours" invisible="1"/>
+                    <field name="allocated_percentage" invisible="1"/>
+                    <field name="state" groups="de_school.group_school_manager"/>
+                </calendar>
+            </field>
+        </record>
+        
+        <!-- Adding teacher gantt view to Timetable -->
+        <record id="school_timetable_view_gantt" model="ir.ui.view">
+            <field name="name">school.timetable.view.gantt</field>
+            <field name="model">oe.school.timetable</field>
+            <field name="priority">10</field>
+            <field name="arch" type="xml">
+                <gantt date_start="start_datetime"
+                    date_stop="end_datetime"
+                    default_scale="week"
+                    scales="day,week,month,year"
+                    color="color"
+                    string="Planning"
+                    thumbnails="{'user_id': 'image_128'}"
+                    js_class="timetable_gantt"
+                    display_unavailability="1"
+                    sample="1"
+                    precision="{'day': 'hour:quarter', 'week': 'day:half', 'month': 'day:full'}">
+                    <templates>
+                        <div t-name="gantt-popover" class="container-fluid">
+                            <div class="row no-gutters">
+                                <div class="col">
+                                    <ul class="pl-1 mb-0">
+                                        <li t-if="teacher_id"><strong>Teacher: </strong> <t t-esc="teacher_id[1]"/></li>
+                                        <li><strong>Start Date: </strong> <t t-esc="userTimezoneStartDate.format('L LTS')"/></li>
+                                        <li><strong>End Date: </strong> <t t-esc="userTimezoneStopDate.format('L LTS')"/></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </templates>
+                    <field name="teacher_id"/>
+                    <field name="color" />
+                </gantt>
+            </field>
+        </record>
+        
+        <record id="action_timetable_calendar_event" model="ir.actions.act_window">
+            <field name="name">Timetable Planning</field>
+            <field name="res_model">oe.school.timetable</field>
+            <field name="view_mode">gantt,calendar,tree,form</field>
+            <field name="view_ids" eval="[(5, 0, 0),
+                (0, 0, {'view_mode': 'gantt', 'view_id': ref('school_timetable_view_gantt')}),
+                (0, 0, {'view_mode': 'calendar', 'view_id': ref('view_timetable_calendar')}),
+                (0, 0, {'view_mode': 'tree'}),
+                (0, 0, {'view_mode': 'form'})]"/>
+            <field name="search_view_id" ref="view_timetable_search_form"/>
+            <field name="context">{'search_default_course': 1,'search_default_subject': 1}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No timetable found. Let's create one!
+                </p><p>
+                    Timetable are periods allocated to your teachers for a specific course.
+                </p>
+            </field>
+        </record>
+        
+        <menuitem name="Timetable" id="menu_school_timetable_calendar_event"
+                    parent="menu_school_timetable_main" action="action_timetable_calendar_event"
+                    groups="de_school.group_school_user" sequence="1"/>
+        
+    </data>
+</odoo>
