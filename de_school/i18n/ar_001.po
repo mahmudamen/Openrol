@@ -1,0 +1,1532 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* de_school
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 17.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-25 18:44+0000\n"
+"PO-Revision-Date: 2024-04-25 18:44+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_batch_form_view
+msgid ""
+"<i class=\"fa fa-long-arrow-right mx-2 oe_edit_only\" aria-label=\"Arrow "
+"icon\" title=\"Arrow\"/>"
+msgstr ""
+
+#. module: de_school
+#: model:ir.model.fields,help:de_school.field_res_partner__guardian_id
+#: model:ir.model.fields,help:de_school.field_res_partner__guardian_name
+#: model:ir.model.fields,help:de_school.field_res_users__guardian_id
+#: model:ir.model.fields,help:de_school.field_res_users__guardian_name
+msgid "A guardian is a person responsible for the student."
+msgstr "الوصي هو الشخص المسؤول عن الطالب."
+
+#. module: de_school
+#: model:ir.ui.menu,name:de_school.menu_school_config_academic_year
+#: model_terms:ir.ui.view,arch_db:de_school.school_academic_year_form_view
+#: model_terms:ir.ui.view,arch_db:de_school.school_academic_year_tree_view
+msgid "Academic Year"
+msgstr "العام الدراسي"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_school_academic_year
+msgid "Academic year"
+msgstr "العام الدراسي"
+
+#. module: de_school
+#: model:oe.school.subject,name:de_school.subject_acc
+msgid "Accounting & Fianance"
+msgstr "المحاسبة والتمويل"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "Activate School Mode"
+msgstr "تنشيط وضع المدرسة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__active
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building__active
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__active
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__active
+#: model:ir.model.fields,field_description:de_school.field_oe_school_year__active
+#: model_terms:ir.ui.view,arch_db:de_school.view_academic_year_filter
+msgid "Active"
+msgstr "تنشيط"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "مميزات اضافية"
+msgstr ""
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Additional Info"
+msgstr "معلومات اضافية"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__contact_type__address
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Address"
+msgstr "العنوان"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.enrollment_history_form_view
+msgid "Address/Contact Details"
+msgstr "العنوان / تفاصيل الاتصال"
+
+#. module: de_school
+#: model:res.groups,name:de_school.group_school_manager
+msgid "Administrator"
+msgstr "مدير"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__admission_no
+#: model:ir.model.fields,field_description:de_school.field_res_users__admission_no
+msgid "Admission No"
+msgstr "رقم القبول"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "Advanced Features"
+msgstr "مميزات متقدمة"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_form_view
+#: model_terms:ir.ui.view,arch_db:de_school.school_subject_form_view
+#: model_terms:ir.ui.view,arch_db:de_school.view_course_filter
+#: model_terms:ir.ui.view,arch_db:de_school.view_subject_filter
+msgid "Archived"
+msgstr "مؤارشف"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_company__school_type__art
+msgid "Art School"
+msgstr "مدرسه الفنون"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__relation__aunt
+msgid "Aunt"
+msgstr "عَمَّة"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "Basic Features"
+msgstr "الميزات الأساسية"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_course_batch
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__name
+#: model:ir.model.fields,field_description:de_school.field_res_partner__batch_id
+#: model:ir.model.fields,field_description:de_school.field_res_users__batch_id
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_batch_form_view
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_form_view
+msgid "Batch"
+msgstr "الدفعه"
+
+#. module: de_school
+#: model:oe.school.course.batch,name:de_school.course_bba_batch1
+#: model:oe.school.course.batch,name:de_school.course_mba_batch1
+#: model:oe.school.course.batch,name:de_school.course_mca_batch1
+msgid "Batch 01"
+msgstr "الدفعه 01"
+
+#. module: de_school
+#: model:oe.school.course.batch,name:de_school.course_mba_batch2
+msgid "Batch 02"
+msgstr "الدفعه 02"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "Batch Management"
+msgstr "إدارة الدفعات"
+
+#. module: de_school
+#: model:res.groups,name:de_school.group_school_batch_setting
+msgid "Batch Settings"
+msgstr "خصائص الدفعة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__batch_ids
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__batch_count
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__batch_ids
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__section_count
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__batch_ids
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_batch_tree_view
+#: model_terms:ir.ui.view,arch_db:de_school.view_academic_year_filter
+#: model_terms:ir.ui.view,arch_db:de_school.view_course_batch_filter
+msgid "Batches"
+msgstr "الدفعات"
+
+#. module: de_school
+#: model:oe.school.course,name:de_school.course_bba
+msgid "Bechelor of Business Administration"
+msgstr "بكالوريوس إدارة الأعمال"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__oe_student_sibling__relation__brother
+msgid "Brother"
+msgstr "الاخ"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_school_building
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building__name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building_room__building_id
+#: model:ir.ui.menu,name:de_school.menu_school_config_classroom_building
+#: model_terms:ir.ui.view,arch_db:de_school.school_classroom_building_form_view
+msgid "Building"
+msgstr "المبني"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building__address_id
+msgid "Building Address"
+msgstr "عنوان المبني"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.school_classroom_building_room_form_view
+msgid "Building Room"
+msgstr "حجرة المبني "
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_school_building_room
+#: model_terms:ir.ui.view,arch_db:de_school.school_classroom_building_room_tree_view
+msgid "Building Rooms"
+msgstr "حجرات المبني"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.school_classroom_building_tree_view
+msgid "Buildings"
+msgstr "المباني"
+
+#. module: de_school
+#: model:oe.school.course.grading.type,name:de_school.school_course_grading_type_cce
+msgid "CCE"
+msgstr "CCE"
+
+#. module: de_school
+#: model:oe.school.course.grading.type,name:de_school.school_course_grading_type_cwa
+msgid "CWA"
+msgstr "CWA"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "Calendar"
+msgstr "تقويم"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building_room__capacity
+msgid "Capacity"
+msgstr "سعة"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_medical_category
+#: model_terms:ir.ui.view,arch_db:de_school.medical_category_tree_view
+#: model_terms:ir.ui.view,arch_db:de_school.medical_type_tree_view
+msgid "Categories"
+msgstr ""
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_type__med_cat_id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_medical__med_cat_id
+#: model:ir.ui.menu,name:de_school.menu_school_config_medical_category
+msgid "Category"
+msgstr "فئات"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+msgid "Class Management"
+msgstr "ادارة الفصل الدراسي"
+
+#. module: de_school
+#: model:ir.ui.menu,name:de_school.menu_school_config_classroom
+msgid "Classroom"
+msgstr "الفصل الدراسي"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_building_room
+msgid "Classrooms"
+msgstr "الفصول الدراسية"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__code
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__code
+msgid "Code"
+msgstr "كود"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_company__school_type__col
+msgid "College"
+msgstr "كلية"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__color
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__color
+msgid "Color"
+msgstr "لون"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_res_company
+msgid "Companies"
+msgstr "المدارس"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building__company_id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__company_id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__company_id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__company_id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__company_id
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_search_form
+msgid "Company"
+msgstr "مدرسة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_config_settings__resource_calendar_id
+msgid "Company Working Hours"
+msgstr "ساعات العمل بالمدرسة "
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__complete_name
+msgid "Complete Name"
+msgstr "الاسم بالكامل"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__oe_school_student_enrollment__status__complete
+msgid "Completed"
+msgstr "مكتمل"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__student_complexion
+#: model:ir.model.fields,field_description:de_school.field_res_users__student_complexion
+msgid "Complexion"
+msgstr "بشره"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_medical__med_condition
+msgid "Condition"
+msgstr "شرط"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_res_config_settings
+msgid "Config Settings"
+msgstr "تهيئة الإعدادات "
+
+#. module: de_school
+#: model:ir.ui.menu,name:de_school.menu_school_config
+msgid "Configuration"
+msgstr "التهيئة"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_res_partner
+msgid "Contact"
+msgstr "جهة الاتصال"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Contact Info"
+msgstr "معلومات جهة الاتصال"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Contact Name"
+msgstr "اسم جهة الاتصال"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Contact No."
+msgstr "رقم جهة الاتصال"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__contact_type
+#: model:ir.model.fields,field_description:de_school.field_res_users__contact_type
+msgid "Contact Type"
+msgstr "نوع جهة الاتصال"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.enrollment_history_form_view
+msgid ""
+"Contact details of the previous institution (e.g., address, phone number, "
+"website)."
+msgstr ""
+"تفاصيل الاتصال بالمؤسسة السابقة (على سبيل المثال ، العنوان ، رقم الهاتف ،"
+"الموقع)."
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__country_birth
+#: model:ir.model.fields,field_description:de_school.field_res_users__country_birth
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Country of Birth"
+msgstr "محل الميلاد"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_course
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__course_id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_section__course_id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_section__name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__course_id
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__course_id
+#: model:ir.model.fields,field_description:de_school.field_res_partner__course_id
+#: model:ir.model.fields,field_description:de_school.field_res_users__course_id
+#: model:ir.ui.menu,name:de_school.menu_school_config_course
+#: model_terms:ir.ui.view,arch_db:de_school.view_course_filter
+msgid "Course"
+msgstr "الكورس"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_course_batch
+msgid "Course Batch"
+msgstr "دفعة الكورس"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_course_grading_type
+msgid "Course Grading Type"
+msgstr "نوع تقدير المقرر الدراسي"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_school_seciton
+#: model:ir.model,name:de_school.model_oe_school_course_section
+msgid "Course Section"
+msgstr "قسم المقرر"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_course_subject_line
+msgid "Course Subject Line"
+msgstr "سطر موضوع الدورة"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_oe_school_course
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__course_ids
+#: model:ir.ui.menu,name:de_school.menu_school_courses
+#: model:ir.ui.menu,name:de_school.menu_school_courses_courses
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_form_view
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_grading_type_tree_view
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_tree_view
+#: model_terms:ir.ui.view,arch_db:de_school.view_course_filter
+msgid "Courses"
+msgstr "الكورسات"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_oe_school_course
+msgid "Courses are used to enroll students."
+msgstr "تستخدم الدورات لتسجيل الطلاب."
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__domain_courses_for_subject
+#: model:ir.model.fields,field_description:de_school.field_res_partner_subjects_line__subject_ids
+msgid "Courses for Subject"
+msgstr "دورات للموضوع"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_school_academic_year
+msgid "Create a new academic year"
+msgstr "  انشاء عام دراسي جديد"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_course_batch
+msgid "Create a new batch"
+msgstr "انشاء دفعة جديدة"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_school_building_room
+msgid "Create a new building room"
+msgstr "انشاء غرفة جديدة"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_oe_school_course
+msgid "Create a new course"
+msgstr "انشاء كورس جديد"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_school_building
+#: model_terms:ir.actions.act_window,help:de_school.action_school_course_grading_type
+msgid "Create a new grading type"
+msgstr "إنشاء نوع تقدير جديد"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_school_setup
+msgid "Create a new institute"
+msgstr "إنشاء معهد جديد"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_school_seciton
+msgid "Create a new section"
+msgstr "إنشاء قسم جديد"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_school_subject_group
+msgid "Create a new subject group"
+msgstr "إنشاء مجموعة مواضيع جديدة"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_school_subject
+msgid "Create a new subjects"
+msgstr "إنشاء مواضيع جديدة"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_res_partner_parent
+msgid "Create a parent"
+msgstr "إنشاء أحد الوالدين"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_res_partner_student
+msgid "Create a student"
+msgstr "إنشاء طالب"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_school_setup
+msgid "Create and manage the institutes/colleges/schools."
+msgstr "إنشاء وإدارة المعاهد / الكليات / المدارس."
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building_room__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_grading_type__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_section__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_cat__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_type__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_medical__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject_group__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_year__create_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__create_uid
+#: model:ir.model.fields,field_description:de_school.field_res_partner_subjects_line__create_uid
+msgid "Created by"
+msgstr "انشاء بواسطة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building_room__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_grading_type__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_section__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_cat__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_type__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_medical__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject_group__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_year__create_date
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__create_date
+#: model:ir.model.fields,field_description:de_school.field_res_partner_subjects_line__create_date
+msgid "Created on"
+msgstr "انشاء في"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__credit_hours
+msgid "Credit Hours"
+msgstr "ساعة معتمدة"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "Customize Your School Type to Tailor Your Institution's Identity"
+msgstr "تخصيص نوع مدرستك لتخصيص هوية مؤسستك"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_year__date_start
+msgid "Date Start"
+msgstr "تاريخ البدء"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_year__date_end
+msgid "Date end"
+msgstr "تاريخ الانتهاء"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__date_birth
+#: model:ir.model.fields,field_description:de_school.field_res_partner__date_birth
+#: model:ir.model.fields,field_description:de_school.field_res_users__date_birth
+msgid "Date of Birth"
+msgstr "تاريخ الميلاد"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_batch_form_view
+msgid "Dates"
+msgstr "التواريخ"
+
+#. module: de_school
+#: model_terms:ir.actions.act_window,help:de_school.action_school_resource_calendar
+msgid ""
+"Define school timings, period and time table that could be scheduled student"
+" classes."
+msgstr ""
+"تحديد أوقات المدرسة والفترة والجدول الزمني الذي يمكن جدولته للطالب"
+"الطبقات".
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Demographics"
+msgstr "التركيبه السكانيه"
+
+#. module: de_school
+#: model:hr.department,name:de_school.dep_cs
+msgid "Department of Computer Science"
+msgstr "قسم علوم الحاسوب"
+
+#. module: de_school
+#: model:hr.department,name:de_school.dep_math
+msgid "Department of Mathematics"
+msgstr "قسم الرياضيات"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.enrollment_history_form_view
+msgid "Description for Transcript"
+msgstr "وصف النسخة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building_room__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_grading_type__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_section__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_cat__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_type__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_medical__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject_group__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_year__display_name
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__display_name
+#: model:ir.model.fields,field_description:de_school.field_res_partner_subjects_line__display_name
+msgid "Display Name"
+msgstr "الاسم"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__merital_status__divorced
+msgid "Divorced"
+msgstr "مطلق / مطلقة"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.enrollment_history_form_view
+msgid "Duration"
+msgstr "المدة"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Emergency Contact"
+msgstr "جهة الاتصال للطوارئ"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__student_emergency_contact
+#: model:ir.model.fields,field_description:de_school.field_res_users__student_emergency_contact
+msgid "Emergency Contact Name"
+msgstr "اسم جهة اتصال الطوارئ"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__student_emergency_phone
+#: model:ir.model.fields,field_description:de_school.field_res_users__student_emergency_phone
+msgid "Emergency Contact Number"
+msgstr "رقم جهة اتصال الطوارئ"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_hr_employee
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__employee_id
+msgid "Employee"
+msgstr "الموظف"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_company__use_batch
+#: model:ir.model.fields,field_description:de_school.field_res_config_settings__use_batch
+msgid "Enable Batch"
+msgstr "قبول دفعة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_company__use_credit_hours
+msgid "Enable Credit Hours"
+msgstr "قبول الساعات المعتمدة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__enable_elective
+msgid "Enable Elective Subjects Selection"
+msgstr "قبول اختيار المواد الاختيارية"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_company__use_section
+#: model:ir.model.fields,field_description:de_school.field_res_config_settings__use_section
+msgid "Enable Section"
+msgstr "قبول القطاعات"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__date_end
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__date_end
+msgid "End Date"
+msgstr "تاريخ النهاية"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__oe_school_student_enrollment__status__enroll
+msgid "Enrolled"
+msgstr "المسجلين"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_enrollment_history
+#: model_terms:ir.ui.view,arch_db:de_school.enrollment_history_tree_view
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Enrollment"
+msgstr "التسجيل"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__enrollment_count
+#: model:ir.model.fields,field_description:de_school.field_res_partner__med_info_count
+#: model:ir.model.fields,field_description:de_school.field_res_users__enrollment_count
+#: model:ir.model.fields,field_description:de_school.field_res_users__med_info_count
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Enrollments"
+msgstr "التسجيلات"
+
+#. module: de_school
+#: model:oe.school.subject,name:de_school.subject_ent
+msgid "Entrepreneurship"
+msgstr "تنظيم المشاريع"
+
+#. module: de_school
+#: model:hr.department,name:de_school.dep_foas
+msgid "Faculty of Arts & Sciences"
+msgstr "كلية الآداب والعلوم"
+
+#. module: de_school
+#: model:hr.department,name:de_school.dep_foe
+msgid "Faculty of Education"
+msgstr "كلية التربية"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__relation__father
+msgid "Father"
+msgstr "الاب"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__gender__female
+msgid "Female"
+msgstr "انثي"
+
+#. module: de_school
+#: model:oe.school.course.grading.type,name:de_school.school_course_grading_type_gpa
+msgid "GPA"
+msgstr "GPA"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__guardian_id
+#: model:ir.model.fields,field_description:de_school.field_res_users__guardian_id
+msgid "Gaurdian"
+msgstr ""
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__guardian_name
+#: model:ir.model.fields,field_description:de_school.field_res_users__guardian_name
+msgid "Gaurdian Name"
+msgstr ""
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__relation
+#: model:ir.model.fields,field_description:de_school.field_res_partner__gender
+msgid "Gender"
+msgstr "الجنس"
+
+#. module: de_school
+#: model:ir.actions.server,name:de_school.action_generate_student_roll_no
+msgid "Generate Roll No"
+msgstr "انشاء رقم للدورة"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_school_course_grading_type
+msgid "Grading Type"
+msgstr "نوع الدرجات"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__relation__grand-father
+msgid "Grand Father"
+msgstr "الجد"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__relation__grand-mother
+msgid "Grand Mother"
+msgstr "الجدة"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Guardian"
+msgstr ""
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__student_height
+#: model:ir.model.fields,field_description:de_school.field_res_users__student_height
+msgid "Height (in cm)"
+msgstr "الطول بالسنتيمتر"
+
+#. module: de_school
+#: model:ir.module.category,description:de_school.module_category_openrol_school
+msgid ""
+"Helps you handle your accounting needs, if you are not an accountant, we "
+"suggest you to install only the Invoicing."
+msgstr ""
+
+#. module: de_school
+#: model:oe.school.course.grading.type,name:de_school.school_course_grading_type_icse
+msgid "ICSE"
+msgstr ""
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building_room__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_grading_type__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_section__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_cat__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_type__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_medical__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject_group__id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_year__id
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__id
+#: model:ir.model.fields,field_description:de_school.field_res_partner_subjects_line__id
+msgid "ID"
+msgstr "كود"
+
+#. module: de_school
+#: model:oe.school.subject,name:de_school.subject_itm
+msgid "Information Technology Management"
+msgstr "إدارة تكنولوجيا المعلومات"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_school_setup
+#: model:ir.ui.menu,name:de_school.menu_school_config_school_setup
+msgid "Institute Setup"
+msgstr "إعداد المعهد"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_search_form
+msgid "Institutes"
+msgstr "المعاهد"
+
+#. module: de_school
+#: model:oe.school.subject,name:de_school.subject_ib
+msgid "International Business"
+msgstr "إدارة الأعمال الدولية"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__is_guardian
+#: model:ir.model.fields,field_description:de_school.field_res_users__is_guardian
+msgid "Is Guardian"
+msgstr "هل تخرج"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__is_parent_student
+#: model:ir.model.fields,field_description:de_school.field_res_users__is_parent_student
+msgid "Is Parent Student"
+msgstr "اب لطالب"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_resource_calendar__is_school_calendar
+msgid "Is School Calendar"
+msgstr "تقويم المدرسة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__is_student
+#: model:ir.model.fields,field_description:de_school.field_res_users__is_student
+msgid "Is Student"
+msgstr "طالب"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee__is_teacher
+msgid "Is a Teacher"
+msgstr "مدرس"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_company__school_type__k12
+msgid "K12 School"
+msgstr ""
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_company__school_type__ling
+msgid "Language Learning Center"
+msgstr "مركز تعليم اللغات"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building_room__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_grading_type__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_section__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_cat__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_type__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_medical__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject_group__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_school_year__write_uid
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__write_uid
+#: model:ir.model.fields,field_description:de_school.field_res_partner_subjects_line__write_uid
+msgid "Last Updated by"
+msgstr "اخر تعديل بواسطة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building_room__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_grading_type__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_section__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_cat__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_type__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_medical__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject_group__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_school_year__write_date
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__write_date
+#: model:ir.model.fields,field_description:de_school.field_res_partner_subjects_line__write_date
+msgid "Last Updated on"
+msgstr "اخر تعديل في"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__gender__male
+msgid "Male"
+msgstr "ذكر"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "Manage schedules efficiently for a smooth academic experience."
+msgstr "إدارة الجداول بكفاءة للحصول على تجربة أكاديمية سلسة."
+
+#. module: de_school
+#: model:oe.school.subject,name:de_school.subject_mgt
+msgid "Management"
+msgstr "الادارة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__student_mark_identify
+#: model:ir.model.fields,field_description:de_school.field_res_users__student_mark_identify
+msgid "Mark for Identity"
+msgstr "علامة للهوية"
+
+#. module: de_school
+#: model:oe.school.subject,name:de_school.subject_mkt
+msgid "Marketing"
+msgstr "التسويق"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__merital_status__married
+msgid "Married"
+msgstr "متزوج"
+
+#. module: de_school
+#: model:oe.school.course,name:de_school.course_mba
+msgid "Master of Business Administration"
+msgstr "ماجستير في إدارة الأعمال"
+
+#. module: de_school
+#: model:oe.school.course,name:de_school.course_mca
+msgid "Master of Compute Applications"
+msgstr "ماجستير في تطبيقات الحوسبة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__max_weekly_class
+msgid "Max Weekly Classes"
+msgstr "الحد الأقصى للفصول الأسبوعية"
+
+#. module: de_school
+#: model:ir.ui.menu,name:de_school.menu_school_config_medical
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Medical"
+msgstr "طبي"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_medical_cat
+msgid "Medical Category"
+msgstr "الفئة الطبية"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.medical_history_tree_view
+msgid "Medical History"
+msgstr "التاريخ الطبي"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_medical_history
+#: model:ir.model.fields,field_description:de_school.field_res_partner__med_info_ids
+#: model:ir.model.fields,field_description:de_school.field_res_users__med_info_ids
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Medical Info"
+msgstr "معلومات طبية"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_medical_type
+msgid "Medical Types"
+msgstr "الأنواع الطبية"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__merital_status
+#: model:ir.model.fields,field_description:de_school.field_res_users__merital_status
+msgid "Merital Status"
+msgstr "الحالة الاجتماعية"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__relation__mother
+msgid "Mother"
+msgstr "الام"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_cat__name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_medical_type__name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_year__name
+#: model_terms:ir.ui.view,arch_db:de_school.partner_parent_tree_view
+#: model_terms:ir.ui.view,arch_db:de_school.partner_student_tree_view
+msgid "Name"
+msgstr "الاسم"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__country_nationality
+#: model:ir.model.fields,field_description:de_school.field_res_users__country_nationality
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Nationality"
+msgstr "الجنسية"
+
+#. module: de_school
+#: model:oe.school.course.grading.type,name:de_school.school_course_grading_type_normal
+msgid "Normal"
+msgstr "عادي"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "Operating Hours"
+msgstr "ساعات العمل"
+
+#. module: de_school
+#: model:oe.school.subject,name:de_school.subject_os
+msgid "Operating Systems"
+msgstr "أنظمة التشغيل"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+msgid "Organize Large Classes into Sections for Efficient Administration"
+msgstr "تنظيم فصول كبيرة في أقسام للإدارة الفعالة"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "Organize classes and students effectively with batch management"
+msgstr "تنظيم الفصول الدراسية والطلاب بشكل فعال مع إدارة الدفعات"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__oe_school_student_enrollment__status__other
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__gender__other
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__merital_status__other
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__relation__other
+msgid "Other"
+msgstr "اخري"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__contact_type__parent
+msgid "Parent"
+msgstr "الوالد"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__parent_id
+msgid "Parent Course"
+msgstr "كورس الوالد"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_res_partner_parent
+#: model:ir.ui.menu,name:de_school.menu_school_students_parent
+msgid "Parents"
+msgstr "الوالدين"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.enrollment_history_form_view
+msgid "Please provide details about transcript, including GPA or marks."
+msgstr ""
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__course_name
+msgid "Program/Course"
+msgstr "برنامج / كورس"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__reason
+#: model_terms:ir.ui.view,arch_db:de_school.enrollment_history_form_view
+msgid "Reason for Leaving"
+msgstr "سبب المغادرة"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Reference"
+msgstr "المرجعية"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Registraion No"
+msgstr "رقم التسجيل"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__res_id
+msgid "Related Document ID"
+msgstr "مستندات زات صلة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__model
+msgid "Related Document Model"
+msgstr "نموذج المستند ذي الصلة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__relation
+#: model:ir.model.fields,field_description:de_school.field_res_users__relation
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Relation"
+msgstr "زي صلة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_medical__med_remarks
+msgid "Remarks"
+msgstr "ملاحظات"
+
+#. module: de_school
+#: model:ir.ui.menu,name:de_school.menu_school_reports
+msgid "Reports"
+msgstr "تقارير"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_resource_calendar
+msgid "Resource Working Time"
+msgstr "وقت عمل الموارد"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__roll_no
+#: model:ir.model.fields,field_description:de_school.field_res_users__roll_no
+msgid "Roll No"
+msgstr "كود الدورة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__roll_no
+msgid "Roll Number"
+msgstr "رقم الدورة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__sequence_id
+msgid "Roll Number Sequence"
+msgstr "تسلسل رقم الدورة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_building_room__name
+msgid "Room Name"
+msgstr "اسم الغرفة"
+
+#. module: de_school
+#: model:ir.ui.menu,name:de_school.menu_school_config_classroom_building_room
+msgid "Rooms"
+msgstr "الغرف"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_batch_form_view
+msgid "Sbujects"
+msgstr "المواضيع"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_form_view
+msgid "Sbujects Assignment"
+msgstr "تعيين المواد"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_company__is_school
+#: model:ir.model.fields,field_description:de_school.field_res_config_settings__is_school
+#: model:ir.module.category,name:de_school.module_category_openrol_school
+#: model:ir.ui.menu,name:de_school.menu_school
+#: model_terms:ir.ui.view,arch_db:de_school.partner_parent_tree_view
+#: model_terms:ir.ui.view,arch_db:de_school.partner_student_tree_view
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+msgid "School"
+msgstr "المدرسة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__address_school
+msgid "School Address"
+msgstr "عنوان المدرسة"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_building
+msgid "School Building"
+msgstr "مبني المدرسة"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+msgid "School Management"
+msgstr "ادارة المدرسة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__school_name
+msgid "School Name"
+msgstr "اسم المدرسة"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_school_resource_calendar
+#: model:ir.ui.menu,name:de_school.menu_school_config_resource_calendar
+msgid "School Times"
+msgstr "مواعيد المدرسة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_company__school_type
+#: model:ir.model.fields,field_description:de_school.field_res_config_settings__school_type
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "School Type"
+msgstr "نوع المدرسة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__section_id
+#: model:ir.model.fields,field_description:de_school.field_res_users__section_id
+#: model_terms:ir.ui.view,arch_db:de_school.course_section_tree_view
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_form_view
+#: model_terms:ir.ui.view,arch_db:de_school.section_search_view
+msgid "Section"
+msgstr "قطاع"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "Section Management"
+msgstr "ادارة القطاعات"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__section_ids
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__section_ids
+#: model_terms:ir.ui.view,arch_db:de_school.section_search_view
+msgid "Sections"
+msgstr "القطاعات"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__merital_status__separated
+msgid "Separated"
+msgstr "منفصل / منفصلة"
+
+#. module: de_school
+#. odoo-python
+#: code:addons/de_school/models/.ipynb_checkpoints/courses-checkpoint.py:0
+#: code:addons/de_school/models/.ipynb_checkpoints/courses-checkpoint.py:0
+#: code:addons/de_school/models/courses.py:0
+#: code:addons/de_school/models/courses.py:0
+#, python-format
+msgid "Sequence"
+msgstr "تسلسل"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_school_config_settings
+#: model:ir.ui.menu,name:de_school.menu_school_general_settings
+msgid "Settings"
+msgstr "اعدادات"
+
+#. module: de_school
+#: model:res.groups,comment:de_school.group_school_batch_setting
+msgid "Show batches"
+msgstr "عرض الدفعات"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__sibling_ids
+#: model:ir.model.fields,field_description:de_school.field_res_users__sibling_ids
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Siblings"
+msgstr "اقارب"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__merital_status__single
+msgid "Single"
+msgstr "اعزب / عزباء"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__oe_student_sibling__relation__sister
+msgid "Sister"
+msgstr "الاخت"
+
+#. module: de_school
+#: model:oe.school.subject,name:de_school.subject_se
+msgid "Software Engineering"
+msgstr "مهندس برمجيات"
+
+#. module: de_school
+#: model:oe.school.subject,name:de_school.subject_spm
+msgid "Software Project Management"
+msgstr "ادارة المشاريع البرمجية"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_company__school_type__special
+msgid "Special Needs School"
+msgstr "مدرسة ذوي الاحتياجات الخاصة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__date_start
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__date_start
+msgid "Start Date"
+msgstr "تاريخ البدء"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__status
+msgid "Status"
+msgstr "الحالة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_medical__student_id
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__partner_id
+#: model:ir.model.fields,field_description:de_school.field_res_partner_subjects_line__student_id
+#: model:res.groups,name:de_school.group_school_student
+#: model:res.partner.category,name:de_school.res_partner_category_student
+#: model_terms:ir.ui.view,arch_db:de_school.partner_parent_tree_view
+msgid "Student"
+msgstr "الطالب"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_student_enrollment
+msgid "Student Enrollment"
+msgstr "تسجيل الطلاب"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_student_medical
+msgid "Student Medical History"
+msgstr "تاريخ الطبي للطالب"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_student_sibling__name
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+msgid "Student Name"
+msgstr "اسم الطالب"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_hr_employee_subjects_line
+#: model:ir.model,name:de_school.model_oe_student_sibling
+#: model:ir.model,name:de_school.model_res_partner_subjects_line
+msgid "Student Sibling"
+msgstr "اقارب الطالب"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_res_partner_student
+#: model:ir.ui.menu,name:de_school.menu_school_students
+#: model:ir.ui.menu,name:de_school.menu_school_students_student
+#: model_terms:ir.ui.view,arch_db:de_school.partner_parent_tree_view
+#: model_terms:ir.ui.view,arch_db:de_school.partner_student_tree_view
+msgid "Students"
+msgstr "الطلاب"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_subject
+#: model:ir.model.fields,field_description:de_school.field_hr_employee_subjects_line__subject_id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__subject_ids
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_subject_line__subject_id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__name
+#: model:ir.model.fields,field_description:de_school.field_res_partner_subjects_line__subject_id
+#: model_terms:ir.ui.view,arch_db:de_school.view_subject_filter
+msgid "Subject"
+msgstr "الموضوع"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_school_subject_group
+#: model:ir.model,name:de_school.model_oe_school_subject_group
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject__subject_group_id
+#: model:ir.model.fields,field_description:de_school.field_oe_school_subject_group__name
+#: model:ir.ui.menu,name:de_school.menu_school_config_subject_group
+#: model_terms:ir.ui.view,arch_db:de_school.school_subject_group_tree_view
+msgid "Subject Group"
+msgstr "مجموعة الموضوع"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__course_subject_line
+msgid "Subject Line"
+msgstr "سطر الموضوع"
+
+#. module: de_school
+#: model:ir.model.constraint,message:de_school.constraint_hr_employee_subjects_line_unique_employee_subject_active
+msgid ""
+"Subject already exists. Please ensure that the subject is not archived and "
+"activate it.!"
+msgstr ""
+
+#. module: de_school
+#: model:ir.model.constraint,message:de_school.constraint_res_partner_subjects_line_unique_student_subject
+msgid "Subject must be unique!"
+msgstr ""
+"الموضوع موجود بالفعل. يرجى التأكد من عدم أرشفة الموضوع و "
+"قم بتنشيطه.!"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_school_subject
+#: model:ir.model.fields,field_description:de_school.field_hr_employee__subject_ids
+#: model:ir.model.fields,field_description:de_school.field_hr_employee__teacher_subject_line
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__count_subjects
+#: model:ir.model.fields,field_description:de_school.field_res_partner__student_subject_line
+#: model:ir.model.fields,field_description:de_school.field_res_users__student_subject_line
+#: model:ir.ui.menu,name:de_school.menu_school_subjects
+#: model_terms:ir.ui.view,arch_db:de_school.enrollment_history_form_view
+#: model_terms:ir.ui.view,arch_db:de_school.school_subject_form_view
+#: model_terms:ir.ui.view,arch_db:de_school.school_subject_tree_view
+#: model_terms:ir.ui.view,arch_db:de_school.student_primary_form_view
+#: model_terms:ir.ui.view,arch_db:de_school.view_employee_form_inherit_teacher
+#: model_terms:ir.ui.view,arch_db:de_school.view_subject_filter
+msgid "Subjects"
+msgstr "الموضوعات"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__oe_school_student_enrollment__status__suspended
+msgid "Suspended"
+msgstr "معلق"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_hr_employees_teachers
+#: model:res.groups,name:de_school.group_school_teacher
+#: model:res.partner.category,name:de_school.res_partner_category_teacher
+msgid "Teacher"
+msgstr "المعلم"
+
+#. module: de_school
+#: model:ir.ui.menu,name:de_school.menu_school_teachers
+#: model:ir.ui.menu,name:de_school.menu_school_teachers_teachers
+msgid "Teachers"
+msgstr "المعلمين"
+
+#. module: de_school
+#: model:ir.model.constraint,message:de_school.constraint_oe_school_year_unique_name
+msgid "The academic year name must be unique."
+msgstr "اسم السنة الدراسية يجب ان يكون فريدا لا يتكرر"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.enrollment_history_form_view
+msgid "The reason why the student left or completed the enrollment."
+msgstr "اسباب جعلت الطالب يترك التسجيل"
+
+#. module: de_school
+#: model:ir.ui.menu,name:de_school.menu_school_timetable
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_search_form
+msgid "Timetable"
+msgstr "جدول الزمني"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_enrollment__transcript_detail
+msgid "Transcript"
+msgstr "النسخة"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__oe_school_student_enrollment__status__transfer
+msgid "Transferred"
+msgstr "التحويل"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.res_config_settings_school_view_form
+#: model_terms:ir.ui.view,arch_db:de_school.view_company_form_inherit
+msgid "Transform Your Company into an Educational Institution"
+msgstr "حول شركتك إلى مؤسسة تعليمية"
+
+#. module: de_school
+#: model:ir.actions.act_window,name:de_school.action_medical_type
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_grading_type__name
+#: model:ir.model.fields,field_description:de_school.field_oe_school_student_medical__med_type_id
+#: model:ir.ui.menu,name:de_school.menu_school_config_medical_type
+msgid "Type"
+msgstr "النوع"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__relation__uncle
+msgid "Uncle"
+msgstr "الخال / الخالة"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_company__school_type__uni
+msgid "University"
+msgstr "الجامعة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee__use_batch
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__use_batch
+msgid "Use Batch"
+msgstr "استخدمة الدفعة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__use_batch_subject
+#: model:ir.model.fields,field_description:de_school.field_res_partner__use_batch
+#: model:ir.model.fields,field_description:de_school.field_res_users__use_batch
+msgid "Use Batch Subject"
+msgstr "استخدم موضوع الدفعة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__use_credit_hours
+msgid "Use Credit Hours"
+msgstr "استخدم الساعات المعتمدة"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_hr_employee__use_section
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course__use_section
+#: model:ir.model.fields,field_description:de_school.field_res_partner__use_section
+#: model:ir.model.fields,field_description:de_school.field_res_users__use_section
+msgid "Use Section"
+msgstr "استخدم القطاع"
+
+#. module: de_school
+#: model:res.groups,name:de_school.group_school_user
+msgid "User"
+msgstr "المستخدم"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_company__school_type__ti
+msgid "Vocational/Technical Institute"
+msgstr "المعهد المهني / التقني"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_res_partner__student_weight
+#: model:ir.model.fields,field_description:de_school.field_res_users__student_weight
+msgid "Weight (in kg)"
+msgstr "الوزن بالكيلو جرام"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__res_partner__merital_status__widowed
+msgid "Widowed"
+msgstr "ارمل / ارملة"
+
+#. module: de_school
+#: model:ir.model.fields.selection,name:de_school.selection__oe_school_student_enrollment__status__withdrawn
+msgid "Withdrawn"
+msgstr "سحب"
+
+#. module: de_school
+#: model:ir.model.fields,field_description:de_school.field_oe_school_course_batch__year_id
+#: model_terms:ir.ui.view,arch_db:de_school.view_academic_year_filter
+msgid "Year"
+msgstr "السنة"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.school_course_form_view
+msgid "e.g. Master in Business Administration"
+msgstr "على سبيل المثال ماجستير في إدارة الأعمال"
+
+#. module: de_school
+#: model_terms:ir.ui.view,arch_db:de_school.school_classroom_building_room_form_view
+msgid "e.g. Room 1"
+msgstr "مثل الغرفة رقم 1"
+
+#. module: de_school
+#: model:ir.model,name:de_school.model_oe_school_year
+msgid "oe.academic.year"
+msgstr ""
