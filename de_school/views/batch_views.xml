@@ -42,7 +42,7 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Sbujects" invisible="not count_subjects">
+                            <page string="Subjects" invisible="not count_subjects">
                                 <field name="subject_ids" widget="one2many_list" readonly="1">
 									<tree >
 										<field name="name" />

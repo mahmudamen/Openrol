@@ -36,7 +36,7 @@
                             <field name="company_id" options="{'no_create': True}" groups="base.group_multi_company"/>
                         </group>
                         <notebook>
-                            <page string="Sbujects">
+                            <page string="Subjects">
                                 <field name="subject_ids" widget="one2many_list" readonly="1">
 									<tree >
 										<field name="name" />
