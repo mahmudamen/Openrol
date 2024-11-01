@@ -93,7 +93,7 @@
                             </group>
                         </group>
 						<notebook>
-                            <page string="Sbujects Assignment">
+                            <page string="Subjects Assignment">
                                 <field name="course_subject_line" >
 									<tree editable ="bottom" >
                                         <field name="course_id" column_invisible="1" />

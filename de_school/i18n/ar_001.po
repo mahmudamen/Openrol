@@ -1147,12 +1147,12 @@ msgstr "الغرف"
 
 #. module: de_school
 #: model_terms:ir.ui.view,arch_db:de_school.school_course_batch_form_view
-msgid "Sbujects"
+msgid "Subjects"
 msgstr "المواضيع"
 
 #. module: de_school
 #: model_terms:ir.ui.view,arch_db:de_school.school_course_form_view
-msgid "Sbujects Assignment"
+msgid "Subjects Assignment"
 msgstr "تعيين المواد"
 
 #. module: de_school
